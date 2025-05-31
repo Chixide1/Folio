@@ -1,91 +1,30 @@
 "use client";
 
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  NavbarLogo,
-  NavbarButton,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
-} from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import React from "react";
+import { IoHomeOutline } from "react-icons/io5";
+import { GoProjectSymlink } from "react-icons/go";
+import { RiBloggerLine } from "react-icons/ri";
 
-export function AppNavbar({children}: {children: React.ReactNode}) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+export function AppNavbar() {
   return (
-    <>
-      <Navbar>
-        {/* Desktop Navigation */}
-        <NavBody>
-          <NavbarLogo />
-          <NavItems items={navItems} />
-          <NavbarButton variant="primary">Resume</NavbarButton>
-        </NavBody>
-
-        {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
-            <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => (
-              <a
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
-              >
-                <span className="block">{item.name}</span>
-              </a>
-            ))}
-            <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Book a call
-              </NavbarButton>
-            </div>
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
-        
-    {children}
-    </>
+    <FloatingDock items={navItems} desktopClassName="w-fit fixed top-4 left-0 right-0 z-50"/>
   );
 }
 
-const navItems = [
+const navItems: FloatingDockItem[] = [
   {
-    name: "Home",
-    link: "/",
+    title: "Home",
+    href: "/",
+    icon: <IoHomeOutline />
   },
   {
-    name: "Projects",
-    link: "#",
+    title: "Projects",
+    href: "#",
+    icon: <GoProjectSymlink />
   },
   {
-    name: "Blog",
-    link: "#",
+    title: "Blog",
+    href: "#",
+    icon: <RiBloggerLine />
   },
 ];

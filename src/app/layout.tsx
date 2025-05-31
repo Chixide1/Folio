@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/ui/resizable-navbar";
 import { AppNavbar } from "@/components/shared/app-navbar";
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -27,11 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} antialiased dark:bg-gray-950 dark:text-gray-400`}
       >
-        <AppNavbar>
-          {children}
-        </AppNavbar>
+        {/*<AppNavbar />*/}
+        {children}
       </body>
     </html>
   );
