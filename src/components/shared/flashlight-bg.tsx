@@ -1,11 +1,8 @@
-'use client';
+﻿'use client';
 
-import { useEffect, useState } from 'react';
-import {HomeHero} from "@/components/sections/home-hero";
-import {Stripes} from "@/components/shared/stripes";
-import {HomeAbout} from "@/components/sections/home-about";
+import {ReactNode, useEffect, useState} from "react";
 
-export default function Home() {
+export function FlashlightBg({children}: {children: ReactNode}) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -16,23 +13,17 @@ export default function Home() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  return (
+  
+  return(
     <div className="flex min-h-dvh bg-inherit relative overflow-hidden">
-      {/* Flashlight overlay - creates subtle lighter area */}
+      {/* Flashlight overlay - creates subtle lighter area, set to the lighter color in tailwind with a low opacity */}
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-opacity duration-300"
         style={{
           background: `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
         }}
       />
-
-      <Stripes className="mr-7"/>
-      <HomeHero className="w-full" />
-      <main className="w-full pt-24">
-        <HomeAbout />
-      </main>
-      <Stripes className="ml-7"/>
+      {children}
     </div>
-  );
+  )
 }
