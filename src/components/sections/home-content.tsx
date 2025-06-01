@@ -31,6 +31,7 @@ export function HomeContent({ className }: {className?: string}) {
   return (
     <main className={className}>
       <HomeAbout ref={homeAboutRef} />
+      <div className="h-screen"></div>
     </main>
   );
 }

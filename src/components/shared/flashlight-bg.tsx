@@ -15,7 +15,7 @@ export function FlashlightBg({children, className}: {children: ReactNode, classN
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-opacity duration-300"
         style={{
-          background: isMobile ? "radial-gradient(circle 600px at 60% 95%, rgba(29, 78, 216, 0.15), transparent 80%)" :
+          background: isMobile ? "radial-gradient(circle 600px at 20% 20%, rgba(29, 78, 216, 0.15), transparent 80%)" :
             `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
         }}
       />

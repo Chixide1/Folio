@@ -1,4 +1,6 @@
-﻿import {useCallback, useEffect, useRef} from 'react';
+﻿"use client";
+
+import {useCallback, useEffect, useRef} from 'react';
 
 // Type definitions
 type IntersectionCallback = (entry: IntersectionObserverEntry) => void;
