@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppNavbar } from "@/components/shared/app-navbar";
+import {Providers} from "@/contexts/providers";
+import {ReactNode} from "react";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -16,15 +18,15 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${inter.className} antialiased`}
-      >
-        <AppNavbar />
-        {children}
+    <html lang="en" className="dark scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-400">
+      <body className={`${inter.className} antialiased leading-relaxed`}>
+        <Providers>
+          <AppNavbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

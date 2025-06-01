@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { IoHomeOutline } from "react-icons/io5";
 import { GoProjectSymlink } from "react-icons/go";
 import { RiBloggerLine } from "react-icons/ri";
@@ -15,13 +15,19 @@ import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
 import { Logo } from "@/components/shared/logo";
 import {Button} from "@/components/ui/button";
+import {useScrolldownWatcher} from "@/hooks/use-scrolldown-watcher";
 
 export function AppNavbar() {
   const pathname = usePathname();
-  
+  const scrolledDown = useScrolldownWatcher();
+
   return (
-    <header className="fixed top-0 left-0 z-50 w-full py-3 border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10">
-      <NavigationMenu className="px-6 w-full backdrop-blur-sm bg-inherit/90 max-w-none">
+    <header className={cn(
+      "fixed top-0 bg-inherit left-0 z-50 w-full border-b border-slate-900/10 dark:border-slate-300/10",
+      "transition-transform duration-300 ease-in-out",
+      scrolledDown ? "translate-y-0" : "-translate-y-full"
+    )}>
+      <NavigationMenu className="px-6 lg:px-6 py-3 w-full backdrop-blur-sm max-w-none">
         <Link href="/" className="mr-auto">
           <Logo className="text-teal-300 w-6 h-auto" />
         </Link>
@@ -43,7 +49,7 @@ export function AppNavbar() {
           variant="outline"
           size="sm"
           className={cn("ml-auto rounded-xs transition-colors duration-500 !bg-inherit text-teal-300 dark:hover:text-gray-950",
-          "border-teal-300 dark:hover:!bg-teal-300")}
+            "border-teal-300 dark:hover:!bg-teal-300")}
         >
           <Link href="/Resume.pdf" target="_blank" className="">Resume</Link>
         </Button>

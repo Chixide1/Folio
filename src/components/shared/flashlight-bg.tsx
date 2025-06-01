@@ -1,26 +1,22 @@
-﻿'use client';
+﻿"use client";
 
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode} from "react";
+import {cn} from "@/lib/utils";
+import {UseCursorTracker} from "@/hooks/use-cursor-tracker";
+import {useIsMobile} from "@/hooks/use-mobile";
 
-export function FlashlightBg({children}: {children: ReactNode}) {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+export function FlashlightBg({children, className}: {children: ReactNode, className?: string}) {
+  const mousePosition = UseCursorTracker();
+  const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  
   return(
-    <div className="flex min-h-dvh bg-inherit relative overflow-hidden">
+    <div className={cn("relative", className)}>
       {/* Flashlight overlay - creates subtle lighter area, set to the lighter color in tailwind with a low opacity */}
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
+          background: isMobile ? "radial-gradient(circle 600px at 60% 95%, rgba(29, 78, 216, 0.15), transparent 80%)" :
+            `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
         }}
       />
       {children}
