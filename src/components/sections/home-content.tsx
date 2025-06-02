@@ -25,9 +25,9 @@ export function HomeContent({ className }: {className?: string}) {
   });
 
   useEffect(() => {
-    const refConfigs = [ homeAboutRef, testRef ];
+    const refRegistry = [ homeAboutRef, testRef ];
 
-    refConfigs.forEach(ref => {
+    refRegistry.forEach(ref => {
       if (ref?.current) observe(ref.current)
     })
 
