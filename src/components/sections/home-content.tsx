@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import {RefObject, useCallback, useEffect, useRef} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { HomeAbout } from "@/components/sections/home-about";
 import {useActiveId} from "@/contexts/active-id-context";

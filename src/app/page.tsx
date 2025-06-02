@@ -9,11 +9,11 @@ export default function Home() {
   
   return (
       <FlashlightBg className="">
-        <div className="min-h-screen px-6 lg:px-0 lg:flex lg:gap-4">
-          <Stripes className="mr-3 sticky top-0"/>
-          <HomeHero className="py-24 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between" />
-          <HomeContent className="pt-24 lg:w-[55%]" />
-          <Stripes className="ml-3 sticky top-0"/>
+        <div className="min-h-screen px-6 lg:px-0 lg:flex lg:gap-5">
+          <Stripes className="mr-auto sticky top-0"/>
+          <HomeHero className="ml-3 py-24 lg:sticky lg:top-0 lg:flex lg:max-h-screen max-w-xl lg:w-[45%] lg:flex-col lg:justify-between xl:justify-start" />
+          <HomeContent className="mr-3 pt-24 lg:w-[55%] lg:max-w-xl" />
+          <Stripes className="ml-auto sticky top-0"/>
         </div>
       </FlashlightBg>
   );

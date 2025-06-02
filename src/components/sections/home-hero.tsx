@@ -11,8 +11,8 @@ export function HomeHero({className}: {className?: string}){
         <p className="text-slate-400 mt-4 max-w-xs leading-normal">
           Full-stack developer & IT Enthusiast crafting modern, scalable tech solutions.
         </p>
-        <HomeHeroNav />
-        <HomeHeroSocials />
+        <HomeHeroNav className="hidden lg:block mt-16" />
+        <HomeHeroSocials className="ml-1 mt-16 lg:mt-auto" />
     </header>
   );
 }
@@ -32,11 +32,11 @@ const homeNavItems = [
   }
 ]
 
-function HomeHeroNav(){
+function HomeHeroNav({className}: {className?: string}){
   const { activeId } = useActiveId();
   
   return (
-    <nav className="mt-16">
+    <nav className={cn("", className)}>
       {homeNavItems.map(item => (
         <Link
           href={item.href}
@@ -58,9 +58,9 @@ function HomeHeroNav(){
   )
 }
 
-function HomeHeroSocials(){
+function HomeHeroSocials({className}: {className?: string}){
   return (
-    <div className="ml-1 mt-8 flex items-center gap-6 text-slate-400 text-2xl">
+    <div className={cn("flex items-center gap-6 text-slate-400 text-2xl", className)}>
       {socialLinks.map(item => (
         <Link
           href={item.href} key={"HomeHeroSocials-" + item.title}

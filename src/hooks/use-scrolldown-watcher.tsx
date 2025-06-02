@@ -1,33 +1,50 @@
-﻿import {useEffect, useState} from "react";
+﻿import {useCallback, useEffect, useRef, useState} from "react";
 
 /**
- * Custom hook for observing the vertical scroll direction
- * @returns boolean set to true if scrolling down else will be false
+ * Optimized custom hook for observing the vertical scroll direction
+ * @param threshold - Minimum scroll distance to register direction change (default: 10)
+ * @param throttleMs - Throttle delay in milliseconds (default: 16ms ≈ 60fps)
+ * @returns boolean set to true when scrolling down, false when scrolling up or at top
  */
-export function useScrolldownWatcher () {
-  const [scrolledDown, setScrolledDown] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+export function useScrolldownWatcher(threshold: number = 10, throttleMs: number = 16) {
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  const updateScrollDirection = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const scrollDiff = currentScrollY - lastScrollY.current;
+
+    // Only update if scroll difference exceeds threshold
+    if (Math.abs(scrollDiff) > threshold) {
+      // false when scrolling up or at top, true when scrolling down
+      if (currentScrollY <= threshold || scrollDiff < 0) {
+        setIsScrollingDown(false);
+      } else {
+        setIsScrollingDown(true);
+      }
+      lastScrollY.current = currentScrollY;
+    }
+
+    ticking.current = false;
+  }, [threshold]);
+
+  const handleScroll = useCallback(() => {
+    if (!ticking.current) {
+      requestAnimationFrame(updateScrollDirection);
+      ticking.current = true;
+    }
+  }, [updateScrollDirection]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // false when scrolling up, true when scrolling down
-      if (currentScrollY < lastScrollY || currentScrollY < 10) {
-        setScrolledDown(true);
-      } else {
-        setScrolledDown(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    // Initialize with current scroll position
+    lastScrollY.current = window.scrollY;
+    
+    // Use passive event listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-  
-  return (
-    scrolledDown
-  )
+  }, [handleScroll]);
+
+  return isScrollingDown;
 }

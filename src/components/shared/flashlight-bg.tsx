@@ -2,12 +2,12 @@
 
 import {ReactNode} from "react";
 import {cn} from "@/lib/utils";
-import {UseCursorTracker} from "@/hooks/use-cursor-tracker";
+import {useCursorTracker} from "@/hooks/use-cursor-tracker";
 import {useIsMobile} from "@/hooks/use-mobile";
 
 export function FlashlightBg({children, className}: {children: ReactNode, className?: string}) {
-  const mousePosition = UseCursorTracker();
-  const isMobile = useIsMobile();
+  const mousePosition = useCursorTracker();
+  const isMobile = useIsMobile({maxWidth: 1024});
 
   return(
     <div className={cn("relative", className)}>
