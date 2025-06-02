@@ -5,28 +5,32 @@ import {useCallback, useEffect, useRef} from 'react';
 // Type definitions
 type IntersectionCallback = (entry: IntersectionObserverEntry) => void;
 
-interface UseIntersectionObserverOptions extends IntersectionObserverInit {
+type UseIntersectionObserverOptions = IntersectionObserverInit & {
   root?: Element | null;
   rootMargin?: string;
   threshold?: number | number[];
 }
 
-interface UseIntersectionObserverReturn {
+type UseObserverReturn = {
   observe: (element: Element, id?: string) => (() => void) | undefined;
   unobserve: (elementOrId: Element | string) => void;
   unobserveAll: () => void;
 }
 
+type UseObserverProps = {
+  onIntersect: IntersectionCallback;
+  options?: UseIntersectionObserverOptions;
+}
+
 /**
  * Custom hook for observing multiple elements with Intersection Observer
- * @param onIntersect - Callback function called when an element intersects
- * @param options - Intersection Observer options
+ * @param props - Object containing onIntersect callback and options
  * @returns Object with observe, unobserve, and unobserveAll functions
  */
-export const useObserver = (
-  onIntersect: IntersectionCallback,
-  options: UseIntersectionObserverOptions = {}
-): UseIntersectionObserverReturn => {
+export function useObserver({
+  onIntersect,
+  options = {}
+}: UseObserverProps): UseObserverReturn {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const elementsRef = useRef<Map<string | Element, Element>>(new Map());
 
@@ -99,4 +103,4 @@ export const useObserver = (
   }, []);
 
   return { observe, unobserve, unobserveAll };
-};
+}

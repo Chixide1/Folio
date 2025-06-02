@@ -7,7 +7,7 @@ export const HomeAbout = forwardRef<HTMLElement, { className?: string }>(
       <section
         id="home-about"
         ref={ref}
-        className={cn("[&>p]:leading-relaxed [&>p]:mb-4 [&>p]:font-base", className)}
+        className={cn("[&>p]:leading-relaxed [&>p]:mb-4 [&>p]:font-base scroll-mt-24", className)}
       >
         <p>
           My passion for technology was sparked early on by watching hacker movies that showcased the seemingly limitless power of code.
