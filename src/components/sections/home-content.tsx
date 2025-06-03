@@ -4,7 +4,7 @@ import {useCallback, useEffect, useRef} from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { HomeAbout } from "@/components/sections/home-about";
 import {useActiveId} from "@/contexts/active-id-context";
-import {ExperienceCard, experiences} from "@/components/specific/experience-card";
+import {ExperienceCard, exps} from "@/components/specific/experience-card";
 
 export function HomeContent({ className }: {className?: string}) {
   const {activeId, setActiveId} = useActiveId();
@@ -15,7 +15,7 @@ export function HomeContent({ className }: {className?: string}) {
   
   const handleIntersection = useCallback((entry: IntersectionObserverEntry) => {
     if (entry) setActiveId(entry.target.id)
-  }, [setActiveId]);
+  }, [setActiveId,]);
 
   const { observe, unobserveAll } = useObserver({
     onIntersect: handleIntersection,
@@ -38,8 +38,8 @@ export function HomeContent({ className }: {className?: string}) {
   return (
     <main className={className}>
       <HomeAbout ref={homeAboutRef} />
-      <div id="home-experience" className="py-24 flex flex-col gap-8" ref={testRef}>
-        {experiences.map(exp => (
+      <div id="home-experience" className="my-36 flex flex-col gap-8" ref={testRef}>
+        {exps.map(exp => (
           <ExperienceCard {...exp} key={"HomeExperience-" + exp.company} />
         ))}
       </div>
