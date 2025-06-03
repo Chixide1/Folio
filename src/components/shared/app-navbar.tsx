@@ -28,7 +28,7 @@ export function AppNavbar() {
   return (
     <header className={cn(
       "fixed top-0 bg-slate-900/90 lg:bg-slate-900/95 left-0 z-50 w-full border-b border-slate-900/10 dark:border-slate-300/10",
-      "transition-transform duration-300 ease-in-out",
+      "transition-transform duration-300 ease-in-out lg:border-r",
       scrolledDown ? "-translate-y-full" : "translate-y-0 shadow-2xl" 
     )}>
       <NavigationMenu className="px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
