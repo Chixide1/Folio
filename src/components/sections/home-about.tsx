@@ -22,7 +22,8 @@ export const HomeAbout = forwardRef<HTMLElement, { className?: string }>(
           - ranging from a personal finance app to a file-sharing platform.
         </p>
         <p>
-          Currently, I work as a <span className="font-semibold text-slate-200"> 2nd Line IT Service Desk Analyst</span> where I support users across the business, automate tasks using PowerShell,
+          Currently, I work as a <span className="font-semibold text-slate-200"> 2nd Line IT Service Desk Analyst </span>
+          where I support users across the business, automate tasks using PowerShell,
           build applications to solve problems and manage backend administration for the company&#39;s website.
         </p>
         <p>
