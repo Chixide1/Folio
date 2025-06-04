@@ -7,18 +7,16 @@ import {useActiveId} from "@/contexts/active-id-context";
 import { HomeExperience } from "./home-projects";
 
 export function HomeContent({ className }: {className?: string}) {
-  const {activeId, setActiveId} = useActiveId();
+  const {setActiveId} = useActiveId();
   const homeAboutRef = useRef<HTMLElement>(null);
   const homeExperienceRef = useRef<HTMLElement>(null);
 
   // console.log(activeId);
-  
-  const handleIntersection = useCallback((entry: IntersectionObserverEntry) => {
-    if (entry) setActiveId(entry.target.id)
-  }, [setActiveId,]);
 
   const { observe, unobserveAll } = useObserver({
-    onIntersect: handleIntersection,
+    onIntersect: useCallback((entry) => {
+      if (entry) setActiveId(entry.target.id)
+    }, [setActiveId,]),
     options: {
       threshold: 0.1,
       rootMargin: "-40% 0% -40% 0%"
