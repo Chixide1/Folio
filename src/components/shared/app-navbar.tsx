@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {JSX, useState} from "react";
 import { IoHomeOutline } from "react-icons/io5";
 import { GoProjectSymlink } from "react-icons/go";
 import { RiBloggerLine } from "react-icons/ri";
@@ -20,6 +20,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { LuFileText } from "react-icons/lu";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator} from "@/components/ui/dropdown-menu";
 import { TbMenu, TbX } from "react-icons/tb";
+import { IconType } from "react-icons/lib";
 
 export function AppNavbar() {
   const scrolledDown = useScrolldownWatcher();
@@ -104,11 +105,11 @@ function MobileMenu({className}: {className?: string}) {
             <Link
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors",
-                pathname === item.href && "text-teal-300 [&_svg]:text-teal-300"
+                "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors duration-500 hover:text-teal-300",
+                pathname === item.href && "text-teal-300"
               )}
             >
-              {item.icon}
+              {<item.Icon className={"text-slate-200 size-5 " + (pathname === item.href && "text-teal-300 transition-colors duration-500 hover:text-teal-300")} />}
               {item.title}
             </Link>
           </DropdownMenuItem>
@@ -129,20 +130,26 @@ function MobileMenu({className}: {className?: string}) {
   )
 }
 
-const navItems = [
+type NavItem = {
+  title: string;
+  href: string;
+  Icon: IconType;
+}
+
+const navItems: NavItem[] = [
   {
     title: "Home",
     href: "/",
-    icon: <IoHomeOutline className="text-slate-200 size-5" />
+    Icon: IoHomeOutline
   },
   {
     title: "Projects",
     href: "#",
-    icon: <GoProjectSymlink className="text-slate-200 size-5" />
+    Icon: GoProjectSymlink
   },
   {
     title: "Blog",
     href: "#",
-    icon: <RiBloggerLine className="text-slate-200 size-5" />
+    Icon: RiBloggerLine
   },
 ];
