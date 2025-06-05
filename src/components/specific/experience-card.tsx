@@ -2,6 +2,7 @@
 import {Badge} from "@/components/ui/badge";
 import Image from "next/image";
 import { format, differenceInMonths } from 'date-fns';
+import {Tag} from "@/components/ui/tag";
 
 export type Experience = {
   title: string;
@@ -54,7 +55,7 @@ export function ExperienceCard({
   };
 
   return (
-    <div className="relative flex">
+    <div className="flex">
       {/* Timeline line and dot */}
       <div className="md:flex flex-col items-center mr-6 hidden">
         {/* Company logo as timeline dot */}
@@ -65,7 +66,7 @@ export function ExperienceCard({
               alt={`${company} logo`}
               width={1000}
               height={1000}
-              className="w-10 h-auto rounded object-contain"
+              className="w-auto h-auto rounded object-contain"
             />
           ) : (
             <div className="w-8 h-8 rounded flex items-center justify-center">
@@ -97,15 +98,7 @@ export function ExperienceCard({
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.sort()
-            .map((tag, index) => (
-              <Badge
-                variant="outline"
-                key={index}
-                className="px-3 py-1 text-teal-300 border-teal-300 text-xs rounded-full"
-              >
-                {tag}
-              </Badge>
-            ))}
+            .map(tag => <Tag value={tag} key={"ExperienceCardTag-" + tag} />)}
         </div>
 
         {/* Description */}

@@ -1,61 +1,59 @@
-import { forwardRef } from "react"
-import { Experience, ExperienceCard } from "../specific/experience-card"
-import { cn } from "@/lib/utils"
-import { Home } from "lucide-react"
+﻿import {forwardRef} from "react";
+import {cn} from "@/lib/utils";
+import {Project, ProjectCard} from "@/components/specific/project-card";
 
-export const HomeExperience = forwardRef<HTMLElement, { className?: string }>(
-    ({className}, ref) => {
-        return (
-            <section id="home-experience" className={cn("my-36 flex flex-col gap-8", className)} ref={ref}>
-                {exps.map(exp => <ExperienceCard {...exp} key={"HomeExperience-" + exp.company} />)}
-            </section>
-        )
-    }
-)
-HomeExperience.displayName = "HomeExperience"
-
-const exps: Experience[] = [
-  {
-    title: "2nd Line IT Service Desk Analyst",
-    company: "Leathams",
-    companyLogo: "/leathams.png",
-    startDate: new Date(2024, 1), // February 2024
-    jobType: "Full-time",
-    description: [
-      "Engineered a WinUI 3 application facilitating rapid searches across 300+ external technical specifications, enabling the technical department to accelerate delivery of required information to third-parties.",
-      "Migrated 100+ user licenses and numbers to a new calling provider by leveraging custom Azure PowerShell scripts, ensuring a smooth and seamless transition from the end-user's perspective.",
-      "Automated sensitive data migration between password managers using a custom PowerShell script which secured 300+ user credentials and reduced migration time by 75%."
-    ],
-    tags: ["WinUI 3", "Azure", "PowerShell", "C#", "Python"],
-    location: "London Bridge, UK"
-  },
-  {
-    title: "Information Security Analyst",
-    company: "Mountain Warehouse",
-    companyLogo: "/mountain-warehouse.png",
-    startDate: new Date(2023, 9), // October 2023
-    endDate: new Date(2024, 0), // January 2024
-    jobType: "Full-time",
-    description: [
-      "Strengthened security posture through regular security awareness training, incident response, and vulnerability assessments of onboarded software.",
-      "Improved cybersecurity awareness for 500+ employees by developing and distributing monthly newsletters focused on best practices and key terms."
-    ],
-    tags: ["Cybersecurity", "Vulnerability Assessment", "Risk Assessment", "Incident Response", "Patch Management"],
-    location: "London Victoria, UK"
-  },
-  {
-    title: "IT System Support Analyst",
-    company: "RMHC UK",
-    companyLogo: "/rmhc-uk.jpg",
-    startDate: new Date(2021, 3), // April 2021
-    endDate: new Date(2023, 9), // October 2023
-    jobType: "Full-time",
-    description: [
-      "Produced a GUI-based printer management application that simplified network printer configuration, resulting in a 75% reduction in printer support tickets.",
-      "Streamlined user provisioning and access management for 200+ users by utilising Azure AD.",
-      "Developed a comprehensive IT handbook with step-by-step guides and troubleshooting tips, decreasing service desk inquiries by 25% and increasing user self-reliance by 30%."
-    ],
-    tags: ["Azure", "Winforms", "Cisco", "Powershell", "Python", "Selenium", "Microsoft Dynamics 365"],
-    location: "East Finchley, UK",
+export const HomeProjects = forwardRef<HTMLElement,{className?: string, id?: string}>(
+  ({className, id}, ref) => {
+    return (
+      <section id={id} className={cn("flex flex-col gap-4", className)} ref={ref}>
+        {/*<div className="h-screen"></div>*/}
+        {projects.map(project => (
+          <ProjectCard {...project} key={"HomeProjects-" + project.title} />
+        ))}
+      </section>
+    )
   }
-];
+)
+HomeProjects.displayName = "HomeProjects"
+
+const projects: Project[] = [
+  {
+    title: "ZenWealth",
+    description: "ZenWealth is a personal finance app that connects to banks via Plaid, allowing users to track expenses, manage budgets, and analyze spending patterns. Built with ASP.NET Core and React, it features account management, transaction history, visual budget tracking, and spending analytics to help users gain comprehensive insights into their financial health. The linked app uses test data which you can view by adding an account using any username & password.",
+    image: "/zenwealth.png",
+    github: "https://github.com/Chixide1/ZenWealth",
+    live: "https://zenwealth.ckdoestech.com/",
+    tags: [
+      "Typescript", "React", "C#", "Asp.Net Core", "SQL Server", "Tailwind CSS", "Shadcn"
+    ]
+  },
+    {
+      title: "Techtonic",
+      description: "This blog application was inspired by the Prismic Blog and developed primarily to learn Next.js while creating a practical and functional project. I populated it with mock data to showcase its features.",
+      image: "/techtonic.png",
+      github: "https://github.com/Chixide1/techtonic",
+      live: "https://techtonic.ckdoestech.com/",
+      tags: [
+        "Next.js", "Javascript", "Typescript", "Pocketbase", "React", "PayloadCMS"
+      ]
+    },
+    {
+      title: "Cloudstore",
+      description: "This web application allows users to upload files and generate temporary download links for easy sharing utilising Azure for storage. This version of the Fileshare App v2 (now named Cloudstore) is an enhanced version of the original cloud storage platform I made. This iteration features a significantly improved user interface and expanded functionality.",
+      image: "/cloudstore.png",
+      github: "https://github.com/Chixide1/Cloudstore",
+      live: "https://cloudstore.ckdoestech.com",
+      tags: [
+        "Python" ,"Django", "Sass", "Htmx", "Bootstrap", "Hyperscript"
+      ]
+    },
+    {
+      title: "Portfolio App",
+      description: "The website you are currently on! My portfolio showcases my coding projects and the technologies I have utilised. It also highlights some of my skills and experience.",
+      image: "/portfolio-app.png",
+      github: "https://github.com/Chixide1/Portfolio-App",
+      tags: [
+        "Typescript", "Angular", "Sass", "Javascript", "Angular Material"
+      ]
+    }
+  ]
