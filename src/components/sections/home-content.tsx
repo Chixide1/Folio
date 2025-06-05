@@ -39,16 +39,18 @@ export function HomeContent({ className }: { className?: string }) {
   return (
     <main className={className}>
       <HomeAbout
+        id="home-about"
         className="pb-36"
         ref={homeAboutRef}
       />
       <HomeExperience
-        className=""
+        id="home-experience"
+        className="pb-36"
         ref={homeExperienceRef}
       />
       <HomeProjects
         id="home-projects"
-        className="pt-36"
+        className="pb-36"
         ref={homeProjectsRef}
       />
     </main>

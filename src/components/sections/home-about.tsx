@@ -1,13 +1,13 @@
-﻿import { forwardRef } from "react";
+﻿import {forwardRef, HTMLProps} from "react";
 import { cn } from "@/lib/utils";
 
-export const HomeAbout = forwardRef<HTMLElement, { className?: string }>(
-  ({ className }, ref) => {
+export const HomeAbout = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
+  ({className, ...props }, ref) => {
     return (
       <section
-        id="home-about"
         ref={ref}
         className={cn("[&>p]:leading-relaxed [&>p]:mb-4 [&>p]:font-base scroll-mt-24", className)}
+        {...props}
       >
         <p>
           My passion for technology was sparked early on by watching hacker movies that showcased the seemingly limitless power of code.

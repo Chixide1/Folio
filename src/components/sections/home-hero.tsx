@@ -64,10 +64,10 @@ function HomeHeroSocials({className}: {className?: string}){
       {socialLinks.map(item => (
         <Link
           href={item.href} key={"HomeHeroSocials-" + item.title}
-          className="hover:text-slate-200 duration-300 transition-all hover:-translate-y-1"
+          className="hover:text-slate-200 duration-500 transition-all hover:-translate-y-1.5"
           target="_blank"
         >
-          {item.icon}
+          <item.Icon className="h-auto w-[1em]" />
         </Link>
       ))}
     </div>

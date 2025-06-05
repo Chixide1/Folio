@@ -1,12 +1,17 @@
-import { forwardRef } from "react"
+import {forwardRef, HTMLProps} from "react"
 import { Experience, ExperienceCard } from "../specific/experience-card"
 import { cn } from "@/lib/utils"
 
-export const HomeExperience = forwardRef<HTMLElement, { className?: string }>(
-    ({className}, ref) => {
+export const HomeExperience = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
+    ({className, ...props}, ref) => {
         return (
-            <section id="home-experience" className={cn("flex flex-col gap-8", className)} ref={ref}>
-                {exps.map(exp => <ExperienceCard {...exp} key={"HomeExperience-" + exp.company} />)}
+            <section
+              className={cn("flex flex-col gap-8", className)} 
+              ref={ref}
+              {...props}
+            >
+                {exps.map(exp => 
+                  <ExperienceCard {...exp} key={"HomeExperience-" + exp.company} />)}
             </section>
         )
     }

@@ -4,79 +4,88 @@ import {cn} from "@/lib/utils";
 import {FiGithub} from "react-icons/fi";
 import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
+import { GoProjectSymlink } from "react-icons/go";
+import {FaArrowRight, FaArrowRightLong} from "react-icons/fa6";
+import {AnchorHTMLAttributes, HTMLProps} from "react";
 
 export type Project = {
-  className?: string;
   title: string;
   description: string;
   image: string;
   github: string;
-  live?: string;
+  live: string;
   tags: string[];
-}
+} & HTMLProps<HTMLDivElement>
 
-export function ProjectCard({className,
-                              title,
-                              description,
-                              image,
-                              tags,
-                              github,
-                              live
-                            } : Project) {
+export function ProjectCard({
+  className,
+  title,
+  description,
+  image,
+  tags,
+  github,
+  live,
+  ...props
+} : Project) {
   return (
-    <div className={cn(
-      "border-b border-slate-800 pb-12 last:border-b-0 transition-all duration-300 hover:border-slate-700",
-      className
-    )}>
-      {/* Header with title and links */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-2xl font-semibold text-slate-100">{title}</h3>
-        <div className="flex items-center gap-3">
-          <Link
-            href={github}
-            className="p-2 text-slate-400 hover:text-slate-200 transition-colors duration-200"
-            aria-label="View source code"
-          >
-            <FiGithub className="w-5 h-5" />
-          </Link>
-          {live && (
-            <Link
-              href={live}
-              className="p-2 text-slate-400 hover:text-slate-200 transition-colors duration-200"
-              aria-label="View live demo"
-            >
-              <MdOutlineArrowOutward className="w-5 h-5" />
-            </Link>
-          )}
+    <div
+      className={cn(
+        "grid grid-cols-6 gap-y-1 gap-x-4 hover:bg-slate-800/50 p-4 rounded-lg hover:drop-shadow-lg duration-500 transition-all",
+        className
+      )}
+      {...props}
+    >
+
+      {/* First Row */}
+      <Link href={live} target="_blank" className="group col-span-6 grid grid-cols-subgrid">
+        {/* Image */}
+        <div className="col-span-2">
+          <Image
+            src={image}
+            alt={title}
+            width={1200}
+            height={1200}
+            className="w-full h-auto object-cover rounded border border-slate-700"
+          />
         </div>
+
+        {/* Content */}
+        <div className="mb-3 col-span-4">
+          <div className="mb-2 font-semibold text-slate-200 flex gap-1.5">
+            <h3 className="group-hover:text-teal-300 duration-500 transition-colors">{title}</h3>
+            <MdOutlineArrowOutward
+              className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-teal-300"
+            />
+          </div>
+          <p className="text-sm">{description}</p>
+        </div>
+      </Link>
+
+      {/* Second row - Links and Tags */}
+      <div className="row-start-2 col-span-2 text-sm flex flex-col pt-2">
+        <ProjectLink name={"Github"} href={github} className=""/>
+        <ProjectLink name={"Project Details"} href={""} />
       </div>
 
-      {/* Content layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left column - Description and tags */}
-        <div className="lg:col-span-2 space-y-6">
-          <p className="text-sm">
-            {description}
-          </p>
-
-          <div className="flex flex-wrap gap-2">
-            {tags.sort().map(tag => (
-              <Tag value={tag} key={"ProjectCardTag-" + tag} />
-            ))}
-          </div>
-        </div>
-
-        {/* Right column - Image */}
-        <div className="lg:col-span-1">
-            <Image
-              src={image}
-              alt={title}
-              width={1200}
-              height={1200}
-              className="w-full h-auto object-cover rounded-lg border border-slate-700"
-            />
+      <div className="row-start-2 col-span-4">
+        <div className="flex flex-wrap gap-1.5">
+          {tags.map(tag => <Tag value={tag} key={"ProjectCardTag-" + tag} />)}
         </div>
       </div>
     </div>
+  )
+}
+
+function ProjectLink({className, ...props}: AnchorHTMLAttributes<HTMLAnchorElement> & {name: string}) {
+  return (
+    <Link
+      href={props.href ?? ""}
+      target="_blank"
+      className={cn("hover:text-teal-300 p-1 transition-colors duration-500 font-semibold underline flex w-fit group/projectLink items-center gap-2",
+        className)}
+    >
+      {props.name}
+      <FaArrowRight className="group-hover/projectLink:translate-x-1 group-hover/projectLink:text-teal-300 duration-500 transition-all" />
+    </Link>
   )
 }
