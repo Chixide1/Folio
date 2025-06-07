@@ -4,6 +4,8 @@ import "./globals.css";
 import { AppNavbar } from "@/components/shared/app-navbar";
 import {Providers} from "@/contexts/providers";
 import {ReactNode} from "react";
+import {AppFooter} from "@/components/shared/app-footer";
+import {Dots} from "@/components/ui/dots";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -21,11 +23,12 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-400">
+    <html lang="en" className="dark scrollbar-thin">
       <body className={`${inter.className} antialiased leading-relaxed`}>
         <Providers>
           <AppNavbar />
           {children}
+          <AppFooter />
         </Providers>
       </body>
     </html>

@@ -1,12 +1,10 @@
 ﻿import Image from "next/image";
 import {Tag} from "@/components/ui/tag";
 import {cn} from "@/lib/utils";
-import {FiGithub} from "react-icons/fi";
 import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
-import { GoProjectSymlink } from "react-icons/go";
-import {FaArrowRight, FaArrowRightLong} from "react-icons/fa6";
-import {AnchorHTMLAttributes, HTMLProps} from "react";
+import {FaArrowRight} from "react-icons/fa6";
+import {AnchorHTMLAttributes, ComponentPropsWithRef} from "react";
 
 export type Project = {
   title: string;
@@ -15,7 +13,7 @@ export type Project = {
   github: string;
   live: string;
   tags: string[];
-} & HTMLProps<HTMLDivElement>
+} & ComponentPropsWithRef<"div">
 
 export function ProjectCard({
   className,
@@ -37,7 +35,7 @@ export function ProjectCard({
     >
 
       {/* First Row */}
-      <Link href={live} target="_blank" className="group col-span-6 grid grid-cols-subgrid">
+      <Link href={live} target="_blank" className="group col-span-6 sm:grid sm:grid-cols-subgrid">
         {/* Image */}
         <div className="col-span-2">
           <Image
@@ -45,7 +43,7 @@ export function ProjectCard({
             alt={title}
             width={1200}
             height={1200}
-            className="w-full h-auto object-cover rounded border border-slate-700"
+            className="w-full max-sm:mb-4 h-auto object-cover rounded border border-slate-700"
           />
         </div>
 
@@ -62,12 +60,12 @@ export function ProjectCard({
       </Link>
 
       {/* Second row - Links and Tags */}
-      <div className="row-start-2 col-span-2 text-sm flex flex-col pt-2">
+      <div className="sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
         <ProjectLink name={"Github"} href={github} className=""/>
         <ProjectLink name={"Project Details"} href={""} />
       </div>
 
-      <div className="row-start-2 col-span-4">
+      <div className="row-start-2 col-span-full sm:col-span-4">
         <div className="flex flex-wrap gap-1.5">
           {tags.map(tag => <Tag value={tag} key={"ProjectCardTag-" + tag} />)}
         </div>

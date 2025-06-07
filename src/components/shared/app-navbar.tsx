@@ -1,9 +1,6 @@
 "use client";
 
 import React, {useState} from "react";
-import { IoHomeOutline } from "react-icons/io5";
-import { GoProjectSymlink } from "react-icons/go";
-import { RiBloggerLine } from "react-icons/ri";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -20,7 +17,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { LuFileText } from "react-icons/lu";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator} from "@/components/ui/dropdown-menu";
 import { TbMenu, TbX } from "react-icons/tb";
-import { IconType } from "react-icons/lib";
+import { navItems } from "@/components/shared/nav-items"
 
 export function AppNavbar() {
   const scrolledDown = useScrolldownWatcher();
@@ -29,7 +26,7 @@ export function AppNavbar() {
   return (
     <header className={cn(
       "fixed top-0 bg-slate-900/90 lg:bg-slate-900/95 left-0 z-50 w-full border-b border-slate-900/10 dark:border-slate-300/10",
-      "transition-all duration-300 ease-in-out lg:border-r",
+      "transition-all duration-300 ease-in-out",
       scrolledDown ? "-translate-y-full" : "translate-y-0 shadow-2xl" 
     )}>
       <NavigationMenu className="px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
@@ -129,27 +126,3 @@ function MobileMenu({className}: {className?: string}) {
     </DropdownMenu>
   )
 }
-
-type NavItem = {
-  title: string;
-  href: string;
-  Icon: IconType;
-}
-
-const navItems: NavItem[] = [
-  {
-    title: "Home",
-    href: "/",
-    Icon: IoHomeOutline
-  },
-  {
-    title: "Projects",
-    href: "#",
-    Icon: GoProjectSymlink
-  },
-  {
-    title: "Blog",
-    href: "#",
-    Icon: RiBloggerLine
-  },
-];

@@ -16,7 +16,7 @@ export const HomeProjects = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
             onMouseLeave={() => setHoveredProject(null)}
             className={cn(
               "transition-opacity",
-              hoveredProject && hoveredProject !== project.title ? "opacity-50" : "opacity-100"
+              hoveredProject && hoveredProject !== project.title ? "sm:opacity-50" : "opacity-100"
             )}
           />
         ))}

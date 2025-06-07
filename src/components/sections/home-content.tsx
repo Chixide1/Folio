@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { HomeAbout } from "@/components/sections/home-about";
 import { useActiveId } from "@/contexts/active-id-context";
@@ -45,12 +45,12 @@ export function HomeContent({ className }: { className?: string }) {
       />
       <HomeExperience
         id="home-experience"
-        className="pb-36"
+        className="pb-36 scroll-mt-20"
         ref={homeExperienceRef}
       />
       <HomeProjects
         id="home-projects"
-        className="pb-36"
+        className="pb-36 scroll-mt-20"
         ref={homeProjectsRef}
       />
     </main>

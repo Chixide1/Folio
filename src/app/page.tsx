@@ -1,7 +1,7 @@
 "use client";
 
 import {HomeHero} from "@/components/sections/home-hero";
-import {Stripes} from "@/components/shared/stripes";
+import {Stripes} from "@/components/ui/stripes";
 import {FlashlightBg} from "@/components/shared/flashlight-bg";
 import {HomeContent} from "@/components/sections/home-content";
 
