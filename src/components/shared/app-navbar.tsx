@@ -14,10 +14,13 @@ import { Logo } from "@/components/shared/logo";
 import {Button} from "@/components/ui/button";
 import {useScrolldownWatcher} from "@/hooks/use-scrolldown-watcher";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { LuFileText } from "react-icons/lu";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator} from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu, DropdownMenuContent,
+  DropdownMenuTrigger, DropdownMenuItem
+} from "@/components/ui/dropdown-menu";
 import { TbMenu, TbX } from "react-icons/tb";
 import { navItems } from "@/components/shared/nav-items"
+import {ThemeSwitcher} from "@/components/specific/theme-switcher";
 
 export function AppNavbar() {
   const scrolledDown = useScrolldownWatcher();
@@ -29,20 +32,12 @@ export function AppNavbar() {
       "transition-all duration-300 ease-in-out",
       scrolledDown ? "-translate-y-full" : "translate-y-0 shadow-2xl" 
     )}>
-      <NavigationMenu className="px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
-        <Link href="/" className="mr-auto order-first">
+      <NavigationMenu className="flex justify-between px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
+        <Link href="/" className="order-first">
           <Logo className="text-teal-300 w-6 h-auto" />
         </Link>
         {isMobile ? <MobileMenu /> : <DesktopMenu />}
-        {!isMobile && <Button
-          asChild
-          variant="outline"
-          size="sm"
-          className={cn("ml-auto rounded-xs transition-colors duration-500 !bg-inherit text-teal-300 dark:hover:text-gray-950",
-            "border-teal-300 dark:hover:!bg-teal-300")}
-        >
-          <Link href="/Resume.pdf" target="_blank" className="-order-2 lg:order-none">Resume</Link>
-        </Button>}
+        {!isMobile && <ThemeSwitcher />}
       </NavigationMenu>
     </header>
   );
@@ -60,7 +55,7 @@ function DesktopMenu({className}: {className?: string}) {
             className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit dark:hover:text-teal-300 duration-500 transition-colors",
               className, (pathname === item.href && "dark:text-teal-300"))}
           >
-            <Link href={item.href}>{item.title}</Link>
+            <Link href={item.href} target={item.target}>{item.title}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       ))}
@@ -101,27 +96,20 @@ function MobileMenu({className}: {className?: string}) {
           <DropdownMenuItem key={"MobileMenu-" + item.title} asChild>
             <Link
               href={item.href}
+              target={item.target}
               className={cn(
                 "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors duration-500 hover:text-teal-300",
                 pathname === item.href && "text-teal-300"
               )}
             >
-              {<item.Icon className={"text-slate-200 size-5 " + (pathname === item.href && "text-teal-300 transition-colors duration-500 hover:text-teal-300")} />}
+              <item.Icon
+                className={cn("text-slate-200 size-5 duration-500 transition-colors hover:text-teal-300",
+                  (pathname === item.href && "text-teal-300"))}
+              />
               {item.title}
             </Link>
           </DropdownMenuItem>
         ))}
-        <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link
-            href="/Resume.pdf"
-            target="_blank"
-            className="flex items-center w-full gap-3 !text-lg px-3 py-2 font-medium"
-          >
-            <LuFileText className="text-slate-200 size-5" />
-            <span>Resume</span>
-          </Link>
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

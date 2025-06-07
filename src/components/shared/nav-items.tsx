@@ -2,11 +2,14 @@
 import {IoHomeOutline} from "react-icons/io5";
 import {GoProjectSymlink} from "react-icons/go";
 import {RiBloggerLine} from "react-icons/ri";
+import {LuFileText} from "react-icons/lu";
+import {HTMLAttributeAnchorTarget} from "react";
 
 type NavItem = {
   title: string;
   href: string;
   Icon: IconType;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const navItems: NavItem[] = [
@@ -25,4 +28,10 @@ export const navItems: NavItem[] = [
     href: "#",
     Icon: RiBloggerLine
   },
+  {
+    title: "Resume",
+    href: "/Resume.pdf",
+    Icon: LuFileText,
+    target: "_blank",
+  }
 ];

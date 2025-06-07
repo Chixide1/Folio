@@ -23,7 +23,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scrollbar-thin">
+    <html lang="en" className="scrollbar-thin" suppressHydrationWarning={true}>
       <body className={`${inter.className} antialiased leading-relaxed`}>
         <Providers>
           <AppNavbar />
