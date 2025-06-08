@@ -25,20 +25,31 @@ import {Separator} from "@/components/ui/separator";
 
 export function AppNavbar() {
   const scrolledDown = useScrolldownWatcher();
-  const isMobile = useIsMobile({maxWidth: 1024});
 
   return (
     <header className={cn(
       "fixed top-0 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b",
       "transition-all duration-300 ease-in-out",
-      scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl" 
+      scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl"
     )}>
       <NavigationMenu className="flex justify-between px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
         <Link href="/" className="order-first">
           <Logo className="text-accent w-6 h-auto" />
         </Link>
-        {isMobile && <Separator orientation="vertical" className="!h-4 -order-1 mx-5 "/>}
-        {isMobile ? <MobileMenu /> : <DesktopMenu />}
+
+        {/* Mobile separator - only visible on mobile */}
+        <Separator orientation="vertical" className="!h-4 -order-1 mx-5 lg:hidden" />
+
+        {/* Mobile menu - only visible on mobile */}
+        <div className="lg:hidden">
+          <MobileMenu />
+        </div>
+
+        {/* Desktop menu - only visible on desktop */}
+        <div className="hidden lg:block">
+          <DesktopMenu />
+        </div>
+
         <ThemeSwitcher className="mr-auto lg:m-0 -order-1 lg:order-none" />
       </NavigationMenu>
     </header>

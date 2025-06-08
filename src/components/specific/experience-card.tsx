@@ -1,8 +1,10 @@
-﻿import React from 'react';
-import {Badge} from "@/components/ui/badge";
+﻿// experience-card.tsx
+import React, { forwardRef } from 'react';
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { format, differenceInMonths } from 'date-fns';
-import {Tag} from "@/components/ui/tag";
+import { Tag } from "@/components/ui/tag";
+import { cn } from "@/lib/utils";
 
 export type Experience = {
   title: string;
@@ -16,17 +18,22 @@ export type Experience = {
   location: string;
 }
 
-export function ExperienceCard({
-  title,
-  company,
-  companyLogo,
-  startDate,
-  endDate,
-  jobType,
-  description,
-  tags,
-  location,
-}: Experience) {
+interface ExperienceCardProps extends Experience {
+  isVisible?: boolean;
+}
+
+export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
+                                                                                 title,
+                                                                                 company,
+                                                                                 companyLogo,
+                                                                                 startDate,
+                                                                                 endDate,
+                                                                                 jobType,
+                                                                                 description,
+                                                                                 tags,
+                                                                                 location,
+                                                                                 isVisible = false,
+                                                                               }, ref) => {
   const formatDateRange = () => {
     const startFormatted = format(startDate, 'MMM yyyy');
     const endFormatted = endDate ? format(endDate, 'MMM yyyy') : 'Present';
@@ -55,11 +62,24 @@ export function ExperienceCard({
   };
 
   return (
-    <div className="flex">
+    <div
+      ref={ref}
+      className={cn(
+        "flex transition-all duration-700 ease-out",
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-8"
+      )}
+    >
       {/* Timeline line and dot */}
       <div className="md:flex flex-col items-center mr-6 hidden">
         {/* Company logo as timeline dot */}
-        <div className="w-10 h-10 rounded bg-border dark:bg-secondary flex items-center justify-center flex-shrink-0 border">
+        <div className={cn(
+          "w-10 h-10 rounded bg-border dark:bg-secondary flex items-center justify-center flex-shrink-0 border transition-all duration-500 ease-out delay-300 relative z-10",
+          isVisible
+            ? "scale-100 opacity-100"
+            : "scale-75 opacity-0"
+        )}>
           {companyLogo ? (
             <Image
               src={companyLogo}
@@ -78,7 +98,12 @@ export function ExperienceCard({
         </div>
 
         {/* Vertical line */}
-        <div className="w-px max-w-px flex-1 bg-border mt-4" />
+        <div
+          className={cn(
+            "w-px max-w-px flex-1 bg-border mt-4 transition-transform duration-1000 ease-out origin-top",
+            isVisible ? "scale-y-100" : "scale-y-0"
+          )}
+        />
       </div>
 
       {/* Content */}
@@ -96,7 +121,12 @@ export function ExperienceCard({
         </div>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className={cn(
+          "flex flex-wrap gap-2 mb-4 transition-all duration-500 ease-out delay-200",
+          isVisible
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 translate-x-4"
+        )}>
           {tags.sort()
             .map(tag => <Tag value={tag} key={"ExperienceCardTag-" + tag} />)}
         </div>
@@ -104,7 +134,18 @@ export function ExperienceCard({
         {/* Description */}
         <div className="space-y-2">
           {description.map((desc, index) => (
-            <div key={index} className="flex items-start gap-2">
+            <div
+              key={index}
+              className={cn(
+                "flex items-start gap-2 transition-all duration-500 ease-out",
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-4"
+              )}
+              style={{
+                transitionDelay: `${400 + index * 100}ms`
+              }}
+            >
               <span className="mt-0.5 text-xs">-</span>
               <p className="text-sm leading-relaxed">{desc}</p>
             </div>
@@ -113,4 +154,6 @@ export function ExperienceCard({
       </div>
     </div>
   );
-}
+});
+
+ExperienceCard.displayName = "ExperienceCard";

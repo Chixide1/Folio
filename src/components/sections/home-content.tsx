@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import {useEffect, useRef, useState} from "react";
+import {useRef,} from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { HomeAbout } from "@/components/sections/home-about";
 import { useActiveId } from "@/contexts/active-id-context";
@@ -13,13 +13,6 @@ export function HomeContent({ className }: { className?: string }) {
   const homeAboutRef = useRef<HTMLElement>(null);
   const homeExperienceRef = useRef<HTMLElement>(null);
   const homeProjectsRef = useRef<HTMLElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Trigger animations after component mounts
-    const timer = setTimeout(() => setIsLoaded(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
   
   useObserver({
     refs: [homeAboutRef, homeExperienceRef, homeProjectsRef],
@@ -46,10 +39,7 @@ export function HomeContent({ className }: { className?: string }) {
   return (
     <main
       className={cn(
-        "transform transition-all duration-1000 ease-out",
-        isLoaded
-          ? "opacity-100"
-          : "opacity-0",
+        "",
         className
       )}
     >

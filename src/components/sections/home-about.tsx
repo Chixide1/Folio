@@ -1,13 +1,25 @@
-﻿import {forwardRef, HTMLProps} from "react";
+﻿"use client"
+
+import {forwardRef, HTMLProps, useEffect, useState} from "react";
 import { cn } from "@/lib/utils";
 
 export const HomeAbout = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
   ({className, ...props }, ref) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      const timer = setTimeout(() => setIsVisible(true), 750);
+      return () => clearTimeout(timer);
+    }, []);
+    
     return (
       <section
         ref={ref}
         className={cn(
-          "[&>p]:leading-relaxed [&>p]:mb-4 [&>p]:font-base scroll-mt-24 ",
+          "[&>p]:leading-relaxed [&>p]:mb-4 [&>p]:font-base scroll-mt-24 transition-all duration-700 ease-out transform",
+          isVisible
+            ? 'opacity-100'
+            : 'opacity-0',
           className
         )}
         {...props}

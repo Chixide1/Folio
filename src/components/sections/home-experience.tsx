@@ -1,22 +1,64 @@
-import {forwardRef, HTMLProps} from "react"
-import { Experience, ExperienceCard } from "../specific/experience-card"
-import { cn } from "@/lib/utils"
+import { forwardRef, HTMLProps, useRef, useState, useCallback } from "react";
+import { Experience, ExperienceCard } from "../specific/experience-card";
+import { cn } from "@/lib/utils";
+import { useObserver } from "@/hooks/use-observer";
+import {useIsMobile} from "@/hooks/use-mobile";
 
 export const HomeExperience = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
-    ({className, ...props}, ref) => {
-        return (
-            <section
-              className={cn("flex flex-col gap-8", className)} 
-              ref={ref}
-              {...props}
-            >
-                {exps.map(exp => 
-                  <ExperienceCard {...exp} key={"HomeExperience-" + exp.company} />)}
-            </section>
-        )
-    }
-)
-HomeExperience.displayName = "HomeExperience"
+  ({ className, ...props }, ref) => {
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+    const isMobile = useIsMobile();
+
+    const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const index = cardRefs.current.findIndex(ref => ref === entry.target);
+        if (index !== -1 && entry.isIntersecting) {
+          setVisibleCards(prev => {
+            const newSet = new Set(prev);
+            newSet.add(index);
+            return newSet;
+          });
+        }
+      });
+    }, []);
+
+    // Create refs array for useObserver
+    const observerRefs = cardRefs.current.map((ref, index) => ({ current: ref }));
+
+    useObserver({
+      refs: observerRefs,
+      onIntersect: handleIntersection,
+      options: {
+        threshold: isMobile ? 0.4 : 0.2,
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    });
+
+    const setCardRef = (index: number) => (el: HTMLDivElement | null) => {
+      cardRefs.current[index] = el;
+    };
+
+    return (
+      <section
+        className={cn("flex flex-col gap-20", className)}
+        ref={ref}
+        {...props}
+      >
+        {exps.map((exp, index) => (
+          <ExperienceCard
+            {...exp}
+            key={"HomeExperience-" + exp.company}
+            ref={setCardRef(index)}
+            isVisible={visibleCards.has(index)}
+          />
+        ))}
+      </section>
+    );
+  }
+);
+
+HomeExperience.displayName = "HomeExperience";
 
 const exps: Experience[] = [
   {

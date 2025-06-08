@@ -1,11 +1,10 @@
 ﻿"use client";
 
-import {RefObject, useEffect} from 'react';
-
+import { RefObject, useEffect } from 'react';
 
 type UseObserverProps = {
   refs: RefObject<HTMLElement | null>[];
-  onIntersect: IntersectionObserverCallback
+  onIntersect: IntersectionObserverCallback;
   options?: IntersectionObserverInit;
 }
 
@@ -14,19 +13,18 @@ type UseObserverProps = {
  * @param props - Object containing onIntersect callback and options
  * @returns Object with observe, unobserve, and unobserveAll functions
  */
-export function useObserver({refs, onIntersect, options}: UseObserverProps) {
-
+export function useObserver({ refs, onIntersect, options }: UseObserverProps) {
   useEffect(() => {
-    const observer = new IntersectionObserver(onIntersect, options)
+    const observer = new IntersectionObserver(onIntersect, options);
 
-    refs.forEach(el => {
-      if (el.current){
-        observer.observe(el.current);
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
       }
-    })
+    });
 
     return () => {
-      observer.disconnect()
-    }
+      observer.disconnect();
+    };
   }, [onIntersect, options, refs]);
 }

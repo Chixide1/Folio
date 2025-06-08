@@ -9,6 +9,7 @@ import {CiDesktop} from "react-icons/ci";
 import {useTheme} from "next-themes";
 import {useEffect, useState} from "react";
 import {Spinner} from "@/components/shared/spinner";
+import {cn} from "@/lib/utils";
 
 export function ThemeSwitcher({className}: { className?: string }) {
   const {theme, setTheme} = useTheme()
@@ -22,7 +23,9 @@ export function ThemeSwitcher({className}: { className?: string }) {
 
   if (!mounted) {
     return (
-      <Spinner className="ml-20 my-1.5 text-2xl" />
+      <div className={cn("py-1.5 text-2xl pr-[4.7rem] lg:pl-[4.7rem] lg:ml-16", className)}>
+        <Spinner />
+      </div>
     )
   }
   

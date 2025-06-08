@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
 import {FaArrowRight} from "react-icons/fa6";
-import {AnchorHTMLAttributes, ComponentPropsWithRef} from "react";
+import {AnchorHTMLAttributes, ComponentPropsWithRef, forwardRef} from "react";
 
 export type Project = {
   title: string;
@@ -15,18 +15,19 @@ export type Project = {
   tags: string[];
 } & ComponentPropsWithRef<"div">
 
-export function ProjectCard({
-  className,
-  title,
-  description,
-  image,
-  tags,
-  github,
-  live,
-  ...props
-} : Project) {
+export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
+                                                                  className,
+                                                                  title,
+                                                                  description,
+                                                                  image,
+                                                                  tags,
+                                                                  github,
+                                                                  live,
+                                                                  ...props
+                                                                }, ref) => {
   return (
     <div
+      ref={ref}
       className={cn(
         "grid grid-cols-6 gap-y-1 gap-x-4 hover:outline-1 dark:hover:outline-0 dark:hover:bg-secondary/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
         className
@@ -72,7 +73,8 @@ export function ProjectCard({
       </div>
     </div>
   )
-}
+})
+ProjectCard.displayName = "ProjectCard"
 
 function ProjectLink({className, ...props}: AnchorHTMLAttributes<HTMLAnchorElement> & {name: string}) {
   return (

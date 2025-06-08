@@ -10,7 +10,7 @@ export function FlashlightBg({children, className}: {children: ReactNode, classN
   const [mounted, setMounted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const mousePosition = useCursorTracker();
-  const isMobile = useIsMobile({maxWidth: 1024});
+  const isMobile = useIsMobile();
   const {resolvedTheme} = useTheme();
 
   useEffect(() => {
