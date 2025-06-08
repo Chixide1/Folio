@@ -59,20 +59,24 @@ const attributionLinks: LinkItem[] = [
   {
     title: "Tailwind",
     href: "https://tailwindcss.com/",
+  },
+  {
+    title: "Shadcn UI",
+    href: "https://ui.shadcn.com/",
   }
 ]
 
 function FooterDescription({className, ...props}: HTMLProps<HTMLDivElement>){
   return (
-    <div {...props} className={cn("border p-4 shadow-lg bg-slate-800/50 rounded-md", className)}>
+    <div {...props} className={cn("border p-4 shadow-lg dark:bg-secondary/50 rounded-md", className)}>
       <div className="flex">
-        <Logo className="h-auto w-10 text-teal-300" />
+        <Logo className="h-auto w-10 text-accent" />
         <ScrollToTopButton className="my-auto ml-auto" />
       </div>
       <p className="text-sm mt-2 max-w-xs font-light">
         Full-stack developer & IT Enthusiast crafting modern, scalable tech solutions.
       </p>
-      <p className="mt-5 ml-auto font-light text-slate-300 text-sm">© 2025 Chikezie Onuoha</p>
+      <p className="mt-5 ml-auto font-light text-slate-800 dark:text-slate-300 text-sm">© 2025 Chikezie Onuoha</p>
     </div>
   )
 }
@@ -82,7 +86,7 @@ function FooterColumn({className, title, children, ...props}: HTMLProps<HTMLDivE
 }){
   return (
     <div className={cn("p-3", className)} {...props}>
-      <h3 className="text-slate-200 max-sm:text-center">{title}</h3>
+      <h3 className="text-primary-foreground max-sm:text-center">{title}</h3>
       <ul className="flex flex-wrap max-sm:gap-6 max-sm:justify-center sm:flex-col gap-2 text-sm font-light mt-3 ">
         {children}
       </ul>
@@ -94,7 +98,7 @@ function FooterLink({title, href}: LinkItem) {
   return (
     <li>
       <Link
-        className="hover:text-teal-300 hover:underline duration-500 transition-all"
+        className="hover:text-accent hover:underline duration-500 transition-all"
         href={href}
         target="_blank"
       >{title}</Link>

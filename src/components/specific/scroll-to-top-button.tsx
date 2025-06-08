@@ -1,20 +1,20 @@
 ﻿"use client"
 
 import React from "react";
-import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
+import {MdArrowOutward} from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function ScrollToTopButton({className, ...props}: React.ComponentProps<"button">) {
   return (
     <Button
-      className={cn("cursor-pointer group text-slate-500 rounded-xs text-xs hover:text-teal-300 hover:!border-teal-300 !bg-transparent transition-all duration-500", className)}
+      className={cn("cursor-pointer group text-secondary-foreground rounded-xs text-xs hover:text-accent hover:!border-accent !bg-transparent transition-all duration-500", className)}
       variant="outline"
       size="sm"
       onClick={handleScrollToTop}
       {...props}
     >
-      <MdOutlineKeyboardDoubleArrowUp className="group-hover:-translate-y-1 transition-all duration-500" />
+      <MdArrowOutward className="-rotate-90 group-hover:-translate-y-1 group-hover:-translate-x-1 transition-all duration-500" />
       <span className="uppercase">Back to top</span>
     </Button>
   );

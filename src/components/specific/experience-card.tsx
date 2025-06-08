@@ -59,7 +59,7 @@ export function ExperienceCard({
       {/* Timeline line and dot */}
       <div className="md:flex flex-col items-center mr-6 hidden">
         {/* Company logo as timeline dot */}
-        <div className="w-10 h-10 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 border border-gray-700">
+        <div className="w-10 h-10 rounded bg-border dark:bg-secondary flex items-center justify-center flex-shrink-0 border">
           {companyLogo ? (
             <Image
               src={companyLogo}
@@ -78,7 +78,7 @@ export function ExperienceCard({
         </div>
 
         {/* Vertical line */}
-        <div className="w-px flex-1 bg-gray-700 mt-4" />
+        <div className="w-px max-w-px flex-1 bg-border mt-4" />
       </div>
 
       {/* Content */}
@@ -86,11 +86,11 @@ export function ExperienceCard({
         {/* Header */}
         <div className="mb-3">
           <div className="block lg:flex items-center gap-2">
-            <h3 className="font-medium text-slate-200">{title}</h3>
+            <h3 className="font-medium text-primary-foreground">{title}</h3>
             <span className="text-sm mt-0.5">{formatDateRange()}</span>
           </div>
           <div className="block lg:flex items-center gap-2">
-            <p className="font-medium text-slate-200">{company}</p>
+            <p className="font-medium text-primary-foreground">{company}</p>
             <span className="text-sm mt-0.5">{jobType} - {location}</span>
           </div>
         </div>

@@ -28,7 +28,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "grid grid-cols-6 gap-y-1 gap-x-4 hover:bg-slate-800/50 p-4 rounded-lg hover:drop-shadow-lg duration-500 transition-all",
+        "grid grid-cols-6 gap-y-1 gap-x-4 hover:outline-1 dark:hover:outline-0 dark:hover:bg-secondary/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
         className
       )}
       {...props}
@@ -49,10 +49,10 @@ export function ProjectCard({
 
         {/* Content */}
         <div className="mb-3 col-span-4">
-          <div className="mb-2 font-semibold text-slate-200 flex gap-1.5">
-            <h3 className="group-hover:text-teal-300 duration-500 transition-colors">{title}</h3>
+          <div className="mb-2 font-semibold text-primary-foreground flex gap-1.5">
+            <h3 className="group-hover:text-accent duration-500 transition-colors">{title}</h3>
             <MdOutlineArrowOutward
-              className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-teal-300"
+              className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
             />
           </div>
           <p className="text-sm">{description}</p>
@@ -79,11 +79,11 @@ function ProjectLink({className, ...props}: AnchorHTMLAttributes<HTMLAnchorEleme
     <Link
       href={props.href ?? ""}
       target="_blank"
-      className={cn("hover:text-teal-300 p-1 transition-colors duration-500 font-semibold underline flex w-fit group/projectLink items-center gap-2",
+      className={cn("hover:text-accent p-1 transition-colors duration-500 font-semibold underline flex w-fit group/projectLink items-center gap-2",
         className)}
     >
       {props.name}
-      <FaArrowRight className="group-hover/projectLink:translate-x-1 group-hover/projectLink:text-teal-300 duration-500 transition-all" />
+      <FaArrowRight className="group-hover/projectLink:translate-x-1 group-hover/projectLink:text-accent duration-500 transition-all" />
     </Link>
   )
 }

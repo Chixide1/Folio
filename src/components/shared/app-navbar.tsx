@@ -21,6 +21,7 @@ import {
 import { TbMenu, TbX } from "react-icons/tb";
 import { navItems } from "@/components/shared/nav-items"
 import {ThemeSwitcher} from "@/components/specific/theme-switcher";
+import {Separator} from "@/components/ui/separator";
 
 export function AppNavbar() {
   const scrolledDown = useScrolldownWatcher();
@@ -28,16 +29,17 @@ export function AppNavbar() {
 
   return (
     <header className={cn(
-      "fixed top-0 bg-slate-900/90 lg:bg-slate-900/95 left-0 z-50 w-full border-b border-slate-900/10 dark:border-slate-300/10",
+      "fixed top-0 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b",
       "transition-all duration-300 ease-in-out",
-      scrolledDown ? "-translate-y-full" : "translate-y-0 shadow-2xl" 
+      scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl" 
     )}>
       <NavigationMenu className="flex justify-between px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
         <Link href="/" className="order-first">
-          <Logo className="text-teal-300 w-6 h-auto" />
+          <Logo className="text-accent w-6 h-auto" />
         </Link>
+        {isMobile && <Separator orientation="vertical" className="!h-4 -order-1 mx-5 "/>}
         {isMobile ? <MobileMenu /> : <DesktopMenu />}
-        {!isMobile && <ThemeSwitcher />}
+        <ThemeSwitcher className="mr-auto lg:m-0 -order-1 lg:order-none" />
       </NavigationMenu>
     </header>
   );
@@ -52,8 +54,8 @@ function DesktopMenu({className}: {className?: string}) {
         <NavigationMenuItem key={"DesktopMenu-" + item.title}>
           <NavigationMenuLink
             asChild
-            className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit dark:hover:text-teal-300 duration-500 transition-colors",
-              className, (pathname === item.href && "dark:text-teal-300"))}
+            className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit dark:hover:text-accent duration-500 transition-colors",
+              className, (pathname === item.href && "text-accent"))}
           >
             <Link href={item.href} target={item.target}>{item.title}</Link>
           </NavigationMenuLink>
@@ -73,7 +75,7 @@ function MobileMenu({className}: {className?: string}) {
         <Button
           variant="ghost"
           size="icon"
-          className={cn("dark:text-teal-300 dark:focus-visible:ring-teal-300 dark:hover:bg-inherit border-none ml-4 relative", className)}
+          className={cn("dark:text-accent dark:focus-visible:ring-accent hover:bg-inherit border-none ml-4 relative", className)}
         >
           <div className="relative w-8 h-8">
             <TbMenu
@@ -98,13 +100,13 @@ function MobileMenu({className}: {className?: string}) {
               href={item.href}
               target={item.target}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors duration-500 hover:text-teal-300",
-                pathname === item.href && "text-teal-300"
+                "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors duration-500 hover:text-accent",
+                pathname === item.href && "text-accent"
               )}
             >
               <item.Icon
-                className={cn("text-slate-200 size-5 duration-500 transition-colors hover:text-teal-300",
-                  (pathname === item.href && "text-teal-300"))}
+                className={cn("text-primary-foreground size-5 duration-500 transition-colors hover:text-accent",
+                  (pathname === item.href && "text-accent"))}
               />
               {item.title}
             </Link>
