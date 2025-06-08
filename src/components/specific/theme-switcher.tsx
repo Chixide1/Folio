@@ -23,7 +23,7 @@ export function ThemeSwitcher({className}: { className?: string }) {
 
   if (!mounted) {
     return (
-      <div className={cn("py-1.5 text-2xl pr-[4.7rem] lg:pl-[4.7rem] lg:ml-16", className)}>
+      <div className={cn("py-1.5 text-2xl pr-[4.7rem] lg:pl-[4.7rem] lg:pr-0", className)}>
         <Spinner />
       </div>
     )
