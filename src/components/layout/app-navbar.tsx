@@ -61,7 +61,7 @@ function DesktopMenu({className}: {className?: string}) {
         <NavigationMenuItem key={"DesktopMenu-" + item.title}>
           <NavigationMenuLink
             asChild
-            className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit dark:hover:text-accent duration-500 transition-colors",
+            className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit hover:text-accent duration-500 transition-colors",
               className, (pathname === item.href && "text-accent"))}
           >
             <Link href={item.href} target={item.target}>{item.title}</Link>
