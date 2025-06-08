@@ -1,11 +1,11 @@
 ﻿"use client";
 
 import {useRef,} from "react";
-import { useObserver } from "@/hooks/use-observer";
-import { HomeAbout } from "@/components/sections/home-about";
-import { useActiveId } from "@/contexts/active-id-context";
-import { HomeExperience } from "./home-experience";
-import { HomeProjects } from "@/components/sections/home-projects";
+import {useObserver} from "@/hooks/use-observer";
+import {HomeAbout} from "@/components/features/home/home-about";
+import {useActiveId} from "@/contexts/active-id-context";
+import {HomeExperience} from "./home-experience";
+import {HomeProjects} from "@/components/features/home/home-projects";
 import {cn} from "@/lib/utils";
 
 export function HomeContent({ className }: { className?: string }) {

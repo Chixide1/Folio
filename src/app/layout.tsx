@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./globals.css";
-import { AppNavbar } from "@/components/shared/app-navbar";
+import {AppNavbar} from "@/components/layout/app-navbar";
 import {Providers} from "@/contexts/providers";
 import {ReactNode} from "react";
-import {AppFooter} from "@/components/shared/app-footer";
-import {Dots} from "@/components/ui/dots";
+import {AppFooter} from "@/components/layout/app-footer";
 
 const inter = Inter({
   variable: "--font-geist-sans",

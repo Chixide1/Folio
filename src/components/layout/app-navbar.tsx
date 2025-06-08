@@ -10,17 +10,13 @@ import {
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
-import { Logo } from "@/components/shared/logo";
+import {Logo} from "@/components/shared/logo";
 import {Button} from "@/components/ui/button";
 import {useScrolldownWatcher} from "@/hooks/use-scrolldown-watcher";
-import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  DropdownMenu, DropdownMenuContent,
-  DropdownMenuTrigger, DropdownMenuItem
-} from "@/components/ui/dropdown-menu";
-import { TbMenu, TbX } from "react-icons/tb";
-import { navItems } from "@/components/shared/nav-items"
-import {ThemeSwitcher} from "@/components/specific/theme-switcher";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {TbMenu, TbX} from "react-icons/tb";
+import {navItems} from "@/components/shared/nav-items"
+import {ThemeSwitcher} from "@/components/layout/theme-switcher";
 import {Separator} from "@/components/ui/separator";
 
 export function AppNavbar() {
@@ -33,7 +29,7 @@ export function AppNavbar() {
       scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl"
     )}>
       <NavigationMenu className="flex justify-between px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
-        <Link href="/" className="order-first">
+        <Link href="/public" className="order-first">
           <Logo className="text-accent w-6 h-auto" />
         </Link>
 
@@ -86,7 +82,11 @@ function MobileMenu({className}: {className?: string}) {
         <Button
           variant="ghost"
           size="icon"
-          className={cn("dark:text-accent dark:focus-visible:ring-accent hover:bg-inherit border-none ml-4 relative", className)}
+          className={cn(
+            "text-accent hover:text-accent/70 focus-visible:ring-accent border-none ml-4 relative",
+            className,
+            "hover:!bg-transparent",
+          )}
         >
           <div className="relative w-8 h-8">
             <TbMenu

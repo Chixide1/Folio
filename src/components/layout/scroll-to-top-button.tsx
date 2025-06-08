@@ -2,8 +2,8 @@
 
 import React from "react";
 import {MdArrowOutward} from "react-icons/md";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import {Button} from "@/components/ui/button";
+import {cn} from "@/lib/utils";
 
 export function ScrollToTopButton({className, ...props}: React.ComponentProps<"button">) {
   return (

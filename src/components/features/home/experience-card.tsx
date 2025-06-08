@@ -1,10 +1,9 @@
 ﻿// experience-card.tsx
-import React, { forwardRef } from 'react';
-import { Badge } from "@/components/ui/badge";
+import React, {forwardRef} from 'react';
 import Image from "next/image";
-import { format, differenceInMonths } from 'date-fns';
-import { Tag } from "@/components/ui/tag";
-import { cn } from "@/lib/utils";
+import {differenceInMonths, format} from 'date-fns';
+import {Tag} from "@/components/ui/tag";
+import {cn} from "@/lib/utils";
 
 export type Experience = {
   title: string;

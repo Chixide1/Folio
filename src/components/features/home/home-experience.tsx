@@ -1,7 +1,7 @@
-import { forwardRef, HTMLProps, useRef, useState, useCallback } from "react";
-import { Experience, ExperienceCard } from "../specific/experience-card";
-import { cn } from "@/lib/utils";
-import { useObserver } from "@/hooks/use-observer";
+import {forwardRef, HTMLProps, useCallback, useRef, useState} from "react";
+import {Experience, ExperienceCard} from "./experience-card";
+import {cn} from "@/lib/utils";
+import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
 
 export const HomeExperience = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
@@ -23,8 +23,8 @@ export const HomeExperience = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
       });
     }, []);
 
-    // Create refs array for useObserver
-    const observerRefs = cardRefs.current.map((ref, index) => ({ current: ref }));
+    // Create ref array for useObserver
+    const observerRefs = cardRefs.current.map((ref) => ({ current: ref }));
 
     useObserver({
       refs: observerRefs,

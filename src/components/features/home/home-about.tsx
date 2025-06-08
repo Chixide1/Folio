@@ -1,7 +1,7 @@
 ﻿"use client"
 
 import {forwardRef, HTMLProps, useEffect, useState} from "react";
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 
 export const HomeAbout = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
   ({className, ...props }, ref) => {

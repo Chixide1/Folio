@@ -5,7 +5,7 @@ import {navItems} from "@/components/shared/nav-items";
 import Link from "next/link";
 import {Logo} from "@/components/shared/logo";
 import {socialLinks} from "@/components/shared/social-links";
-import {ScrollToTopButton} from "@/components/specific/scroll-to-top-button";
+import {ScrollToTopButton} from "@/components/layout/scroll-to-top-button";
 
 export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
   return (
@@ -21,19 +21,19 @@ export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
       {/* Main content */}
       <div className="flex px-4 @md:px-0">
         <Stripes />
-        <div className="grid flex-col @lg:grid-cols-6 @3xl:grid-cols-10 w-full gap-x-8 mb-14 mx-auto">
-          <FooterDescription className="min-w-64 col-span-3 @3xl:col-span-4 m-4 @3xl:mr-12" />
-          <FooterColumn title="Quick Links" className="col-span-3 @3xl:col-span-2">
+        <div className="@lg:grid flex flex-col @lg:grid-cols-6 @3xl:grid-cols-10 w-full gap-x-8 mb-14 mx-auto">
+          <FooterDescription className="min-w-64 col-span-full @3xl:col-span-4 m-4 @3xl:mr-12" />
+          <FooterColumn title="Quick Links" className="col-span-2 @3xl:col-span-2">
             {navItems.map(item => (
               <FooterLink {...item} key={"FooterQuickLinks-" + item.title} />
             ))}
           </FooterColumn>
-          <FooterColumn title="Socials" className="col-span-3 @3xl:col-span-2">
+          <FooterColumn title="Socials" className="col-span-2 @3xl:col-span-2">
             {socialLinks.map(item => (
               <FooterLink {...item} key={"FooterQuickLinks-" + item.title} />
             ))}
           </FooterColumn>
-          <FooterColumn title="Website Design" className="col-span-3 @3xl:col-span-2">
+          <FooterColumn title="Website Design" className="col-span-2 @3xl:col-span-2">
             {attributionLinks.map(item => (
               <FooterLink {...item} key={"FooterAttributionLinks-" + item.title} />
             ))}
@@ -86,8 +86,8 @@ function FooterColumn({className, title, children, ...props}: HTMLProps<HTMLDivE
 }){
   return (
     <div className={cn("p-3", className)} {...props}>
-      <h3 className="text-primary-foreground max-sm:text-center">{title}</h3>
-      <ul className="flex flex-wrap max-sm:gap-6 max-sm:justify-center sm:flex-col gap-2 text-sm font-light mt-3 ">
+      <h3 className="text-primary-foreground @max-lg:text-center">{title}</h3>
+      <ul className="flex flex-wrap gap-6 @max-lg:justify-center @lg:flex-col @lg:gap-2 text-sm font-light mt-3 ">
         {children}
       </ul>
     </div>

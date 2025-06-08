@@ -1,9 +1,6 @@
 ﻿"use client"
 
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+import {ToggleGroup, ToggleGroupItem,} from "@/components/ui/toggle-group"
 import {BsMoonStars, BsSun} from "react-icons/bs";
 import {CiDesktop} from "react-icons/ci";
 import {useTheme} from "next-themes";

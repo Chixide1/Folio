@@ -1,7 +1,7 @@
-import {HomeHero} from "@/components/sections/home-hero";
+import {HomeHero} from "@/components/features/home/home-hero";
 import {Stripes} from "@/components/ui/stripes";
-import {FlashlightBg} from "@/components/shared/flashlight-bg";
-import {HomeContent} from "@/components/sections/home-content";
+import {FlashlightBg} from "@/components/layout/flashlight-bg";
+import {HomeContent} from "@/components/features/home/home-content";
 
 export default function Home() {
   

@@ -1,10 +1,10 @@
 ﻿"use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { useCursorTracker } from "@/hooks/use-cursor-tracker";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useTheme } from "next-themes";
+import {ReactNode, useEffect, useState} from "react";
+import {cn} from "@/lib/utils";
+import {useCursorTracker} from "@/hooks/use-cursor-tracker";
+import {useIsMobile} from "@/hooks/use-mobile";
+import {useTheme} from "next-themes";
 
 export function FlashlightBg({children, className}: {children: ReactNode, className?: string}) {
   const [mounted, setMounted] = useState(false);

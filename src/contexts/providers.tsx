@@ -1,4 +1,4 @@
-﻿import { ReactNode } from "react";
+﻿import {ReactNode} from "react";
 import {ActiveIdProvider} from "@/contexts/active-id-context";
 import {ThemeProvider} from "@/contexts/theme-provider";
 

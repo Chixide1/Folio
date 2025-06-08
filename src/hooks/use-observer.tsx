@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { RefObject, useEffect } from 'react';
+import {RefObject, useEffect} from 'react';
 
 type UseObserverProps = {
   refs: RefObject<HTMLElement | null>[];

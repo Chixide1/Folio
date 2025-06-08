@@ -1,10 +1,10 @@
 ﻿"use client"
 
 import Link from "next/link";
-import { socialLinks } from "@/components/shared/social-links";
-import { cn } from "@/lib/utils";
-import { useActiveId } from "@/contexts/active-id-context";
-import { useEffect, useState } from "react";
+import {socialLinks} from "@/components/shared/social-links";
+import {cn} from "@/lib/utils";
+import {useActiveId} from "@/contexts/active-id-context";
+import {useEffect, useState} from "react";
 
 export function HomeHero({ className }: { className?: string }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -140,7 +140,7 @@ function HomeHeroSocials({ className, style }: { className?: string; style?: Rea
           href={item.href}
           key={"HomeHeroSocials-" + item.title}
           className={cn(
-            "hover:text-primary-foreground dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
+            " hover:text-accent dark:hover:text-primary-foreground dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
             "animate-[fadeInUp_0.6s_ease-out_forwards]"
           )}
           style={{

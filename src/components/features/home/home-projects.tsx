@@ -1,8 +1,8 @@
 ﻿"use client"
 
-import {forwardRef, HTMLProps, useState, useRef} from "react";
+import {forwardRef, HTMLProps, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
-import {Project, ProjectCard} from "@/components/specific/project-card";
+import {Project, ProjectCard} from "@/components/features/projects/project-card";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
 

@@ -1,7 +1,6 @@
 ﻿import {FaGithub, FaLinkedin} from "react-icons/fa";
 import {SiLeetcode} from "react-icons/si";
-import {IoIosMailUnread, IoMdMail} from "react-icons/io";
-import React from "react";
+import {IoMdMail} from "react-icons/io";
 import {IconType} from "react-icons/lib";
 
 
