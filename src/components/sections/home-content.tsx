@@ -1,19 +1,26 @@
 ﻿"use client";
 
-import { useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { HomeAbout } from "@/components/sections/home-about";
 import { useActiveId } from "@/contexts/active-id-context";
 import { HomeExperience } from "./home-experience";
 import { HomeProjects } from "@/components/sections/home-projects";
+import {cn} from "@/lib/utils";
 
 export function HomeContent({ className }: { className?: string }) {
   const {activeId, setActiveId } = useActiveId();
   const homeAboutRef = useRef<HTMLElement>(null);
   const homeExperienceRef = useRef<HTMLElement>(null);
   const homeProjectsRef = useRef<HTMLElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Create observer with updated options
+  useEffect(() => {
+    // Trigger animations after component mounts
+    const timer = setTimeout(() => setIsLoaded(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+  
   useObserver({
     refs: [homeAboutRef, homeExperienceRef, homeProjectsRef],
     onIntersect: (entries) => {
@@ -37,7 +44,15 @@ export function HomeContent({ className }: { className?: string }) {
   });
 
   return (
-    <main className={className}>
+    <main
+      className={cn(
+        "transform transition-all duration-1000 ease-out",
+        isLoaded
+          ? "opacity-100"
+          : "opacity-0",
+        className
+      )}
+    >
       <HomeAbout
         id="home-about"
         className="pb-36"

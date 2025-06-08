@@ -8,6 +8,7 @@ import {BsMoonStars, BsSun} from "react-icons/bs";
 import {CiDesktop} from "react-icons/ci";
 import {useTheme} from "next-themes";
 import {useEffect, useState} from "react";
+import {Spinner} from "@/components/shared/spinner";
 
 export function ThemeSwitcher({className}: { className?: string }) {
   const {theme, setTheme} = useTheme()
@@ -19,7 +20,11 @@ export function ThemeSwitcher({className}: { className?: string }) {
   
   const currentTheme = theme === "system" ? "system" : theme ?? "system";
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <Spinner className="ml-20 my-1.5 text-2xl" />
+    )
+  }
   
   return (
     <ToggleGroup

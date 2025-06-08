@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 @plugin 'tailwind-scrollbar';
 
 @custom-variant dark (&:is(.dark *));
@@ -81,7 +82,7 @@
   --background: var(--color-slate-900);
   --foreground: var(--color-slate-400);
   --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --card-foreground: var(--color-slate-300);
   --popover: var(--color-slate-900);
   --popover-foreground: var(--color-slate-200);
   --primary: oklch(0.922 0 0);
@@ -120,5 +121,43 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Add a subtle bounce effect for extra polish */
+@keyframes slideInBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
