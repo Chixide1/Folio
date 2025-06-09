@@ -68,7 +68,7 @@ const attributionLinks: LinkItem[] = [
 
 function FooterDescription({className, ...props}: HTMLProps<HTMLDivElement>){
   return (
-    <div {...props} className={cn("border p-4 shadow-lg dark:bg-secondary/50 rounded-md", className)}>
+    <div {...props} className={cn("border p-4 shadow-lg dark:bg-secondary-foreground/50 rounded-md", className)}>
       <div className="flex">
         <Logo className="h-auto w-10 text-accent" />
         <ScrollToTopButton className="my-auto ml-auto" />
@@ -86,7 +86,7 @@ function FooterColumn({className, title, children, ...props}: HTMLProps<HTMLDivE
 }){
   return (
     <div className={cn("p-3", className)} {...props}>
-      <h3 className="text-primary-foreground @max-lg:text-center">{title}</h3>
+      <h3 className="text-primary @max-lg:text-center">{title}</h3>
       <ul className="flex flex-wrap gap-6 @max-lg:justify-center @lg:flex-col @lg:gap-2 text-sm font-light mt-3 ">
         {children}
       </ul>

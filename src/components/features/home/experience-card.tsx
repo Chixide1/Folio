@@ -110,11 +110,11 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
         {/* Header */}
         <div className="mb-3">
           <div className="block lg:flex items-center gap-2">
-            <h3 className="font-medium text-primary-foreground">{title}</h3>
+            <h3 className="font-medium text-primary">{title}</h3>
             <span className="text-sm mt-0.5">{formatDateRange()}</span>
           </div>
           <div className="block lg:flex items-center gap-2">
-            <p className="font-medium text-primary-foreground">{company}</p>
+            <p className="font-medium text-primary">{company}</p>
             <span className="text-sm mt-0.5">{jobType} - {location}</span>
           </div>
         </div>

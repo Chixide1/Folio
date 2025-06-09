@@ -8,7 +8,7 @@ import {cn} from "@/lib/utils";
 export function ScrollToTopButton({className, ...props}: React.ComponentProps<"button">) {
   return (
     <Button
-      className={cn("cursor-pointer group text-secondary-foreground rounded-xs text-xs hover:text-accent hover:!border-accent !bg-transparent transition-all duration-500", className)}
+      className={cn("cursor-pointer border-secondary group text-secondary rounded-xs text-xs hover:text-accent hover:!border-accent !bg-transparent transition-all duration-500", className)}
       variant="outline"
       size="sm"
       onClick={handleScrollToTop}

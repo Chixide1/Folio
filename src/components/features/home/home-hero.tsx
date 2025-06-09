@@ -19,7 +19,7 @@ export function HomeHero({ className }: { className?: string }) {
     <header className={cn("", className)}>
       <h1
         className={cn(
-          "text-primary-foreground text-4xl font-bold tracking-tight sm:text-5xl",
+          "text-primary text-4xl font-bold tracking-tight sm:text-5xl",
           "transform transition-all duration-700 ease-out",
           isLoaded
             ? "translate-y-0 opacity-100"
@@ -31,7 +31,7 @@ export function HomeHero({ className }: { className?: string }) {
       </h1>
       <h2
         className={cn(
-          "mt-3 text-lg font-medium tracking-tight text-primary-foreground sm:text-xl",
+          "mt-3 text-lg font-medium tracking-tight text-primary sm:text-xl",
           "transform transition-all duration-700 ease-out",
           isLoaded
             ? "translate-y-0 opacity-100"
@@ -119,17 +119,17 @@ function HomeHeroNav({ className, style }: { className?: string; style?: React.C
           data-active={activeId === item.href.slice(1)}
         >
           <div className={cn(
-            "mr-4 h-px w-8 bg-secondary-foreground transition-all duration-500",
+            "mr-4 h-px w-8 bg-secondary transition-all duration-500",
             "group-hover:w-16 group-hover:bg-primary-foreground",
             "group-focus-visible:w-16 group-focus-visible:bg-primary-foreground",
             "group-data-[active=true]:w-16 group-data-[active=true]:bg-primary-foreground"
           )} />
           <span className={cn(
             "transition-all duration-500 text-xs font-bold uppercase tracking-widest",
-            "text-secondary-foreground",
-            "group-hover:text-primary-foreground",
-            "group-focus-visible:text-primary-foreground",
-            "group-data-[active=true]:text-primary-foreground"
+            "text-secondary",
+            "group-hover:text-primary",
+            "group-focus-visible:text-primary",
+            "group-data-[active=true]:text-primary"
           )}>
             {item.title}
           </span>
@@ -147,7 +147,7 @@ function HomeHeroSocials({ className, style }: { className?: string; style?: Rea
           href={item.href}
           key={"HomeHeroSocials-" + item.title}
           className={cn(
-            " hover:text-accent dark:hover:text-primary-foreground dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
+            " hover:text-primary text-primary-foreground dark:hover:text-primary dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
             "animate-[fadeInUp_0.6s_ease-out_forwards]"
           )}
           style={{

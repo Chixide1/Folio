@@ -116,7 +116,7 @@ function MobileMenu({className}: {className?: string}) {
               )}
             >
               <item.Icon
-                className={cn("text-primary-foreground size-5 duration-500 transition-colors hover:text-accent",
+                className={cn("text-primary size-5 duration-500 transition-colors hover:text-accent",
                   (pathname === item.href && "text-accent"))}
               />
               {item.title}

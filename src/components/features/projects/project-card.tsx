@@ -29,7 +29,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
     <div
       ref={ref}
       className={cn(
-        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 dark:hover:bg-secondary/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
+        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 dark:hover:bg-secondary-foreground/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
         className
       )}
       {...props}
@@ -50,7 +50,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
 
         {/* Content */}
         <div className="mb-3 col-span-4">
-          <div className="mb-2 font-semibold text-primary-foreground flex gap-1.5">
+          <div className="mb-2 font-semibold text-primary flex gap-1.5">
             <h3 className="group-hover:text-accent duration-500 transition-colors">{title}</h3>
             <MdOutlineArrowOutward
               className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
