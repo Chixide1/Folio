@@ -12,6 +12,7 @@ export type Project = {
   image: string;
   github: string;
   live: string;
+  projectLink?: string;
   tags: string[];
 } & ComponentPropsWithRef<"div">
 
@@ -22,6 +23,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
   image,
   tags,
   github,
+  projectLink,
   live,
   ...props
 }, ref) => {
@@ -44,7 +46,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
             alt={title}
             width={1200}
             height={1200}
-            className="w-full max-sm:mb-4 h-auto object-cover rounded border border-slate-700"
+            className="w-full max-sm:mb-4 h-auto object-cover rounded border"
           />
         </div>
 
@@ -63,7 +65,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
       {/* Second row - Links and Tags */}
       <div className="sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
         <ProjectLink name={"Github"} href={github} className=""/>
-        <ProjectLink name={"Project Details"} href={""} />
+        {projectLink && <ProjectLink name={"Project Details"} href={projectLink} target="_self"/>}
       </div>
 
       <div className="row-start-2 col-span-full sm:col-span-4">
@@ -76,11 +78,11 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
 })
 ProjectCard.displayName = "ProjectCard"
 
-function ProjectLink({className, ...props}: AnchorHTMLAttributes<HTMLAnchorElement> & {name: string}) {
+function ProjectLink({className, target, ...props}: AnchorHTMLAttributes<HTMLAnchorElement> & {name: string}) {
   return (
     <Link
       href={props.href ?? ""}
-      target="_blank"
+      target={target ?? "_blank"}
       className={cn("hover:text-accent p-1 transition-colors duration-500 font-semibold underline flex w-fit group/projectLink items-center gap-2",
         className)}
     >

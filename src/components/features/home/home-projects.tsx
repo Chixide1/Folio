@@ -76,6 +76,7 @@ const projects: Project[] = [
     image: "/zenwealth.png",
     github: "https://github.com/Chixide1/ZenWealth",
     live: "https://zenwealth.ckdoestech.com/",
+    projectLink: "/projects/zenwealth",
     tags: [
       "Typescript", "React", "C#", "Asp.Net Core", "SQL Server", "Tailwind CSS", "Shadcn"
     ]
