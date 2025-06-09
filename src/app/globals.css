@@ -4,6 +4,7 @@
 @plugin 'tailwind-scrollbar';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:where(.light, .light *));
 
 @theme inline {
   --color-background: var(--background);
@@ -45,7 +46,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: var(--color-gray-100);
+  --background: var(--color-white);
   --foreground: var(--color-gray-700);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -57,7 +58,7 @@
   --secondary-foreground: var(--color-gray-500);
   --muted: var(--color-gray-200);
   --muted-foreground: var(--color-gray-600);
-  --accent: var(--color-teal-700);
+  --accent: var(--color-violet-700);
   --accent-foreground: var(--color-violet-950);
   --destructive: oklch(0.577 0.245 27.325);
   --border: --alpha(var(--color-gray-300) / 50%);

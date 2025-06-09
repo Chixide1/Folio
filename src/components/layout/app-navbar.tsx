@@ -16,7 +16,7 @@ import {useScrolldownWatcher} from "@/hooks/use-scrolldown-watcher";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {TbMenu, TbX} from "react-icons/tb";
 import {navItems} from "@/components/shared/nav-items"
-import {ThemeSwitcher} from "@/components/layout/theme-switcher";
+import {ThemeSwitcher} from "@/components/shared/theme-switcher";
 import {Separator} from "@/components/ui/separator";
 
 export function AppNavbar() {
@@ -24,7 +24,7 @@ export function AppNavbar() {
 
   return (
     <header className={cn(
-      "fixed top-0 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b",
+      "fixed top-0 light:bg-background/80 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b",
       "transition-all duration-300 ease-in-out",
       scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl"
     )}>

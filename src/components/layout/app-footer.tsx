@@ -5,7 +5,7 @@ import {navItems} from "@/components/shared/nav-items";
 import Link from "next/link";
 import {Logo} from "@/components/shared/logo";
 import {socialLinks} from "@/components/shared/social-links";
-import {ScrollToTopButton} from "@/components/layout/scroll-to-top-button";
+import {ScrollToTopButton} from "@/components/shared/scroll-to-top-button";
 
 export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
   return (

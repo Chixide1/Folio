@@ -16,20 +16,20 @@ export type Project = {
 } & ComponentPropsWithRef<"div">
 
 export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
-                                                                  className,
-                                                                  title,
-                                                                  description,
-                                                                  image,
-                                                                  tags,
-                                                                  github,
-                                                                  live,
-                                                                  ...props
-                                                                }, ref) => {
+  className,
+  title,
+  description,
+  image,
+  tags,
+  github,
+  live,
+  ...props
+}, ref) => {
   return (
     <div
       ref={ref}
       className={cn(
-        "grid grid-cols-6 gap-y-1 gap-x-4 hover:outline-1 dark:hover:outline-0 dark:hover:bg-secondary/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
+        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 dark:hover:bg-secondary/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
         className
       )}
       {...props}
