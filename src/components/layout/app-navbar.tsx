@@ -28,7 +28,7 @@ export function AppNavbar() {
       "transition-all duration-300 ease-in-out",
       scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl"
     )}>
-      <NavigationMenu className="flex justify-between px-6 lg:px-6 py-3 w-full backdrop-blur-xs max-w-none">
+      <NavigationMenu className="flex justify-between px-4 py-3 w-full backdrop-blur-xs max-w-none">
         <Link href="/public" className="order-first">
           <Logo className="text-accent w-6 h-auto" />
         </Link>

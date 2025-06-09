@@ -47,7 +47,7 @@
 :root {
   --radius: 0.625rem;
   --background: var(--color-white);
-  --foreground: var(--color-gray-700);
+  --foreground: var(--color-gray-600);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -161,4 +161,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@utility text-vertical {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
 }

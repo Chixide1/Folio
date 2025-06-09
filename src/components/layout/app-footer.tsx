@@ -9,39 +9,30 @@ import {ScrollToTopButton} from "@/components/shared/scroll-to-top-button";
 
 export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
   return (
-    <footer className={cn("@container", className)} {...props}>
-
-      {/* Top Border */}
-      <div className="flex h-10">
-        <Stripes className="border" />
-        <div className="w-full border-y" />
-        <Stripes className="border h-10" />
-      </div>
+    <footer className={cn("border", className)} {...props}>
 
       {/* Main content */}
-      <div className="flex px-4 @md:px-0">
-        <Stripes />
-        <div className="@lg:grid flex flex-col @lg:grid-cols-6 @3xl:grid-cols-10 w-full gap-x-8 mb-14 mx-auto">
-          <FooterDescription className="min-w-64 col-span-full @3xl:col-span-4 m-4 @3xl:mr-12" />
-          <FooterColumn title="Quick Links" className="col-span-2 @3xl:col-span-2">
+      <div className="flex flex-col lg:flex-row lg:px-4">
+        <FooterDescription className="max-lg:border-b lg:border-r w-full lg:w-1/2 max-lg:px-4" />
+        <div className="flex justify-between gap-6 w-full lg:w-1/2 lg:px-16 py-6 max-lg:px-4">
+          <FooterColumn title="General" className="col-span-1">
             {navItems.map(item => (
-              <FooterLink {...item} key={"FooterQuickLinks-" + item.title} />
+              <FooterLink {...item} key={"FooterGeneral-" + item.title} />
             ))}
           </FooterColumn>
-          <FooterColumn title="Socials" className="col-span-2 @3xl:col-span-2">
+          <FooterColumn title="Socials" className="col-span-1">
             {socialLinks.map(item => (
-              <FooterLink {...item} key={"FooterQuickLinks-" + item.title} />
+              <FooterLink {...item} key={"FooterSocials-" + item.title} />
             ))}
           </FooterColumn>
-          <FooterColumn title="Website Design" className="col-span-2 @3xl:col-span-2">
+          <FooterColumn title="Design" className="col-span-1">
             {attributionLinks.map(item => (
               <FooterLink {...item} key={"FooterAttributionLinks-" + item.title} />
             ))}
           </FooterColumn>
         </div>
-        <Stripes />
       </div>
-
+      <Stripes className="min-h-8 h-8 w-full border max-lg:block" />
     </footer>
   )
 }
@@ -57,26 +48,37 @@ const attributionLinks: LinkItem[] = [
     href: "https://brittanychiang.com/",
   },
   {
+    title: "Braydon Coyer",
+    href: "https://www.braydoncoyer.dev/",
+  },
+  {
     title: "Tailwind",
     href: "https://tailwindcss.com/",
   },
   {
     title: "Shadcn UI",
     href: "https://ui.shadcn.com/",
-  }
+  },
 ]
 
 function FooterDescription({className, ...props}: HTMLProps<HTMLDivElement>){
   return (
-    <div {...props} className={cn("border p-4 shadow-lg dark:bg-secondary-foreground/50 rounded-md", className)}>
-      <div className="flex">
-        <Logo className="h-auto w-10 text-accent" />
-        <ScrollToTopButton className="my-auto ml-auto" />
+    <div {...props} className={cn("flex py-6 pl-10 pr-16 text-sm", className)}>
+      <div>
+        <Link href="/">
+          <Logo className="h-auto w-12 text-accent" />
+        </Link>
+        <p className="w-60 mt-6">
+          Hi, I’m Chikezie — a Full-Stack Developer & IT Enthusiast.
+          Thanks for stopping by my website!
+        </p>
+        <p className="ml-auto mt-6">© 2025 Chikezie Onuoha</p>
       </div>
-      <p className="text-sm mt-2 max-w-xs font-light">
-        Full-stack developer & IT Enthusiast crafting modern, scalable tech solutions.
-      </p>
-      <p className="mt-5 ml-auto font-light text-slate-800 dark:text-slate-300 text-sm">© 2025 Chikezie Onuoha</p>
+      <div className="mt-auto ml-auto">
+        <ScrollToTopButton 
+          className="my-auto flex max-sm:text-vertical max-sm:h-fit max-sm:py-1.5 max-sm:!px-1"
+        />
+      </div>
     </div>
   )
 }
@@ -85,9 +87,9 @@ function FooterColumn({className, title, children, ...props}: HTMLProps<HTMLDivE
   title: string
 }){
   return (
-    <div className={cn("p-3", className)} {...props}>
-      <h3 className="text-primary @max-lg:text-center">{title}</h3>
-      <ul className="flex flex-wrap gap-6 @max-lg:justify-center @lg:flex-col @lg:gap-2 text-sm font-light mt-3 ">
+    <div className={cn("", className)} {...props}>
+      <h3 className="text-primary">{title}</h3>
+      <ul className="flex flex-col gap-2 text-sm font-light mt-3 ">
         {children}
       </ul>
     </div>
