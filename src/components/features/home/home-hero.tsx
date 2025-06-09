@@ -118,12 +118,19 @@ function HomeHeroNav({ className, style }: { className?: string; style?: React.C
           }}
           data-active={activeId === item.href.slice(1)}
         >
-          <div className={cn("mr-4 h-px w-8 bg-secondary-foreground transition-all duration-500 group-hover:w-16 " +
-            "group-hover:bg-primary-foreground group-focus-visible:w-16 group-focus-visible:bg-primary-foreground",
-            (activeId === item.href.slice(1)) && "w-16 bg-primary-foreground")} />
-          <span className={cn("transition-all duration-500 text-xs font-bold uppercase tracking-widest text-secondary-foreground " +
-            "group-hover:text-primary-foreground text-secondary-foreground group-focus-visible:text-primary-foreground",
-            (activeId === item.href.slice(1)) && "text-primary-foreground")}>
+          <div className={cn(
+            "mr-4 h-px w-8 bg-secondary-foreground transition-all duration-500",
+            "group-hover:w-16 group-hover:bg-primary-foreground",
+            "group-focus-visible:w-16 group-focus-visible:bg-primary-foreground",
+            "group-data-[active=true]:w-16 group-data-[active=true]:bg-primary-foreground"
+          )} />
+          <span className={cn(
+            "transition-all duration-500 text-xs font-bold uppercase tracking-widest",
+            "text-secondary-foreground",
+            "group-hover:text-primary-foreground",
+            "group-focus-visible:text-primary-foreground",
+            "group-data-[active=true]:text-primary-foreground"
+          )}>
             {item.title}
           </span>
         </Link>
