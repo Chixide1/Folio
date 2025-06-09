@@ -25,7 +25,7 @@ export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
               <FooterLink {...item} key={"FooterSocials-" + item.title} />
             ))}
           </FooterColumn>
-          <FooterColumn title="Design" className="col-span-1">
+          <FooterColumn title="Attribution" className="col-span-1">
             {attributionLinks.map(item => (
               <FooterLink {...item} key={"FooterAttributionLinks-" + item.title} />
             ))}
