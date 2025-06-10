@@ -34,7 +34,6 @@ export function HomeHero({ className }: { className?: string }) {
   );
 }
 
-// ... The HomeHeroNav and HomeHeroSocials components remain unchanged.
 const homeNavItems = [
   {
     title: "About",
