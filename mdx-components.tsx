@@ -1,5 +1,4 @@
-﻿// mdx-components.tsx
-import type { MDXComponents } from 'mdx/types';
+﻿import type { MDXComponents } from 'mdx/types';
 import CodeBlock from '@/components/ui/codeblock'; // Adjust the import path as needed
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
