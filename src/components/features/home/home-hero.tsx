@@ -4,83 +4,37 @@ import Link from "next/link";
 import {socialLinks} from "@/components/shared/social-links";
 import {cn} from "@/lib/utils";
 import {useActiveId} from "@/contexts/active-id-context";
-import {useEffect, useState} from "react";
+import { StaggeredAnimationGroup } from "@/components/ui/staggered-animation-group"; // Adjust import
 
 export function HomeHero({ className }: { className?: string }) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Trigger animations after component mounts
-    const timer = setTimeout(() => setIsLoaded(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <header className={cn("", className)}>
-      <h1
-        className={cn(
-          "text-primary text-4xl font-bold tracking-tight sm:text-5xl",
-          "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
-        )}
-        style={{ transitionDelay: "0ms" }}
-      >
+    <StaggeredAnimationGroup
+      as="header" 
+      className={cn("", className)}
+      initialDelay={500}
+      staggerDelay={150}
+    >
+      <h1 className="text-primary text-4xl font-bold tracking-tight sm:text-5xl">
         Chikezie Onuoha
       </h1>
-      <h2
-        className={cn(
-          "mt-3 text-lg font-medium tracking-tight text-primary sm:text-xl",
-          "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
-        )}
-        style={{ transitionDelay: "150ms" }}
-      >
+      <h2 className="mt-3 text-lg font-medium tracking-tight text-primary sm:text-xl">
         Software Developer
       </h2>
-      <p
-        className={cn(
-          "mt-4 max-w-xs leading-normal",
-          "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
-        )}
-        style={{ transitionDelay: "300ms" }}
-      >
+      <p className="mt-4 max-w-xs leading-normal">
         Full-stack developer & IT Enthusiast crafting modern, scalable tech solutions.
       </p>
+      
+      {/* Navigation */}
+      <HomeHeroNav className="hidden lg:block mt-16" />
+      
+      {/* Social links */}
+      <HomeHeroSocials className="ml-1 mt-16 lg:mt-auto" />
 
-      {/* Navigation - slides in fourth */}
-      <HomeHeroNav
-        className={cn(
-          "hidden lg:block mt-16",
-          "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
-        )}
-        style={{ transitionDelay: "450ms" }}
-      />
-
-      {/* Social links - slides in last */}
-      <HomeHeroSocials
-        className={cn(
-          "ml-1 mt-16 lg:mt-auto",
-          "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
-        )}
-        style={{ transitionDelay: "600ms" }}
-      />
-    </header>
+    </StaggeredAnimationGroup>
   );
 }
 
+// ... The HomeHeroNav and HomeHeroSocials components remain unchanged.
 const homeNavItems = [
   {
     title: "About",
