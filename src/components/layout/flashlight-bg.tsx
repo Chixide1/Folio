@@ -4,17 +4,19 @@ import {ComponentPropsWithoutRef, useEffect, useState} from "react";
 import {cn} from "@/lib/utils";
 import {useCursorTracker} from "@/hooks/use-cursor-tracker";
 import {useIsMobile} from "@/hooks/use-mobile";
+import { Point } from "@/types";
 
-export function FlashlightBg({children, className, ...props}: ComponentPropsWithoutRef<"div">){
-  return (
-    <div className={cn("relative", className)} {...props}>
-      <FlashlightEffect />
-      {children}
-    </div>
-  )
+export type FlashlightBgEffectProps = ComponentPropsWithoutRef<"div"> & {
+  isStatic?: boolean;
+  staticPosition?: Point;
 }
 
-export function FlashlightEffect({className, ...props}: ComponentPropsWithoutRef<"div">) {
+export function FlashlightBgEffect({
+  className,
+  isStatic = false,
+  staticPosition = { x: "20%", y: "20%"},
+  ...props
+}: FlashlightBgEffectProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const mousePosition = useCursorTracker();
   const isMobile = useIsMobile();
@@ -35,11 +37,11 @@ export function FlashlightEffect({className, ...props}: ComponentPropsWithoutRef
         className
       )}
       style={{
-        background: isMobile ?
-          "radial-gradient(circle 600px at 20% 20%, rgba(29, 78, 216, 0.15), transparent 80%)" :
+        background: isStatic || isMobile ?
+          `radial-gradient(circle 600px at ${isStatic ? staticPosition.x : "20%"} ${isStatic ? staticPosition.y : "20%"}, rgba(29, 78, 216, 0.15), transparent 80%)` :
           `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
-        transformOrigin: isMobile ?
-          "20% 20%" :
+        transformOrigin: isStatic || isMobile ?
+          `${staticPosition.x} ${staticPosition.y}` :
           `${mousePosition.x}px ${mousePosition.y}px`
       }}
       {...props}

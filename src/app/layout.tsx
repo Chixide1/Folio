@@ -5,6 +5,7 @@ import {AppNavbar} from "@/components/layout/app-navbar";
 import {Providers} from "@/contexts/providers";
 import {ReactNode} from "react";
 import {AppFooter} from "@/components/layout/app-footer";
+import { Stripes } from "@/components/ui/stripes";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -26,7 +27,11 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased leading-relaxed`}>
         <Providers>
           <AppNavbar />
-          {children}
+          <main className="flex min-h-screen gap-5">
+            <Stripes className="mr-auto"/>
+            {children}
+            <Stripes className="ml-auto"/>
+          </main>
           <AppFooter />
         </Providers>
       </body>

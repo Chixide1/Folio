@@ -3,16 +3,7 @@
 import React, {ComponentPropsWithoutRef, useEffect, useState} from "react";
 import {cn} from "@/lib/utils";
 
-export function GradientBg({className, children, ...props}: ComponentPropsWithoutRef<"div">){
-  return (
-    <div className={cn("relative", className)} {...props}>
-      <GradientEffect />
-      {children}
-    </div>
-  )
-}
-
-export function GradientEffect({className, ...props}: ComponentPropsWithoutRef<"div">){
+export function GradientBgEffect({className, ...props}: ComponentPropsWithoutRef<"div">){
   const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {

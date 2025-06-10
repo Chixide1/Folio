@@ -24,7 +24,7 @@ export function AppNavbar() {
 
   return (
     <header className={cn(
-      "fixed top-0 light:bg-background/80 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b",
+      "fixed top-0 light:bg-background/80 bg-background/90 lg:bg-background/95 left-0 z-40 w-full border-b border-x",
       "transition-all duration-300 ease-in-out",
       scrolledDown ? "-translate-y-full" : "translate-y-0 dark:shadow-2xl"
     )}>
