@@ -1,152 +1,100 @@
 # ZenWealth
 
-A comprehensive personal finance management application that provides insights on financial transactions and helps users create and manage budgets.
+**A comprehensive personal finance management platform that helps users take control of their financial health through intelligent budgeting and spending analytics.**
 
-## Overview
+## The Problem
 
-ZenWealth is built with ASP.NET Core (backend) and React (frontend). The application enables users to:
+Many people struggle to understand where their money goes each month. Existing finance apps are either too basic or overly complex, and manually tracking expenses across multiple accounts is time-consuming and error-prone. I wanted to create a solution that automatically aggregates financial data and provides actionable insights without overwhelming the user.
 
-- Track and visualize income vs expenses
-- Connect to banking institutions via Plaid
-- Manage multiple accounts (checking, savings, credit cards)
-- Create and monitor budgets by category
-- Analyze spending patterns through detailed analytics
-- View transaction history with filtering capabilities
-- Calculate net worth based on assets and liabilities
+## My Solution
 
-## Features
+ZenWealth connects to users' bank accounts via Plaid's secure API, automatically categorizes transactions, and provides intelligent budgeting tools with visual spending analytics. The platform gives users a complete financial overview while maintaining bank-level security.
 
-### Dashboard
-The dashboard provides an overview of financial status including total balance, expenditure, savings, and income.
-![Dashboard](/projects/zenwealth/Dashboard.png "Dashboard")
+### Key Features I Built
 
-### Accounts
-View and manage all connected financial accounts including bank accounts, credit cards, and savings accounts.
-![Accounts](/projects/zenwealth/Accounts.png "Accounts")
+- **Automated Transaction Tracking**: Real-time sync with multiple bank accounts, credit cards, and savings accounts
+- **Smart Budgeting System**: Category-based budgets with progress tracking and overspending alerts
+- **Financial Analytics**: Visual insights into spending patterns, income vs. expenses, and net worth calculations
+- **Secure Bank Integration**: Plaid API integration for safe, read-only access to financial data
+- **Responsive Dashboard**: Clean, intuitive interface that works across all devices
 
-### Transactions
-Review transaction history with advanced filtering options by date, amount, account, and category.
-![Transactions](/projects/zenwealth/Transactions.png "Transactions")
+---
 
-### Budgets
-Create and manage monthly budgets by category with visual indicators of spending progress.
-![Budgets](/projects/zenwealth/Budgets.png "Budgets")
+## Screenshots
 
-### Analytics
-Analyze spending patterns and income vs. expenses over time with detailed visualizations.
-![Analytics](/projects/zenwealth/Analytics.png "Analytics")
+### Dashboard Overview
+![Dashboard](/projects/zenwealth/Dashboard.png "Main dashboard showing financial overview")
 
-### Settings
-Manage connected banking institutions and account security settings.
-![Settings](/projects/zenwealth/Settings.png "Settings")
+The dashboard provides an at-a-glance view of financial health, including total balance, monthly expenses, and savings progress.
 
+### Budget Management
+![Budgets](/projects/zenwealth/Budgets.png "Budget creation and tracking interface")
+
+Users can create category-based budgets with visual progress indicators and spending alerts.
+
+### Transaction Analysis
+![Analytics](/projects/zenwealth/Analytics.png "Spending analytics and trends")
+
+Detailed analytics help users understand spending patterns and make informed financial decisions.
+
+---
+
+## Technical Implementation
+
+### Architecture Decisions
+- **Backend**: ASP.NET Core for robust API development and business logic
+- **Frontend**: React with TypeScript for type-safe, maintainable UI code
+- **Database**: SQL Server for reliable financial data storage
+- **Styling**: Tailwind CSS with Shadcn components for consistent, modern design
+
+### Key Challenges Solved
+
+**Secure Financial Data Handling**
+Implemented Plaid's secure API integration to safely access bank data without storing sensitive credentials. All financial data is encrypted and follows banking security standards.
+
+**Real-time Data Synchronization**
+Built webhook handlers to automatically update transactions and account balances when changes occur at the bank level, ensuring users always see current information.
+
+**Intelligent Transaction Categorization**
+Developed logic to automatically categorize transactions using merchant data and user patterns, reducing manual input while maintaining accuracy.
+
+**Performance Optimization**
+Implemented efficient data querying and caching strategies to handle large transaction datasets without impacting user experience.
+
+## What I Learned
+
+This project deepened my understanding of:
+- **Financial API Integration**: Working with banking APIs and handling sensitive financial data securely
+- **Full-Stack Development**: Coordinating complex data flows between frontend, backend, and external services
+- **User Experience Design**: Creating intuitive interfaces for complex financial data
+- **Security Best Practices**: Implementing proper authentication, encryption, and data protection measures
 
 ## Technology Stack
 
-- **Backend**: C# with ASP.NET Core & Going.Plaid
-- **Frontend**: TypeScript with React, Shadcn & Tailwind CSS
-- **Database**: SQL Server
-- **External Services**: 
-  - Plaid API for bank connections
-  - Azure Communication Services for email notifications
+**Backend**
+- C# / ASP.NET Core
+- Entity Framework Core
+- Plaid API (Going.Plaid)
+- Azure Communication Services
 
-## Prerequisites
+**Frontend**
+- TypeScript / React
+- Tailwind CSS / Shadcn UI
+- Chart.js for data visualization
 
-- [.NET 8.0+](https://dotnet.microsoft.com/download)
-- [Node.js 23.0+](https://nodejs.org/)
-- [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/)
-- [A Plaid developer account](https://dashboard.plaid.com)
-- [An Azure Account](https://azure.microsoft.com/en-gb/products/communication-services)
+**Infrastructure**
+- SQL Server / PostgreSQL
+- RESTful API design
+- Webhook integration
 
-## Installation
+## Future Enhancements
 
-1. Clone the repository
-   ```
-   git clone https://github.com/Chixide1/ZenWealth
-   cd Zenwealth
-   ```
+- Investment portfolio tracking
+- Goal-based savings features  
+- Mobile app development
+- AI-powered financial recommendations
+- Bill reminder notifications
 
-2. Set up the backend
-   ```
-   cd Server
-   dotnet restore
-   ```
+---
 
-3. Set up the frontend
-   ```
-   cd Client
-   npm install
-   ```
-
-4. Configure the application (see Configuration section below)
-
-5. Run the application
-   ```
-   # In the Backend directory
-   dotnet run
-   
-   # In a separate terminal, in the Frontend directory
-   npm start
-   ```
-
-## Configuration
-
-Copy the below json to `appsettings.json` and update the values:
-
-```json
-{
-    "Logging": {
-        "LogLevel": {
-            "Default": "DEFAULT_LOG_LEVEL",
-            "Microsoft.AspNetCore": "ASP.NET_CORE_LOG_LEVEL",
-            "Microsoft.EntityFrameworkCore.Database.Command": "EF_CORE_LOG_LEVEL"
-        }
-    },
-    "DatabaseProvider": "PostgreSql",
-    "ConnectionStrings": {
-        "DefaultConnection": "DATABASE_CONN_STR",
-        "AzureCommunicationServices": "AZURE_COMMS_SERVICE_CONN_STR",
-        "PostgreSqlConnection": ""
-    },
-    "AllowedHosts": "HOSTNAME",
-    "Plaid": {
-        "ClientID": "PLAID_CLIENT_ID",
-        "Secret": "PLAID_SECRET",
-        "WebhookUrl": "PLAID_WEBHOOK_URL"
-    },
-    "EmailSettings": {
-        "SenderEmail": "AZURE_COMMS_SERVICE_SENDER_EMAIL",
-        "FrontendBaseUrl": "FRONTEND_URL"
-    }
-}
-```
-
-### Configuration Values
-
-- **Logging**:
-  - `DEFAULT_LOG_LEVEL`: General logging level (e.g., "Information")
-  - `ASP.NET_CORE_LOG_LEVEL`: Logging level for ASP.NET Core components (e.g., "Warning")
-  - `EF_CORE_LOG_LEVEL`: Logging level for Entity Framework Core (e.g., "Information")
-
-- **DatabaseProvider**: The database provider you want to use. Available options are Sql Server & PostgreSQL
-
-- **ConnectionStrings**:
-  - `DefaultConnection`: Connection string if you're using SqlServer
-  - `AzureCommunicationServices`: Connection string for Azure Communication Services
-  - `PostgreSqlConnection`: Connection string if you're using PostgreSQL
-
-- **AllowedHosts**: Hostname where the application will run (e.g., "localhost" or your domain)
-
-- **Plaid**:
-  - `ClientID`: Your Plaid client ID
-  - `Secret`: Your Plaid secret
-  - `WebhookUrl`: URL for Plaid webhooks (for transaction updates)
-
-- **EmailSettings**:
-  - `SenderEmail`: Email address used for sending notifications
-  - `FrontendBaseUrl`: Base URL of your frontend application (for links in emails)
-
-## Environment Variables
-
-- `VITE_ASPNETCORE_URLS`: The Api URL which will be referenced by the frontend application.
-- `ASPNETCORE_ENVIRONMENT`: The enviroment which the Api should run under (e.g., "Development", "Production")
+**[Live Demo](https://zenwealth.ckdoestech.com/)** | **[Source Code](https://github.com/Chixide1/ZenWealth)**

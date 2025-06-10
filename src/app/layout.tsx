@@ -27,10 +27,10 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased leading-relaxed`}>
         <Providers>
           <AppNavbar />
-          <main className="flex min-h-screen gap-5">
-            <Stripes className="mr-auto"/>
+          <main className="flex min-h-screen gap-5 mx-auto justify-between">
+            <Stripes/>
             {children}
-            <Stripes className="ml-auto"/>
+            <Stripes/>
           </main>
           <AppFooter />
         </Providers>
