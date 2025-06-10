@@ -107,15 +107,7 @@ function HomeHeroNav({ className, style }: { className?: string; style?: React.C
           key={"HomeHeroNav-" + item.title}
           className={cn(
             "group flex items-center py-3 w-fit",
-            "transform transition-all duration-500 ease-out",
-            // Each nav item slides in with additional delay
-            "animate-[slideInFromLeft_0.6s_ease-out_forwards]"
           )}
-          style={{
-            animationDelay: `${700 + (index * 100)}ms`,
-            opacity: 0,
-            transform: "translateX(-20px)"
-          }}
           data-active={activeId === item.href.slice(1)}
         >
           <div className={cn(
@@ -148,13 +140,7 @@ function HomeHeroSocials({ className, style }: { className?: string; style?: Rea
           key={"HomeHeroSocials-" + item.title}
           className={cn(
             " hover:text-primary text-primary-foreground dark:hover:text-primary dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
-            "animate-[fadeInUp_0.6s_ease-out_forwards]"
           )}
-          style={{
-            animationDelay: `${800 + (index * 100)}ms`,
-            opacity: 0,
-            transform: "translateY(20px)"
-          }}
           target="_blank"
         >
           <item.Icon className="h-auto w-[1em]" />

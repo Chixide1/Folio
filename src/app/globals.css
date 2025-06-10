@@ -125,7 +125,7 @@
   }
 }
 
-@keyframes slideInFromLeft {
+/* @keyframes slideInFromLeft {
   from {
     opacity: 0;
     transform: translateX(-20px);
@@ -145,10 +145,10 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
+} */
 
 /* Optional: Add a subtle bounce effect for extra polish */
-@keyframes slideInBounce {
+/* @keyframes slideInBounce {
   0% {
     opacity: 0;
     transform: translateY(30px);
@@ -166,4 +166,4 @@
 @utility text-vertical {
   writing-mode: vertical-lr;
   text-orientation: upright;
-}
+} */
