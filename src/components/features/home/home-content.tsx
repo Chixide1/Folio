@@ -7,8 +7,14 @@ import {useActiveId} from "@/contexts/active-id-context";
 import {HomeExperience} from "./home-experience";
 import {HomeProjects} from "@/components/features/home/home-projects";
 import {cn} from "@/lib/utils";
+import { Project } from "@/types";
 
-export function HomeContent({ className }: { className?: string }) {
+type HomeContentProps = {
+  className?: string;
+  projects?: Project[];
+}
+
+export function HomeContent({ className, projects }: HomeContentProps) {
   const {activeId, setActiveId } = useActiveId();
   const homeAboutRef = useRef<HTMLElement>(null);
   const homeExperienceRef = useRef<HTMLElement>(null);
@@ -57,6 +63,7 @@ export function HomeContent({ className }: { className?: string }) {
         id="home-projects"
         className="pb-36 scroll-mt-20"
         ref={homeProjectsRef}
+        projects={projects}
       />
     </main>
   );

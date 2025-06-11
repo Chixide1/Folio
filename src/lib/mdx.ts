@@ -2,35 +2,34 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-
-type ContentType = "projects" | "blog";
+import { ContentArea, Project } from '@/types'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
-export function getMDXFiles(area: ContentType) {
+export function getMDXFiles(area: ContentArea) {
   const typeDirectory = path.join(contentDirectory, area)
   if (!fs.existsSync(typeDirectory)) return []
   return fs.readdirSync(typeDirectory).filter(file => file.endsWith('.mdx'))
 }
 
-export function getMDXContent(area: ContentType, slug: string) {
+export function getMDXContent(area: ContentArea, slug: string) {
   const fullPath = path.join(contentDirectory, area, `${slug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
   return {
-    frontmatter: data,
+    frontmatter: data as Project,
     content,
     slug
   }
 }
 
-export function getAllSlugs(area: ContentType) {
+export function getAllSlugs(area: ContentArea) {
   const files = getMDXFiles(area)
   return files.map(file => file.replace(/\.mdx$/, ''))
 }
 
-export function getAllContent(area: ContentType) {
+export function getAllContent(area: ContentArea) {
   const slugs = getAllSlugs(area)
   return slugs.map(slug => {
     const { frontmatter, content } = getMDXContent(area, slug)

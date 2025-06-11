@@ -5,18 +5,9 @@ import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
 import {FaArrowRight} from "react-icons/fa6";
 import {AnchorHTMLAttributes, ComponentPropsWithRef, forwardRef} from "react";
+import {Project} from "@/types";
 
-export type Project = {
-  title: string;
-  description: string;
-  image: string;
-  github: string;
-  live: string;
-  projectLink?: string;
-  tags: string[];
-} & ComponentPropsWithRef<"div">
-
-export const ProjectCard = forwardRef<HTMLDivElement, Project>(({
+export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWithRef<"div">>(({
   className,
   title,
   description,

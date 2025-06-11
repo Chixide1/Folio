@@ -1,13 +1,18 @@
 ﻿"use client"
 
-import {forwardRef, HTMLProps, useRef, useState} from "react";
+import {forwardRef, HTMLProps, useRef, useState, useEffect} from "react";
 import {cn} from "@/lib/utils";
-import {Project, ProjectCard} from "@/components/features/projects/project-card";
+import {ProjectCard} from "@/components/features/projects/project-card";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
+import { Project } from "@/types";
 
-export const HomeProjects = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
-  ({className, ...props}, ref) => {
+type HomeProjectsProps = HTMLProps<HTMLElement> & {
+  projects?: Project[];
+}
+
+export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
+  ({className, projects = [], ...props}, ref) => {
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [visibleProjects, setVisibleProjects] = useState<Set<string>>(new Set());
     const isMobile = useIsMobile();
@@ -22,7 +27,7 @@ export const HomeProjects = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const projectIndex = projectRefs.current.indexOf(entry.target as HTMLDivElement);
-            if (projectIndex !== -1) {
+            if (projectIndex !== -1 && projects[projectIndex]) {
               setVisibleProjects(prev => new Set([...prev, projects[projectIndex].title]));
             }
           }
@@ -68,37 +73,3 @@ export const HomeProjects = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
   }
 )
 HomeProjects.displayName = "HomeProjects"
-
-const projects: Project[] = [
-  {
-    title: "ZenWealth",
-    description: "ZenWealth is a personal finance app built with ASP.NET Core and React. It connects to banks via Plaid to track expenses, manage budgets, and analyze spending. The linked app uses test data, viewable by adding an account with any username and password.",
-    image: "/zenwealth.png",
-    github: "https://github.com/Chixide1/ZenWealth",
-    live: "https://zenwealth.ckdoestech.com/",
-    projectLink: "/projects/zenwealth",
-    tags: [
-      "Typescript", "React", "C#", "Asp.Net Core", "SQL Server", "Tailwind CSS", "Shadcn"
-    ]
-  },
-  {
-    title: "Techtonic",
-    description: "This blog application was inspired by the Prismic Blog and developed primarily to learn Next.js while creating a practical and functional project. I populated it with mock data to showcase its features.",
-    image: "/techtonic.png",
-    github: "https://github.com/Chixide1/techtonic",
-    live: "https://techtonic.ckdoestech.com/",
-    tags: [
-      "Next.js", "Javascript", "Typescript", "Pocketbase", "React", "PayloadCMS"
-    ]
-  },
-  {
-    title: "Cloudstore",
-    description: "This web app lets users upload files and generate temporary download links using Azure storage. Cloudstore (formerly Fileshare App v2) features an improved UI and expanded functionality over the original version.",
-    image: "/cloudstore.png",
-    github: "https://github.com/Chixide1/Cloudstore",
-    live: "https://cloudstore.ckdoestech.com",
-    tags: [
-      "Python" ,"Django", "Sass", "Htmx", "Bootstrap", "Hyperscript"
-    ]
-  },
-]

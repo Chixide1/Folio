@@ -8,3 +8,19 @@ export type Point = {
     x: IntegerOrPercentage;
     y: IntegerOrPercentage;
 };
+
+export type Project = {
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  github: string;
+  live: string;
+  projectLink?: string;
+  tags: string[];
+}
+
+export enum ContentArea {
+  PROJECTS = "projects",
+  BLOG = "blog"
+}
