@@ -22,17 +22,17 @@ interface ExperienceCardProps extends Experience {
 }
 
 export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
-                                                                                 title,
-                                                                                 company,
-                                                                                 companyLogo,
-                                                                                 startDate,
-                                                                                 endDate,
-                                                                                 jobType,
-                                                                                 description,
-                                                                                 tags,
-                                                                                 location,
-                                                                                 isVisible = false,
-                                                                               }, ref) => {
+ title,
+ company,
+ companyLogo,
+ startDate,
+ endDate,
+ jobType,
+ description,
+ tags,
+ location,
+ isVisible = false,
+}, ref) => {
   const formatDateRange = () => {
     const startFormatted = format(startDate, 'MMM yyyy');
     const endFormatted = endDate ? format(endDate, 'MMM yyyy') : 'Present';
@@ -64,17 +64,18 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
     <div
       ref={ref}
       className={cn(
-        "flex transition-all duration-700 ease-out",
+        "flex transition-all max-sm:flex-col duration-700 ease-out",
         isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-8"
       )}
     >
       {/* Timeline line and dot */}
-      <div className="md:flex flex-col items-center mr-6 hidden">
+      <div className="flex flex-col items-center mr-6">
         {/* Company logo as timeline dot */}
         <div className={cn(
-          "w-10 h-10 rounded bg-border dark:bg-secondary flex items-center justify-center flex-shrink-0 border transition-all duration-500 ease-out delay-300 relative z-10",
+          "w-10 h-10 rounded flex items-center justify-center flex-shrink-0 transition-all duration-500 ease-out delay-300 relative z-10",
+          "max-sm:w-full max-sm:h-full max-w-32 max-sm:mr-auto max-sm:ml-8 max-sm:mb-4 max-sm:rounded-xl",
           isVisible
             ? "scale-100 opacity-100"
             : "scale-75 opacity-0"
@@ -85,7 +86,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
               alt={`${company} logo`}
               width={1000}
               height={1000}
-              className="w-auto h-auto rounded object-contain"
+              className="w-auto h-auto rounded-[inherit] object-contain"
             />
           ) : (
             <div className="w-8 h-8 rounded flex items-center justify-center">
@@ -99,7 +100,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
         {/* Vertical line */}
         <div
           className={cn(
-            "w-px max-w-px flex-1 bg-border mt-4 transition-transform duration-1000 ease-out origin-top",
+            "max-sm:hidden w-px max-w-px flex-1 bg-border mt-4 transition-transform duration-1000 ease-out origin-top",
             isVisible ? "scale-y-100" : "scale-y-0"
           )}
         />

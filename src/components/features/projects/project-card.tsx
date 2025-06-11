@@ -22,7 +22,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWi
     <div
       ref={ref}
       className={cn(
-        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 dark:hover:bg-secondary-foreground/50 p-4 rounded-lg hover:drop-shadow-lg hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
+        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 sm:dark:hover:bg-secondary-foreground/50 sm:p-4 rounded-lg sm:hover:drop-shadow-lg sm:hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
         className
       )}
       {...props}
@@ -54,7 +54,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWi
       </Link>
 
       {/* Second row - Links and Tags */}
-      <div className="sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
+      <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
         <ProjectLink name={"Github"} href={github} className=""/>
         {projectLink && <ProjectLink name={"Project Details"} href={projectLink} target="_self"/>}
       </div>

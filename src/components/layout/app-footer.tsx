@@ -74,7 +74,7 @@ function FooterDescription({className, ...props}: HTMLProps<HTMLDivElement>){
         </p>
         <p className="ml-auto mt-6">© 2025 Chikezie Onuoha</p>
       </div>
-      <div className="mt-auto ml-auto">
+      <div className="mt-auto ml-auto max-sm:mr-4">
         <ScrollToTopButton 
           className="my-auto flex max-sm:text-vertical max-sm:h-fit max-sm:py-1.5 max-sm:!px-1"
         />

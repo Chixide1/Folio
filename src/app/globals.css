@@ -129,3 +129,8 @@
   @apply prose-base dark:prose-invert prose-headings:font-normal prose-slate light:prose-strong:text-primary-foreground prose-strong:text-card-foreground
   prose-img:rounded-lg prose-img:border prose-headings:text-primary;
 }
+
+@utility text-vertical {
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+}
