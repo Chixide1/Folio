@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
         />
         
         {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50" />
         
         {/* Content overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -31,12 +31,6 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
               {frontmatter.title}
             </h1>
-            
-            {frontmatter.description && (
-              <p className="text-white/90 mb-4 leading-relaxed font-light">
-                {frontmatter.description}
-              </p>
-            )}
             
             {frontmatter.date && (
               <span className="text-white/80">

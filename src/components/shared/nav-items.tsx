@@ -20,12 +20,12 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Projects",
-    href: "#",
+    href: "/projects",
     Icon: GoProjectSymlink
   },
   {
     title: "Blog",
-    href: "#",
+    href: "/blog",
     Icon: RiBloggerLine
   },
   {
