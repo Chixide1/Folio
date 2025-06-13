@@ -10,6 +10,7 @@ import {Project} from "@/types";
 export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWithRef<"div">>(({
   className,
   title,
+  imageCaption,
   description,
   image,
   tags,
@@ -34,7 +35,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWi
         <div className="col-span-2">
           <Image
             src={image}
-            alt={title}
+            alt={imageCaption ?? title}
             width={1200}
             height={1200}
             className="w-full max-sm:mb-4 h-auto object-cover rounded border"

@@ -1,6 +1,7 @@
 ﻿import {cn} from "@/lib/utils";
+import {ComponentPropsWithoutRef} from "react";
 
-export function Dots({className, children, ...props}: HTMLProps<HTMLDivElement>) {
+export function Dots({className, children, ...props}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
       {...props}

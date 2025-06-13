@@ -11,6 +11,7 @@ export type Point = {
 
 export type Project = {
   title: string;
+  imageCaption?: string;
   description: string;
   date: string;
   image: string;

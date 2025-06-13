@@ -1,7 +1,10 @@
 ﻿import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getMDXContent, getAllSlugs } from '@/lib/mdx'
-import { ContentArea } from '@/types/index'
+import { ContentArea } from '@/types'
 import Image from 'next/image'
+import {Tag} from "@/components/ui/tag";
+import {MdOutlineArrowOutward} from "react-icons/md";
+import Link from "next/link";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -12,39 +15,30 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.PROJECTS, slug)
 
   return (
-    <div className="py-16 w-full max-w-7xl mx-auto">
-      <header className="relative overflow-hidden rounded-2xl group">
-        <Image 
-          src={frontmatter.image} 
-          alt={frontmatter.title} 
-          width={1920} 
-          height={1080} 
-          className="w-full h-auto scale-105" 
-        />
-        
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50" />
-        
-        {/* Content overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              {frontmatter.title}
-            </h1>
-            
-            {frontmatter.date && (
-              <span className="text-white/80">
-                {new Date(frontmatter.date).toDateString()}
-              </span>
-            )}
-          </div>
-        </div>
-        
-        {/* Optional: Add a subtle border highlight */}
-        <div className="absolute inset-0 ring-1 ring-white/10 rounded-2xl pointer-events-none" />
-      </header>
+    <div className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4">
       
-      <article className="w-full mx-auto px-4 prose prose-project max-w-[75ch] mt-12">
+      <div className="flex gap-x-2">
+        <h1 className="inline-block font-semibold text-4xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
+          {frontmatter.title}
+        </h1>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {frontmatter.tags.map(tag => (
+          <Tag value={tag} key={"ProjectPageTag-" + tag}/>
+        ))}
+      </div>
+      <figure className="mb-10">
+        <Image
+          src={frontmatter.image}
+          alt={frontmatter.imageCaption ?? frontmatter.title}
+          width={1920}
+          height={1080}
+          className="w-full h-auto rounded-xl border"
+        />
+        <figcaption className="w-full text-center mt-1.5 text-secondary italic">{frontmatter.imageCaption}</figcaption>
+      </figure>
+      
+      <article className="w-full prose prose-project">
         <MDXRemote source={content} />
       </article>
     </div>

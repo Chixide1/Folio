@@ -126,8 +126,10 @@
 }
 
 .prose-project {
-  @apply prose-base dark:prose-invert prose-headings:font-normal prose-slate light:prose-strong:text-primary-foreground prose-strong:text-card-foreground
-  prose-img:rounded-lg prose-img:border prose-headings:text-primary;
+  @apply prose-base dark:prose-invert prose-headings:font-medium light:prose-strong:text-primary-foreground
+  prose-strong:text-card-foreground prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-img:border
+  prose-headings:text-primary prose-p:text-foreground prose-a:no-underline prose-a:transition-colors
+  prose-a:hover:text-accent prose-a:hover:underline prose-a:duration-500;
 }
 
 @utility text-vertical {
