@@ -32,21 +32,12 @@ export function AppNavbar() {
         <Link href="/public" className="order-first">
           <Logo className="text-accent w-6 h-auto" />
         </Link>
-
-        {/* Mobile separator - only visible on mobile */}
+        
         <Separator orientation="vertical" className="!h-4 -order-1 mx-5 lg:hidden" />
-
-        {/* Mobile menu - only visible on mobile */}
-        <div className="lg:hidden">
-          <MobileMenu />
-        </div>
-
-        {/* Desktop menu - only visible on desktop */}
-        <div className="hidden lg:block">
-          <DesktopMenu />
-        </div>
-
+        <MobileMenu className="lg:hidden" />
+        <DesktopMenu className="max-lg:hidden" />
         <ThemeSwitcher className="mr-auto lg:m-0 -order-1 lg:order-none" />
+        
       </NavigationMenu>
     </header>
   );

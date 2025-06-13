@@ -5,6 +5,7 @@ import Image from 'next/image'
 import {Tag} from "@/components/ui/tag";
 import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
+import {AppBg} from "@/components/layout/app-bg";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -15,7 +16,13 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.PROJECTS, slug)
 
   return (
-    <div className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4">
+    <AppBg
+      flashlightProps={{
+        lightOpacity: 0.1,
+        isStatic: true,
+      }}
+      className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4"
+    >
       
       <div className="flex gap-x-2">
         <h1 className="inline-block font-semibold text-4xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
@@ -41,7 +48,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
       <article className="w-full prose prose-project">
         <MDXRemote source={content} />
       </article>
-    </div>
+    </AppBg>
   )
 }
 

@@ -1,17 +1,25 @@
 ﻿"use client";
 
-import {ComponentPropsWithoutRef} from "react";
 import {FlashlightBgEffect, FlashlightBgEffectProps} from "@/components/layout/flashlight-bg";
 import {GradientBgEffect} from "@/components/layout/gradient-bg";
 import {cn} from "@/lib/utils";
+import {ComponentPropsWithoutRef} from "react";
 
-export function AppBg({children, className, isStatic, staticPosition, ...props}: FlashlightBgEffectProps) {
+type AppBgProps = ComponentPropsWithoutRef<"div"> & {
+  flashlightProps?: FlashlightBgEffectProps;
+}
+
+export function AppBg({
+  children,
+  className,
+  flashlightProps,
+  ...props
+}: AppBgProps) {
   return (
     <div className={cn("relative", className)} {...props}>
       <FlashlightBgEffect
         className="hidden dark:block"
-        isStatic={isStatic}
-        staticPosition={staticPosition}
+        {...flashlightProps}
       />
       <GradientBgEffect
         className="block dark:hidden"
