@@ -34,10 +34,17 @@ export function AppNavbar() {
         </Link>
         
         <Separator orientation="vertical" className="!h-4 -order-1 mx-5 lg:hidden" />
-        <MobileMenu className="lg:hidden" />
-        <DesktopMenu className="max-lg:hidden" />
-        <ThemeSwitcher className="mr-auto lg:m-0 -order-1 lg:order-none" />
         
+        <div className="lg:hidden">
+          <MobileMenu />
+        </div>
+
+        {/* Desktop menu - only visible on desktop */}
+        <div className="max-lg:hidden">
+          <DesktopMenu />
+        </div>
+
+        <ThemeSwitcher className="mr-auto lg:m-0 -order-1 lg:order-none" />
       </NavigationMenu>
     </header>
   );

@@ -11,12 +11,14 @@ export type FlashlightBgEffectProps = ComponentPropsWithoutRef<"div"> & {
   isStatic?: boolean;
   staticPosition?: Point;
   lightOpacity?: Property.Opacity;
+  lightSize?: number;
 }
 
 export function FlashlightBgEffect({
   className,
   isStatic = false,
   lightOpacity = 0.15,
+  lightSize = 600,
   staticPosition = { x: "20%", y: "20%"},
   ...props
 }: FlashlightBgEffectProps) {
@@ -35,15 +37,15 @@ export function FlashlightBgEffect({
   return(
     <div
       className={cn(
-        "fixed inset-0 pointer-events-none z-10 transition-transform duration-1000 ease-out",
+        "fixed inset-0 pointer-events-none z-10 transition-transform duration-1000 ease-out mb-0",
         isExpanded ? "scale-100" : "scale-0",
         className
       )}
       style={{
         background: isStatic || isMobile ?
-          `radial-gradient(circle 600px at ${isStatic ? staticPosition.x : "20%"} ${isStatic ? staticPosition.y : "20%"},
+          `radial-gradient(circle ${lightSize}px at ${isStatic ? staticPosition.x : "20%"} ${isStatic ? staticPosition.y : "20%"},
           rgba(29, 78, 216, ${lightOpacity}), transparent 80%)` :
-          `radial-gradient(circle 600px at ${mousePosition.x}px ${mousePosition.y}px,
+          `radial-gradient(circle ${lightSize}px at ${mousePosition.x}px ${mousePosition.y}px,
           rgba(29, 78, 216, ${lightOpacity}), transparent 80%)`,
         transformOrigin: isStatic || isMobile ?
           `${staticPosition.x} ${staticPosition.y}` :

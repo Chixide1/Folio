@@ -2,7 +2,7 @@
 
 import {forwardRef, HTMLProps, useRef, useState, useEffect} from "react";
 import {cn} from "@/lib/utils";
-import {ProjectCard} from "@/components/features/projects/project-card";
+import {ProjectCardCompact} from "@/components/features/projects/project-card-compact";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
 import { Project } from "@/types";
@@ -57,7 +57,7 @@ export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
               transitionDelay: `${index * 150}ms`
             }}
           >
-            <ProjectCard
+            <ProjectCardCompact
               {...project}
               onMouseEnter={() => setHoveredProject(project.title)}
               onMouseLeave={() => setHoveredProject(null)}

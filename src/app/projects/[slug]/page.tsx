@@ -2,7 +2,7 @@
 import { getMDXContent, getAllSlugs } from '@/lib/mdx'
 import { ContentArea } from '@/types'
 import Image from 'next/image'
-import {Tag} from "@/components/ui/tag";
+import {Tag, TagGroup} from "@/components/ui/tag";
 import {MdOutlineArrowOutward} from "react-icons/md";
 import Link from "next/link";
 import {AppBg} from "@/components/layout/app-bg";
@@ -29,11 +29,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
           {frontmatter.title}
         </h1>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {frontmatter.tags.map(tag => (
-          <Tag value={tag} key={"ProjectPageTag-" + tag}/>
-        ))}
-      </div>
+      <TagGroup tags={frontmatter.tags} />
       <figure className="mb-10">
         <Image
           src={frontmatter.image}

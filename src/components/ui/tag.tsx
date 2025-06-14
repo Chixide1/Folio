@@ -1,5 +1,5 @@
 ﻿import {Badge} from "@/components/ui/badge";
-import React from "react";
+import React, {ComponentPropsWithoutRef} from "react";
 import {cn} from "@/lib/utils";
 
 export function Tag({className, value}: {className?: string, value: string}) {
@@ -10,5 +10,15 @@ export function Tag({className, value}: {className?: string, value: string}) {
     >
       {value}
     </Badge>
+  )
+}
+
+export function TagGroup({className, tags, ...props}: ComponentPropsWithoutRef<"div"> & {tags: string[]}) {
+  return (
+    <div className={cn("flex flex-wrap gap-2", className)} {...props}>
+      {tags.map((tag, index) => (
+        <Tag value={tag} key={"TagGroup-" + index}/>
+      ))}
+    </div>
   )
 }

@@ -5,7 +5,7 @@ import { getAllContent } from "@/lib/mdx";
 import { ContentArea, Project } from "@/types";
 
 export default function Home() {
-  // Fetch project data from MDX files
+  
   const projects = getAllContent(ContentArea.PROJECTS)
     .map(({frontmatter}) => frontmatter);
 

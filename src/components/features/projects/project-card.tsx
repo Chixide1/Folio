@@ -1,85 +1,41 @@
 ﻿import Image from "next/image";
-import {Tag} from "@/components/ui/tag";
-import {cn} from "@/lib/utils";
-import {MdOutlineArrowOutward} from "react-icons/md";
+import {TagGroup} from "@/components/ui/tag";
 import Link from "next/link";
-import {FaArrowRight} from "react-icons/fa6";
-import {AnchorHTMLAttributes, ComponentPropsWithRef, forwardRef} from "react";
 import {Project} from "@/types";
+import {FaArrowRight} from "react-icons/fa6";
 
-export const ProjectCard = forwardRef<HTMLDivElement, Project & ComponentPropsWithRef<"div">>(({
-  className,
-  title,
-  imageCaption,
-  description,
-  image,
-  tags,
-  github,
-  projectLink,
-  live,
-  ...props
-}, ref) => {
+export function ProjectCard({project}: { project: Project }) {
   return (
     <div
-      ref={ref}
-      className={cn(
-        "light:outline-1 light:bg-white light:shadow-xl grid grid-cols-6 gap-y-1 gap-x-4 sm:dark:hover:bg-secondary-foreground/50 sm:p-4 rounded-lg sm:hover:drop-shadow-lg sm:hover:shadow-xl dark:hover:shadow-none duration-500 transition-all",
-        className
-      )}
-      {...props}
+      className="max-md:border flex md:gap-2 max-md:flex-col"
     >
-
-      {/* First Row */}
-      <Link href={live} target="_blank" className="group col-span-6 sm:grid sm:grid-cols-subgrid">
-        {/* Image */}
-        <div className="col-span-2">
-          <Image
-            src={image}
-            alt={imageCaption ?? title}
-            width={1200}
-            height={1200}
-            className="w-full max-sm:mb-4 h-auto object-cover rounded border"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="mb-3 col-span-4">
-          <div className="mb-2 font-semibold text-primary flex gap-1.5">
-            <h3 className="group-hover:text-accent duration-500 transition-colors">{title}</h3>
-            <MdOutlineArrowOutward
-              className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
-            />
-          </div>
-          <p className="text-sm">{description}</p>
-        </div>
+      <Link
+        className="max-md:p-3 max-md:bg-card md:rounded-l-3xl border hover:border-accent hover:-translate-y-2 flex md:w-1/4 shadow-black/40 md:shadow-lg transition-all hover:shadow-xl duration-500"
+        href={project.live ?? ""}
+        target="_blank"
+      >
+        <Image
+          src={project.image}
+          alt={project.imageCaption ?? project.title}
+          width={1920}
+          height={1080}
+          className="h-auto border-inherit rounded-[inherit] object-cover "
+        />
       </Link>
-
-      {/* Second row - Links and Tags */}
-      <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
-        <ProjectLink name={"Github"} href={github} className=""/>
-        {projectLink && <ProjectLink name={"Project Details"} href={projectLink} target="_self"/>}
-      </div>
-
-      <div className="row-start-2 col-span-full sm:col-span-4">
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map(tag => <Tag value={tag} key={"ProjectCardTag-" + tag} />)}
+      <Link
+        href={project.projectLink ?? ""}
+        className="group hover:border-accent hover:-translate-y-2 bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-lg transition-all hover:shadow-xl duration-500"
+      >
+        <div className="flex gap-1.5 items-center mb-2">
+          <h2 className="text-primary font-medium text-xl">
+            {project.title}
+          </h2>
+          <FaArrowRight
+            className="group-hover:text-accent group-hover:translate-x-1 duration-500 transition-all text-xs"/>
         </div>
-      </div>
+        <TagGroup tags={project.tags} className="text-xs mb-4" />
+        <p className="text-[0.9rem]">{project.description}</p>
+      </Link>
     </div>
-  )
-})
-ProjectCard.displayName = "ProjectCard"
-
-function ProjectLink({className, target, ...props}: AnchorHTMLAttributes<HTMLAnchorElement> & {name: string}) {
-  return (
-    <Link
-      href={props.href ?? ""}
-      target={target ?? "_blank"}
-      className={cn("hover:text-accent p-1 transition-colors duration-500 font-semibold underline flex w-fit group/projectLink items-center gap-2",
-        className)}
-    >
-      {props.name}
-      <FaArrowRight className="group-hover/projectLink:translate-x-1 group-hover/projectLink:text-accent duration-500 transition-all" />
-    </Link>
   )
 }
