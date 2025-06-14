@@ -13,7 +13,7 @@ export function ProjectLink({className, target, ...props}: ComponentPropsWithout
     >
       {props.name}
       <FaArrowRight
-        className="group-hover/projectLink:translate-x-1 group-hover/projectLink:text-accent duration-500 transition-all"/>
+        className="text-xs group-hover/projectLink:translate-x-1 group-hover/projectLink:text-accent duration-500 transition-all"/>
     </Link>
   )
 }

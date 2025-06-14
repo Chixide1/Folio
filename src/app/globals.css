@@ -91,7 +91,7 @@
   --secondary: var(--color-slate-500);
   --secondary-foreground: var(--color-slate-800);
   --muted: var(--color-slate-800);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: --alpha(var(--color-slate-400) / 40%);
   --accent: var(--color-teal-300);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
