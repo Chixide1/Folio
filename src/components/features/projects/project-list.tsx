@@ -7,30 +7,60 @@ import {useEffect, useState, useMemo} from "react";
 import Fuse from "fuse.js";
 import {Project} from "@/types";
 
-interface ProjectsListProps {
+type ProjectsListProps = {
   projects: Project[];
   initialQuery: string;
+}
+
+type ProjectSearchData = {
+  index: never;
+  projects: Project[];
 }
 
 export function ProjectsList({ projects, initialQuery }: ProjectsListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(initialQuery);
+  const [searchIndex, setSearchIndex] = useState<Fuse<Project> | null>(null);
 
-  // Create Fuse instance
-  const fuse = useMemo(() => new Fuse(projects, {
-    keys: ["title", "tags"],
-    includeScore: true,
-    threshold: 0.4, // Adjust for search sensitivity
-  }), [projects]);
+  // Load pre-built search index
+  useEffect(() => {
+    async function loadSearchIndex() {
+      try {
+        const response = await fetch('/projects-index.json');
+        const projectSearchData: ProjectSearchData = await response.json();
+
+        // Create Fuse instance from pre-built index
+        const fuse = new Fuse(projectSearchData.projects, {
+          keys: ["title", "tags"],
+          includeScore: true,
+          threshold: 0.4,
+        }, Fuse.parseIndex(projectSearchData.index));
+
+        setSearchIndex(fuse);
+      } catch (error) {
+        console.error('Failed to load search index:', error);
+        // Fallback to creating index from projects
+        const fuse = new Fuse(projects, {
+          keys: ["title", "tags"],
+          includeScore: true,
+          threshold: 0.4,
+        });
+        setSearchIndex(fuse);
+      }
+    }
+
+    loadSearchIndex();
+  }, [projects]);
 
   // Filter projects based on search
   const filteredProjects = useMemo(() => {
     if (!query.trim()) return projects;
+    if (!searchIndex) return projects; // Return all if index not loaded yet
 
-    const fuseResults = fuse.search(query);
+    const fuseResults = searchIndex.search(query);
     return fuseResults.map(result => result.item);
-  }, [projects, query, fuse]);
+  }, [projects, query, searchIndex]);
 
   // Update URL when search changes
   useEffect(() => {
@@ -48,7 +78,7 @@ export function ProjectsList({ projects, initialQuery }: ProjectsListProps) {
   return (
     <>
       <SearchInput
-        className="mb-14"
+        className="mb-14 w-full"
         inputProps={{
           id: "searchProjects",
           placeholder: "Search Projects",
@@ -58,8 +88,8 @@ export function ProjectsList({ projects, initialQuery }: ProjectsListProps) {
       />
 
       {filteredProjects.length === 0 && query && (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No projects found for "{query}"</p>
+        <div className="text-center py-12 w-full">
+          <p className="text-muted-foreground text-xl">No projects found for &#34;{query}&#34;</p>
         </div>
       )}
 

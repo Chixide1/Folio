@@ -21,7 +21,7 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
       flashlightProps={{
         lightSize: 500
       }}
-      className="py-24 max-w-[57rem] px-6"
+      className="py-24 max-w-[57rem] px-6 w-full"
     >
       <StaggeredAnimationGroup direction="left">
         <Link href={"/"} className="text-accent flex items-center gap-1.5 group w-fit mb-1">
