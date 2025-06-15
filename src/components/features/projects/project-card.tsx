@@ -6,7 +6,6 @@ import {FaArrowRight} from "react-icons/fa6";
 
 export function ProjectCard({project}: { project: Project }) {
   const ProjectImage = project.live ? Link : 'div';
-  const ProjectContent = project.projectLink ? Link : 'div';
 
   return (
     <div
@@ -21,12 +20,12 @@ export function ProjectCard({project}: { project: Project }) {
           alt={project.imageCaption ?? project.title}
           width={1920}
           height={1080}
-          className="h-auto border-inherit rounded-[inherit] object-cover"
+          className="h-auto border-inherit rounded-[inherit] object-cover object-left"
         />
       </ProjectImage>
-      <ProjectContent
+      <Link
         className="group backdrop-blur-sm hover:border-accent bg-white/90 dark:bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
-        href={project.projectLink ?? ""}
+        href={project.projectLink ?? project.github} target={project.projectLink ? "_self": "_blank"}
       >
         <div className="flex gap-1.5 items-center mb-2">
           <h2 className="text-primary font-medium text-xl">
@@ -39,7 +38,7 @@ export function ProjectCard({project}: { project: Project }) {
         </div>
         <TagGroup tags={project.tags} className="text-xs mb-4" />
         <p className="text-[0.9rem]">{project.description}</p>
-      </ProjectContent>
+      </Link>
     </div>
   )
 }
