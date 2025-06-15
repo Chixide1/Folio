@@ -25,7 +25,7 @@ export function ProjectCard({project}: { project: Project }) {
         />
       </ProjectImage>
       <ProjectContent
-        className="group hover:border-accent bg-white dark:bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
+        className="group backdrop-blur-sm hover:border-accent bg-white/90 dark:bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
         href={project.projectLink ?? ""}
       >
         <div className="flex gap-1.5 items-center mb-2">

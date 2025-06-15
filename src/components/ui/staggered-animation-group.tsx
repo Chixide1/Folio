@@ -22,6 +22,11 @@ type StaggeredAnimationGroupProps = HTMLProps<HTMLElement> & {
    * @default 150
    */
   staggerDelay?: number;
+  /**
+   * The direction the children should appear from
+   * @default bottom
+   */
+  direction?: "top" | "bottom" | "left" | "right";
 }
 
 /**
@@ -41,6 +46,7 @@ export function StaggeredAnimationGroup({
   as: Component = "div",
   initialDelay = 200,
   staggerDelay = 150,
+  direction = "bottom",
   className,
   ...props
 }: StaggeredAnimationGroupProps) {
@@ -51,21 +57,40 @@ export function StaggeredAnimationGroup({
     return () => clearTimeout(timer);
   }, [initialDelay]);
 
+  // Helper function to get the correct transform classes
+  const getTransformClasses = (isVisible: boolean) => {
+    if (isVisible) {
+      return "translate-x-0 translate-y-0 opacity-100";
+    }
+
+    // Initial hidden state - determine starting position based on direction
+    switch (direction) {
+      case "top":
+        return "-translate-y-8 opacity-0";
+      case "bottom":
+        return "translate-y-8 opacity-0";
+      case "left":
+        return "-translate-x-8 opacity-0";
+      case "right":
+        return "translate-x-8 opacity-0";
+      default:
+        return "translate-y-8 opacity-0";
+    }
+  };
+
   return (
     <Component className={className} {...props}>
       {React.Children.map(children, (child, index) => {
-        
+
         if (!React.isValidElement<HTMLProps<HTMLElement>>(child)) {
           return child;
         }
 
         const animationClasses = cn(
           "transform transition-all duration-700 ease-out",
-          isLoaded
-            ? "translate-y-0 opacity-100"
-            : "translate-y-8 opacity-0"
+          getTransformClasses(isLoaded)
         );
-        
+
         return React.cloneElement(child, {
           className: cn(animationClasses, child.props.className),
           style: {
