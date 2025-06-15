@@ -2,7 +2,7 @@ import {HomeHero} from "@/components/features/home/home-hero";
 import {HomeContent} from "@/components/features/home/home-content";
 import {AppBg} from "@/components/layout/app-bg";
 import { getAllContent } from "@/lib/mdx";
-import { ContentArea, Project } from "@/types";
+import { ContentArea } from "@/types";
 
 export default function Home() {
   
@@ -14,7 +14,7 @@ export default function Home() {
         <HomeHero className="ml-3 py-24 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between xl:justify-start" />
         <HomeContent 
           className="mr-3 pt-24 lg:w-[55%]" 
-          projects={projects}
+          projects={projects.slice(0, 4)}
         />
       </AppBg>
   );
