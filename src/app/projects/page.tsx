@@ -4,6 +4,7 @@ import {ProjectsList} from "@/components/features/projects/project-list";
 import {AppBg} from "@/components/layout/app-bg";
 import Link from "next/link";
 import {FaArrowLeft} from "react-icons/fa";
+import {StaggeredAnimationGroup} from "@/components/ui/staggered-animation-group";
 
 interface ProjectsPageProps {
   searchParams: { q?: string }
@@ -22,12 +23,13 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
       }}
       className="py-24 max-w-[57rem] px-6"
     >
-      <Link href={"/"} className="text-accent flex items-center gap-1.5 group w-fit mb-1">
-        <FaArrowLeft className="text-xs group-hover:-translate-x-1 duration-500 transition-all"/>
-        <span className="font-semibold">Chikezie Onuoha</span>
-      </Link>
-      <h1 className="text-5xl font-bold text-primary mb-6">All Projects</h1>
-
+      <StaggeredAnimationGroup direction="left">
+        <Link href={"/"} className="text-accent flex items-center gap-1.5 group w-fit mb-1">
+          <FaArrowLeft className="text-xs group-hover:-translate-x-1 duration-500 transition-all"/>
+          <span className="font-semibold">Chikezie Onuoha</span>
+        </Link>
+        <h1 className="text-5xl font-bold text-primary mb-6">All Projects</h1>
+      </StaggeredAnimationGroup>
       <ProjectsList projects={projects} initialQuery={query} />
     </AppBg>
   )
