@@ -17,7 +17,7 @@ export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
         <div className="flex justify-between gap-6 w-full lg:w-1/2 lg:px-16 py-6 max-lg:px-4">
           <FooterColumn title="General" className="col-span-1">
             {navItems.map(item => (
-              <FooterLink {...item} key={"FooterGeneral-" + item.title} />
+              <FooterLink {...item} key={"FooterGeneral-" + item.title} target="_self" />
             ))}
           </FooterColumn>
           <FooterColumn title="Socials" className="col-span-1">
@@ -39,7 +39,8 @@ export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
 
 type LinkItem = {
   title: string;
-  href: string
+  href: string;
+  target?: React.HTMLAttributeAnchorTarget;
 }
 
 const attributionLinks: LinkItem[] = [
@@ -96,13 +97,13 @@ function FooterColumn({className, title, children, ...props}: HTMLProps<HTMLDivE
   )
 }
 
-function FooterLink({title, href}: LinkItem) {
+function FooterLink({title, href, target}: LinkItem) {
   return (
     <li>
       <Link
         className="hover:text-accent hover:underline duration-500 transition-all"
         href={href}
-        target="_blank"
+        target={target ?? "_blank"}
       >{title}</Link>
     </li>
   )
