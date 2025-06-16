@@ -6,6 +6,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {useEffect, useState, useMemo} from "react";
 import Fuse from "fuse.js";
 import {Project} from "@/types";
+import { GetProjectsFuse } from "@/lib/search";
 
 type ProjectsListProps = {
   projects: Project[];
@@ -26,30 +27,9 @@ export function ProjectsList({ projects, initialQuery }: ProjectsListProps) {
   // Load pre-built search index
   useEffect(() => {
     async function loadSearchIndex() {
-      try {
-        const response = await fetch('/projects-index.json');
-        const projectSearchData: ProjectSearchData = await response.json();
-
-        // Create Fuse instance from pre-built index
-        const fuse = new Fuse(projectSearchData.projects, {
-          keys: ["title", "tags"],
-          includeScore: true,
-          threshold: 0.4,
-        }, Fuse.parseIndex(projectSearchData.index));
-
-        setSearchIndex(fuse);
-      } catch (error) {
-        console.error('Failed to load search index:', error);
-        // Fallback to creating index from projects
-        const fuse = new Fuse(projects, {
-          keys: ["title", "tags"],
-          includeScore: true,
-          threshold: 0.4,
-        });
-        setSearchIndex(fuse);
-      }
+      const fuse = GetProjectsFuse();
+      setSearchIndex(fuse);
     }
-
     loadSearchIndex();
   }, [projects]);
 

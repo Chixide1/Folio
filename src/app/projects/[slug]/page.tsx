@@ -2,9 +2,7 @@
 import { getMDXContent, getAllSlugs } from '@/lib/mdx'
 import { ContentArea } from '@/types'
 import Image from 'next/image'
-import {Tag, TagGroup} from "@/components/ui/tag";
-import {MdOutlineArrowOutward} from "react-icons/md";
-import Link from "next/link";
+import {TagGroup} from "@/components/ui/tag";
 import {AppBg} from "@/components/layout/app-bg";
 
 type ProjectPageParams = {
@@ -30,15 +28,19 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
         </h1>
       </div>
       <TagGroup tags={frontmatter.tags} />
-      <figure className="mb-10">
+      <figure className="mb-10 w-full h-auto relative">
         <Image
           src={frontmatter.image}
           alt={frontmatter.imageCaption ?? frontmatter.title}
-          width={1920}
-          height={1080}
+          width={0}
+          height={0}
+          sizes="(max-width: 768px) 100vw, 75vw"
+          quality={100}
           className="w-full h-auto rounded-xl border"
         />
-        <figcaption className="w-full text-center mt-1.5 text-secondary italic">{frontmatter.imageCaption}</figcaption>
+        <figcaption className="w-full text-center mt-1.5 text-secondary italic">
+          {frontmatter.imageCaption}
+        </figcaption>
       </figure>
       
       <article className="w-full prose prose-project">

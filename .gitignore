@@ -42,4 +42,4 @@ next-env.d.ts
 
 # Custom
 .idea
-/public/projects-index.json
+projects-fuse.json

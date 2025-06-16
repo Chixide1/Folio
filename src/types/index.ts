@@ -15,8 +15,8 @@ export type Project = {
   description: string;
   date: string;
   image: string;
-  github: string;
-  live: string;
+  github?: string;
+  live?: string;
   projectLink?: string;
   tags: string[];
 }

@@ -13,19 +13,20 @@ export function ProjectCard({project}: { project: Project }) {
     >
       <ProjectImage
         className="max-md:p-3 max-md:bg-card md:rounded-l-3xl border hover:border-accent flex md:w-1/4 shadow-black/40 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:-rotate-x-3 md:hover:rotate-y-2"
-        href={project.live} target="_blank"
+        href={project.live ?? "/"} target="_blank"
       >
         <Image
           src={project.image}
           alt={project.imageCaption ?? project.title}
-          width={1920}
-          height={1080}
-          className="h-auto border-inherit rounded-[inherit] object-cover object-left"
+          width={900}
+          height={700}
+          quality={100}
+          className="w-full h-auto border-inherit rounded-[inherit] object-cover object-left"
         />
       </ProjectImage>
       <Link
         className="group backdrop-blur-sm hover:border-accent bg-white/90 dark:bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
-        href={project.projectLink ?? project.github} target={project.projectLink ? "_self": "_blank"}
+        href={project.projectLink ?? project.github ?? "/"} target={project.projectLink ? "_self": "_blank"}
       >
         <div className="flex gap-1.5 items-center mb-2">
           <h2 className="text-primary font-medium text-xl">
