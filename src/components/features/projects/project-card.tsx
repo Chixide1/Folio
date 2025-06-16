@@ -9,10 +9,10 @@ export function ProjectCard({project}: { project: Project }) {
 
   return (
     <div
-      className="max-md:border flex md:gap-2 max-md:flex-col transform-3d perspective-normal"
+      className="max-lg:border flex lg:gap-2 max-lg:flex-col transform-3d perspective-normal"
     >
       <ProjectImage
-        className="max-md:p-3 max-md:bg-card md:rounded-l-3xl border hover:border-accent flex md:w-1/4 shadow-black/40 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:-rotate-x-3 md:hover:rotate-y-2"
+        className="max-lg:p-3 max-lg:bg-card lg:rounded-l-3xl border hover:border-accent flex lg:w-1/4 2xl:w-5/12 shadow-black/40 lg:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2"
         href={project.live ?? "/"} target="_blank"
       >
         <Image
@@ -25,7 +25,7 @@ export function ProjectCard({project}: { project: Project }) {
         />
       </ProjectImage>
       <Link
-        className="group backdrop-blur-sm hover:border-accent bg-white/90 dark:bg-card p-4 md:rounded-r-3xl w-full border shadow-black/20 md:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
+        className="group backdrop-blur-sm hover:border-accent bg-white/90 dark:bg-card p-4 lg:rounded-r-3xl w-full border shadow-black/20 lg:shadow-md transition-all hover:shadow-2xl duration-500 transform-gpu lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:rotate-x-2 lg:hover:-rotate-y-1"
         href={project.projectLink ?? project.github ?? "/"} target={project.projectLink ? "_self": "_blank"}
       >
         <div className="flex gap-1.5 items-center mb-2">
