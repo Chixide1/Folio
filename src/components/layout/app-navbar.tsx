@@ -52,6 +52,8 @@ export function AppNavbar() {
 
 function DesktopMenu({className}: {className?: string}) {
   const pathname = usePathname();
+  console.log(pathname.split("/"))
+
 
   return(
     <NavigationMenuList>
@@ -59,8 +61,9 @@ function DesktopMenu({className}: {className?: string}) {
         <NavigationMenuItem key={"DesktopMenu-" + item.title}>
           <NavigationMenuLink
             asChild
+            data-active={('/' + pathname.split('/')[1] || '') === item.href ? "true" : "false"}
             className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit hover:text-accent duration-500 transition-colors",
-              className, (pathname === item.href && "text-accent"))}
+              className, "data-[active=true]:text-accent")}
           >
             <Link href={item.href} target={item.target}>{item.title}</Link>
           </NavigationMenuLink>
