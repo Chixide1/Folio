@@ -4,6 +4,10 @@ import { ContentArea } from '@/types'
 import Image from 'next/image'
 import {TagGroup} from "@/components/ui/tag";
 import {AppBg} from "@/components/layout/app-bg";
+import {Separator} from "@/components/ui/separator";
+import Link from "next/link";
+import {MdOutlineArrowOutward} from "react-icons/md";
+import {FiGithub} from "react-icons/fi";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -17,17 +21,36 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
     <AppBg
       flashlightProps={{
         lightOpacity: 0.1,
+        lightSize: 700,
         isStatic: true,
+        staticPosition: {x: "50%", y: "50%"}
       }}
       className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4"
     >
       
-      <div className="flex gap-x-2">
+      <div className="flex mb-2">
         <h1 className="inline-block font-semibold text-4xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
           {frontmatter.title}
         </h1>
       </div>
       <TagGroup tags={frontmatter.tags} />
+      <Separator className="my-2" />
+      <div className="flex mt-auto mb-2 gap-x-5 [&_a]:hover:text-accent [&_a]:hover:underline [&_a]:transition-colors [&_a]:duration-500 ">
+        {frontmatter.live && (
+          <Link href={frontmatter.live} className="group inline-flex gap-x-1" target="_blank" rel="noreferrer">
+            <span>Live</span>
+            <MdOutlineArrowOutward
+              className="group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
+            />
+          </Link>
+        )}
+        {frontmatter.github && (
+          <Link href={frontmatter.github} className="group inline-flex gap-x-1.5" target="_blank" rel="noreferrer">
+            <span>Source</span>
+            <FiGithub className="group-hover:-translate-y-1 group-hover:text-accent h-auto w-4 transition-all duration-500" />
+          </Link>
+        )}
+      </div>
       <figure className="mb-10 w-full h-auto relative">
         <Image
           src={frontmatter.image}

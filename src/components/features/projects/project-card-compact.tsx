@@ -30,7 +30,7 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, Project & Component
     >
 
       {/* First Row */}
-      <Link href={live ?? null} target="_blank" className="group col-span-6 sm:grid sm:grid-cols-subgrid">
+      <Link href={live ?? "#"} target="_blank" className="group col-span-6 sm:grid sm:grid-cols-subgrid">
         {/* Image */}
         <div className="col-span-2">
           <Image
