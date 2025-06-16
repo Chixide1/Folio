@@ -28,7 +28,7 @@ export function ProjectsList({ projects, initialQuery }: ProjectsListProps) {
   useEffect(() => {
     async function loadSearchIndex() {
       const fuse = GetProjectsFuse();
-      setSearchIndex(fuse);
+      setSearchIndex(fuse as Fuse<Project>);
     }
     loadSearchIndex();
   }, [projects]);

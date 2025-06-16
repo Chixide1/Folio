@@ -18,8 +18,9 @@ export function ProjectCard({project}: { project: Project }) {
         <Image
           src={project.image}
           alt={project.imageCaption ?? project.title}
-          width={900}
-          height={700}
+          width={2526}
+          height={1728}
+          sizes="(max-width: 768px) 100vw 50vw,"
           quality={100}
           className="w-full h-auto border-inherit rounded-[inherit] object-cover object-left"
         />
