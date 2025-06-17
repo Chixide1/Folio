@@ -17,7 +17,7 @@ export type Experience = {
   location: string;
 }
 
-interface ExperienceCardProps extends Experience {
+type ExperienceCardProps = Experience & {
   isVisible?: boolean;
 }
 
@@ -33,32 +33,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
  location,
  isVisible = false,
 }, ref) => {
-  const formatDateRange = () => {
-    const startFormatted = format(startDate, 'MMM yyyy');
-    const endFormatted = endDate ? format(endDate, 'MMM yyyy') : 'Present';
-
-    const totalMonths = differenceInMonths(endDate || new Date(), startDate);
-
-    const formatDuration = (months: number) => {
-      if (months < 12) {
-        return months === 1 ? '1 month' : `${months} months`;
-      } else {
-        const years = Math.floor(months / 12);
-        const remainingMonths = months % 12;
-
-        if (remainingMonths === 0) {
-          return years === 1 ? '1 year' : `${years} years`;
-        } else {
-          const yearText = years === 1 ? '1 year' : `${years} years`;
-          const monthText = remainingMonths === 1 ? '1 month' : `${remainingMonths} months`;
-          return `${yearText} ${monthText}`;
-        }
-      }
-    };
-
-    const duration = formatDuration(totalMonths);
-    return `${startFormatted} - ${endFormatted} (${duration})`;
-  };
+  const dateRange = formatDateRange(startDate, endDate);
 
   return (
     <div
@@ -112,7 +87,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
         <div className="mb-3">
           <div className="block lg:flex items-center gap-2">
             <h3 className="font-medium text-primary">{title}</h3>
-            <span className="text-sm mt-0.5">{formatDateRange()}</span>
+            <span className="text-sm mt-0.5">{dateRange}</span>
           </div>
           <div className="block lg:flex items-center gap-2">
             <p className="font-medium text-primary">{company}</p>
@@ -155,5 +130,31 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
     </div>
   );
 });
-
 ExperienceCard.displayName = "ExperienceCard";
+
+const formatDuration = (months: number) => {
+  if (months < 12) {
+    return months === 1 ? '1 month' : `${months} months`;
+  } else {
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+
+    if (remainingMonths === 0) {
+      return years === 1 ? '1 year' : `${years} years`;
+    } else {
+      const yearText = years === 1 ? '1 year' : `${years} years`;
+      const monthText = remainingMonths === 1 ? '1 month' : `${remainingMonths} months`;
+      return `${yearText} ${monthText}`;
+    }
+  }
+};
+
+const formatDateRange = (startDate: Date, endDate?: Date) => {
+  const startFormatted = format(startDate, 'MMM yyyy');
+  const endFormatted = endDate ? format(endDate, 'MMM yyyy') : 'Present';
+
+  const totalMonths = differenceInMonths(endDate || new Date(), startDate);
+  const duration = formatDuration(totalMonths);
+
+  return `${startFormatted} - ${endFormatted} (${duration})`;
+};

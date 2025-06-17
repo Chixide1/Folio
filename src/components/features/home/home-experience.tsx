@@ -64,7 +64,7 @@ const exps: Experience[] = [
   {
     title: "2nd Line IT Service Desk Analyst",
     company: "Leathams",
-    companyLogo: "/leathams.png",
+    companyLogo: "/lea.png",
     startDate: new Date(2024, 1), // February 2024
     jobType: "Full-time",
     description: [
@@ -78,7 +78,7 @@ const exps: Experience[] = [
   {
     title: "Information Security Analyst",
     company: "Mountain Warehouse",
-    companyLogo: "/mountain-warehouse.png",
+    companyLogo: "/mw.png",
     startDate: new Date(2023, 9), // October 2023
     endDate: new Date(2024, 0), // January 2024
     jobType: "Full-time",
@@ -88,6 +88,21 @@ const exps: Experience[] = [
     ],
     tags: ["Cybersecurity", "Vulnerability Assessment", "Risk Assessment", "Incident Response", "Patch Management"],
     location: "London Victoria, UK"
+  },
+  {
+    title: "Internship",
+    company: "Black Valley",
+    companyLogo: "/bv.png", //
+    startDate: new Date(2021, 4), // May 2021
+    endDate: new Date(2021, 6), // July 2021
+    jobType: "Internship",
+    description: [
+      "Created a site-to-site VPN connection between an Azure Virtual Network and an AWS VPC using Terraform.",
+      "Researched and implemented cross-cloud networking solutions, successfully establishing connectivity between Azure and AWS environments.",
+      "Verified network connectivity by testing communication between an Azure virtual machine and AWS EC2 instance through the established VPN tunnel."
+    ],
+    tags: ["Terraform", "Azure", "AWS", "Iac", "Networking"],
+    location: "Remote, UK"
   },
   {
     title: "IT System Support Analyst",
