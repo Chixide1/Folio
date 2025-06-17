@@ -6,7 +6,7 @@ export function Tag({className, value}: {className?: string, value: string}) {
   return (
     <Badge
       variant="outline"
-      className={cn("px-3 py-1 text-accent border-accent text-xs rounded-full", className)}
+      className={cn("px-3 py-1 text-accent border-accent text-xs rounded-none", className)}
     >
       {value}
     </Badge>

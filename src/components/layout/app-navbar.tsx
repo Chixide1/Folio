@@ -52,8 +52,6 @@ export function AppNavbar() {
 
 function DesktopMenu({className}: {className?: string}) {
   const pathname = usePathname();
-  console.log(pathname.split("/"))
-
 
   return(
     <NavigationMenuList>
