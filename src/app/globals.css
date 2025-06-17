@@ -136,3 +136,11 @@
   text-orientation: upright;
   writing-mode: vertical-rl;
 }
+
+@utility line-before {
+  @apply relative before:-z-10 before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-border before:-left-[100vw];
+}
+
+@utility line-after {
+  @apply after:absolute before:-z-10 after:bottom-0 after:h-px after:bg-border after:w-[200vw] after:-left-[100vw];
+}
