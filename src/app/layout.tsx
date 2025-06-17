@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased leading-relaxed`}>
         <Providers>
           <AppNavbar />
-          <main className="flex min-h-screen mx-auto justify-between overflow-x-hidden">
+          <main className="flex min-h-screen mx-auto justify-between">
             <Stripes/>
             {children}
             <Stripes/>

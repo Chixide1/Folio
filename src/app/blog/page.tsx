@@ -3,7 +3,7 @@ import {BlogRow, BlogRowProps, BlogRowSeparator} from "@/components/features/blo
 
 export default function BlogsPage() {
     return (
-        <div className="min-h-screen w-full pt-24 pb-44">
+        <div className="min-h-screen w-full pt-24 pb-44 overflow-x-hidden">
             <h1 className="line-before line-after py-1 mx-4 text-7xl tracking-tighter text-balance text-primary mt-16 ms-2">Curated Insights</h1>
             <h2 className="text-primary line-before line-after mt-10 mx-4">All my thoughts captured over time, explore them all.</h2>
             <SearchInput
