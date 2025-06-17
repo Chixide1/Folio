@@ -6,7 +6,7 @@ export function Tag({className, value}: {className?: string, value: string}) {
   return (
     <Badge
       variant="outline"
-      className={cn("px-3 py-1 text-accent border-accent text-xs rounded-none", className)}
+      className={cn("px-3 py-1 text-accent border-accent text-xs rounded-sm", className)}
     >
       {value}
     </Badge>
@@ -15,7 +15,7 @@ export function Tag({className, value}: {className?: string, value: string}) {
 
 export function TagGroup({className, tags, ...props}: ComponentPropsWithoutRef<"div"> & {tags: string[]}) {
   return (
-    <div className={cn("flex flex-wrap gap-2", className)} {...props}>
+    <div className={cn("flex flex-wrap gap-2 border-none", className)} {...props}>
       {tags.map((tag, index) => (
         <Tag value={tag} key={"TagGroup-" + index}/>
       ))}

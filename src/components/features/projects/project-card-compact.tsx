@@ -1,7 +1,7 @@
 ﻿import Image from "next/image";
 import {TagGroup} from "@/components/ui/tag";
 import {cn} from "@/lib/utils";
-import {MdOutlineArrowOutward} from "react-icons/md";
+import { LuArrowUpRight } from "react-icons/lu";
 import Link from "next/link";
 import {ComponentPropsWithRef, forwardRef} from "react";
 import {Project} from "@/types";
@@ -44,9 +44,9 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, Project & Component
 
         {/* Content */}
         <div className="mb-3 col-span-4">
-          <div className="mb-2 font-semibold text-primary flex gap-1.5">
+          <div className="mb-2 font-semibold text-primary flex gap-1">
             <h3 className="group-hover:text-accent duration-500 transition-colors">{title}</h3>
-            <MdOutlineArrowOutward
+            <LuArrowUpRight
               className="mt-0.5 group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
             />
           </div>

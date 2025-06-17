@@ -2,13 +2,10 @@
 import { getMDXContent, getAllSlugs } from '@/lib/mdx'
 import { ContentArea } from '@/types'
 import Image from 'next/image'
-import {TagGroup} from "@/components/ui/tag";
-import {AppBg} from "@/components/layout/app-bg";
-import {Separator} from "@/components/ui/separator";
-import Link from "next/link";
-import {MdOutlineArrowOutward} from "react-icons/md";
-import {FiGithub} from "react-icons/fi";
-import {Button} from "@/components/ui/button";
+import { TagGroup } from "@/components/ui/tag";
+import { AppBg } from "@/components/layout/app-bg";
+import { LiveButton } from "@/components/features/projects/live-button";
+import { GitHubButton } from "@/components/features/projects/github-button";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -28,34 +25,21 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
       }}
       className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4"
     >
-      
-      <div className="flex mb-2">
-        <h1 className="inline-block font-semibold text-4xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
+
+      <div className="flex mb-2 gap-x-4 max-sm:flex-col">
+        <h1 className="inline-block max-sm:text-center font-semibold text-4xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
           {frontmatter.title}
         </h1>
+        <div className="flex mt-1 gap-x-2 max-sm:justify-center max-sm:my-2">
+          {frontmatter.live && (
+            <LiveButton href={frontmatter.live} />
+          )}
+          {frontmatter.github && (
+            <GitHubButton href={frontmatter.github} />
+          )}
+        </div>
       </div>
-      <TagGroup tags={frontmatter.tags} className="mb-3"/>
-      <Separator className="my-3 border-border" />
-      <div className="flex mt-auto mb-2 gap-x-5 [&_a]:text-sm [&_a]:font-light  [&_a]:hover:text-accent [&_a]:transition-colors [&_a]:duration-500 ">
-        {frontmatter.live && (
-          <Button asChild variant="outline" size="sm" className="hover:border-accent rounded-none hover:!bg-transparent">
-            <Link href={frontmatter.live} className="group inline-flex gap-x-1" target="_blank" rel="noreferrer">
-              <span>Live</span>
-              <MdOutlineArrowOutward
-                className="group-hover:-translate-y-1 group-hover:translate-x-1 h-auto w-4 transition-all duration-500 group-hover:text-accent"
-              />
-            </Link>
-          </Button>
-        )}
-        {frontmatter.github && (
-          <Button asChild variant="outline" size="sm" className="hover:border-accent rounded-none hover:!bg-transparent">
-            <Link href={frontmatter.github} className="group inline-flex gap-x-1.5" target="_blank" rel="noreferrer">
-              <span>Source</span>
-              <FiGithub className="group-hover:scale-110 group-hover:text-accent h-auto w-4 transition-all duration-500" />
-            </Link>
-          </Button>
-        )}
-      </div>
+      <TagGroup tags={frontmatter.tags} className="mb-3 max-sm:justify-center"/>
       <figure className="mb-10 w-full h-auto relative">
         <Image
           src={frontmatter.image}
@@ -70,7 +54,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
           {frontmatter.imageCaption}
         </figcaption>
       </figure>
-      
+
       <article className="w-full prose prose-project">
         <MDXRemote source={content} />
       </article>
