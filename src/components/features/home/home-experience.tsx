@@ -64,7 +64,7 @@ const exps: Experience[] = [
   {
     title: "2nd Line IT Service Desk Analyst",
     company: "Leathams",
-    companyLogo: "/lea.png",
+    companyLogo: "/lea.jpg",
     startDate: new Date(2024, 1), // February 2024
     jobType: "Full-time",
     description: [

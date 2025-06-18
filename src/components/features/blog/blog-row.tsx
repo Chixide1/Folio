@@ -24,7 +24,7 @@ export function BlogRow({
       </div>
       <div className="flex flex-col gap-3 p-2 border-l w-full">
         <h3 className="text-primary font-semibold">{title}</h3>
-        <p className="line-clamp-3 leading-7">{description}</p>
+        <p className="line-clamp-3 leading-7 max-w-[75ch]">{description}</p>
         <Link href={"#"} className="text-accent">Read More</Link>
       </div>
     </article>
