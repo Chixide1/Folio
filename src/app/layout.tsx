@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Geist} from "next/font/google";
 import "./globals.css";
 import {AppNavbar} from "@/components/layout/app-navbar";
 import {Providers} from "@/contexts/providers";
@@ -7,10 +7,10 @@ import {ReactNode} from "react";
 import {AppFooter} from "@/components/layout/app-footer";
 import { Stripes } from "@/components/ui/stripes";
 
-const inter = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"]
+})
 
 export const metadata: Metadata = {
   title: "Chikezie Onuoha's Folio",
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scrollbar-thin" suppressHydrationWarning={true}>
-      <body className={`${inter.className} antialiased leading-relaxed`}>
+      <body className={`${geist.className} antialiased leading-relaxed max-w-screen-2xl mx-auto`}>
         <Providers>
           <AppNavbar />
           <main className="flex min-h-screen mx-auto justify-between">

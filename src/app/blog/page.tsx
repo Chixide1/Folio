@@ -1,24 +1,23 @@
 import {SearchInput} from "@/components/shared/search-input";
-import {BlogRow, BlogRowProps, BlogRowSeparator} from "@/components/features/blog/blog-row";
+import {BlogRow, BlogRowProps} from "@/components/features/blog/blog-row";
 
 export default function BlogsPage() {
     return (
-        <div className="min-h-screen w-full pt-24 pb-44 overflow-x-hidden">
-            <h1 className="line-before line-after py-1 mx-4 text-7xl tracking-tighter text-balance text-primary mt-16 ms-2">Curated Insights</h1>
-            <h2 className="text-primary line-before line-after mt-10 mx-4">All my thoughts captured over time, explore them all.</h2>
+        <div className="min-h-screen w-full pt-24 pb-44 overflow-x-hidden border-x mx-auto">
+          <h1 className="border-y py-1 px-4 font-medium text-7xl tracking-tighter text-balance text-primary mt-16">Curated Insights</h1>
+          <h2 className="text-primary border-y mt-10 px-4">All my thoughts captured over time, explore them all.</h2>
+          <div className="border-y px-4 mt-10  ">
             <SearchInput
-              className="max-w-sm mx-4 line-after line-before mt-10 drop-shadow-none"
+              className="drop-shadow-none max-w-sm"
               inputProps={{
-                  className: "rounded-full my-px h-10",
-                  placeholder: "Search Articles"
+                className: "rounded-full my-px h-10",
+                placeholder: "Search Articles"
               }}
             />
+          </div>
           <section className="mt-14">
             {mockPosts.map((post, index) => (
-              <div key={"BlogRow-" + index} className="">
-                <BlogRow {...post}  />
-                {index < mockPosts.length - 1 && <BlogRowSeparator />}
-              </div>
+              <BlogRow {...post} key={"BlogRow-" + index} className="last:border-b" />
             ))}
           </section>
         </div>

@@ -93,7 +93,7 @@
   --muted: var(--color-slate-800);
   --muted-foreground: --alpha(var(--color-slate-400) / 40%);
   --accent: var(--color-teal-300);
-  --accent-foreground: var(--color-slate-700);
+  --accent-foreground: var(--color-gray-700);
   --destructive: oklch(0.704 0.191 22.216);
   --border: var(--color-gray-800);
   --input: oklch(1 0 0 / 15%);
@@ -143,4 +143,11 @@
 
 @utility line-after {
   @apply after:absolute before:-z-10 after:bottom-0 after:h-px after:bg-border after:w-[200vw] after:-left-[100vw];
+}
+
+@utility sharp-3d {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform-style: preserve-3d;
 }
