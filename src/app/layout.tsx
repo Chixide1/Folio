@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Geist} from "next/font/google";
 import "./globals.css";
 import {AppNavbar} from "@/components/layout/app-navbar";
-import {Providers} from "@/contexts/providers";
+import {Providers} from "@/providers";
 import {ReactNode} from "react";
 import {AppFooter} from "@/components/layout/app-footer";
 import { Stripes } from "@/components/ui/stripes";

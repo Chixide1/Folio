@@ -6,12 +6,13 @@ export default function BlogsPage() {
   return (
     <div className="min-h-screen w-full pb-44 overflow-x-hidden border-x mx-auto relative">
       <div className="relative pt-24 pb-14 overflow-hidden">
-        <BlogBg className="absolute w-full top-0 -z-10 object-cover opacity-10" />
-        <h1 className="border-y py-1 px-4 font-medium text-7xl tracking-tighter text-balance text-primary mt-16">Curated Insights</h1>
-        <h2 className="text-primary border-y mt-10 px-4">A journey through my thoughts, one post at a time.</h2>
+        <BlogBg className="absolute w-full top-0 -z-10 object-cover opacity-[0.075]" />
+        <h1 className="border-y py-1 px-4 font-medium text-7xl text-center tracking-tighter text-balance text-primary mt-16">
+          A journey through my thoughts, one post at a time.
+        </h1>
         <div className="border-y px-4 mt-10  ">
           <SearchInput
-            className="drop-shadow-none max-w-sm backdrop-blur-sm"
+            className="drop-shadow-none max-w-sm backdrop-blur-sm mx-auto"
             inputProps={{
               className: "rounded-full my-px h-10",
               placeholder: "Search Articles"

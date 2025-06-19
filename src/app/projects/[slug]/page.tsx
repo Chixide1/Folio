@@ -7,6 +7,7 @@ import { AppBg } from "@/components/layout/app-bg";
 import { LiveButton } from "@/components/features/projects/live-button";
 import { GitHubButton } from "@/components/features/projects/github-button";
 import {Metadata} from "next";
+import {mdxComponents} from "@/components/features/mdx/mdx-components";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -57,7 +58,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
       </figure>
 
       <article className="w-full prose prose-project">
-        <MDXRemote source={content} />
+        <MDXRemote source={content} components={mdxComponents}/>
       </article>
     </AppBg>
   )

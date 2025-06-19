@@ -3,8 +3,9 @@
 import Link from "next/link";
 import {socialLinks} from "@/components/shared/social-links";
 import {cn} from "@/lib/utils";
-import {useActiveId} from "@/contexts/active-id-context";
-import { StaggeredAnimationGroup } from "@/components/ui/staggered-animation-group"; // Adjust import
+import { StaggeredAnimationGroup } from "@/components/ui/staggered-animation-group";
+import {useAtom} from "jotai";
+import {homeActiveIdAtom} from "@/lib/atoms"; // Adjust import
 
 export function HomeHero({ className }: { className?: string }) {
   return (
@@ -50,14 +51,14 @@ const homeNavItems = [
 ];
 
 function HomeHeroNav({ className, style }: { className?: string; style?: React.CSSProperties }) {
-  const { activeId } = useActiveId();
+  const [ activeId ] = useAtom(homeActiveIdAtom)
 
   return (
     <nav className={cn("", className)} style={style}>
       {homeNavItems.map((item, index) => (
         <Link
           href={item.href}
-          key={"HomeHeroNav-" + item.title}
+          key={"HomeHeroNav-" + index}
           className={cn(
             "group flex items-center py-3 w-fit",
           )}
@@ -90,7 +91,7 @@ function HomeHeroSocials({ className, style }: { className?: string; style?: Rea
       {socialLinks.map((item, index) => (
         <Link
           href={item.href}
-          key={"HomeHeroSocials-" + item.title}
+          key={"HomeHeroSocials-" + index}
           className={cn(
             "hover:text-accent text-primary-foreground dark:hover:text-primary dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
           )}

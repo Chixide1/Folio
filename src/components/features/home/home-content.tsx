@@ -3,11 +3,12 @@
 import {useRef,} from "react";
 import {useObserver} from "@/hooks/use-observer";
 import {HomeAbout} from "@/components/features/home/home-about";
-import {useActiveId} from "@/contexts/active-id-context";
 import {HomeExperience} from "./home-experience";
 import {HomeProjects} from "@/components/features/home/home-projects";
 import {cn} from "@/lib/utils";
 import { Project } from "@/types";
+import {useAtom} from "jotai";
+import {homeActiveIdAtom} from "@/lib/atoms";
 
 type HomeContentProps = {
   className?: string;
@@ -15,7 +16,7 @@ type HomeContentProps = {
 }
 
 export function HomeContent({ className, projects }: HomeContentProps) {
-  const {activeId, setActiveId } = useActiveId();
+  const [activeId, setActiveId ] = useAtom(homeActiveIdAtom)
   const homeAboutRef = useRef<HTMLElement>(null);
   const homeExperienceRef = useRef<HTMLElement>(null);
   const homeProjectsRef = useRef<HTMLElement>(null);
