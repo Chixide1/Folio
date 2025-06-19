@@ -12,7 +12,7 @@ export const mdxComponents: MDXComponents = {
     return (
       <CodeBlock
         lang={language}
-        className={cn("border border-gray-700 rounded-md overflow-hidden scheme-dark", className)}
+        className={cn("selection:text-[currentColor] selection:bg-teal-300/20 border border-gray-700 rounded-md overflow-hidden scheme-dark", className)}
       >
         {codeContent}
       </CodeBlock>
