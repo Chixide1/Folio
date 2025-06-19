@@ -6,6 +6,7 @@ import { TagGroup } from "@/components/ui/tag";
 import { AppBg } from "@/components/layout/app-bg";
 import { LiveButton } from "@/components/features/projects/live-button";
 import { GitHubButton } from "@/components/features/projects/github-button";
+import {Metadata} from "next";
 
 type ProjectPageParams = {
   params: Promise<{ slug: string }>
@@ -64,6 +65,19 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
 
 export async function generateStaticParams() {
   return getAllSlugs(ContentArea.PROJECTS).map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({ params }: ProjectPageParams): Promise<Metadata> {
+  const { slug } = await params
+  const { frontmatter } = getMDXContent(ContentArea.PROJECTS, slug)
+
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description,
+    openGraph: {
+      images: [frontmatter.image],
+    }
+  }
 }
 
 export const dynamicParams = false
