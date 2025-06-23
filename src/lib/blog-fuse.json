@@ -1,0 +1,157 @@
+{
+  "index": {
+    "keys": [
+      {
+        "path": [
+          "title"
+        ],
+        "id": "title",
+        "weight": 1,
+        "src": "title",
+        "getFn": null
+      },
+      {
+        "path": [
+          "categories"
+        ],
+        "id": "categories",
+        "weight": 1,
+        "src": "categories",
+        "getFn": null
+      }
+    ],
+    "records": [
+      {
+        "i": 0,
+        "$": {
+          "0": {
+            "v": "The Evolution of Serverless Computing",
+            "n": 0.447
+          },
+          "1": [
+            {
+              "v": "DevOps",
+              "i": 2,
+              "n": 1
+            },
+            {
+              "v": "Cloud Computing",
+              "i": 1,
+              "n": 0.707
+            },
+            {
+              "v": "Serverless",
+              "i": 0,
+              "n": 1
+            }
+          ]
+        }
+      },
+      {
+        "i": 1,
+        "$": {
+          "0": {
+            "v": "A Guide to Modern CSS: Beyond Flexbox and Grid",
+            "n": 0.333
+          },
+          "1": [
+            {
+              "v": "Web Design",
+              "i": 2,
+              "n": 0.707
+            },
+            {
+              "v": "Frontend",
+              "i": 1,
+              "n": 1
+            },
+            {
+              "v": "CSS",
+              "i": 0,
+              "n": 1
+            }
+          ]
+        }
+      },
+      {
+        "i": 2,
+        "$": {
+          "0": {
+            "v": "Building a Scalable API with NestJS and Prisma",
+            "n": 0.354
+          },
+          "1": [
+            {
+              "v": "Backend",
+              "i": 4,
+              "n": 1
+            },
+            {
+              "v": "Prisma",
+              "i": 3,
+              "n": 1
+            },
+            {
+              "v": "API",
+              "i": 2,
+              "n": 1
+            },
+            {
+              "v": "Node.js",
+              "i": 1,
+              "n": 1
+            },
+            {
+              "v": "NestJS",
+              "i": 0,
+              "n": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "posts": [
+    {
+      "frontmatter": {
+        "date": "2025-06-23",
+        "title": "The Evolution of Serverless Computing",
+        "description": "A deep dive into how serverless architectures are revolutionizing application development, reducing costs, and enabling developers to focus more on code and less on infrastructure.",
+        "categories": [
+          "Serverless",
+          "Cloud Computing",
+          "DevOps"
+        ]
+      },
+      "slug": "the-evolution-of-serverless-computing"
+    },
+    {
+      "frontmatter": {
+        "date": "2025-05-28",
+        "title": "A Guide to Modern CSS: Beyond Flexbox and Grid",
+        "description": "CSS has evolved far beyond simple selectors and properties. This guide explores modern CSS techniques including container queries, cascade layers, and the `:has()` selector that will change the way you write styles.",
+        "categories": [
+          "CSS",
+          "Frontend",
+          "Web Design"
+        ]
+      },
+      "slug": "a-guide-to-modern-css"
+    },
+    {
+      "frontmatter": {
+        "date": "2025-04-15",
+        "title": "Building a Scalable API with NestJS and Prisma",
+        "description": "Learn how to build a robust and scalable API from scratch. This tutorial covers setting up a NestJS project, integrating Prisma for database access, and implementing best practices for structure and security.",
+        "categories": [
+          "NestJS",
+          "Node.js",
+          "API",
+          "Prisma",
+          "Backend"
+        ]
+      },
+      "slug": "building-a-scalable-API-with-NestJS-and-prisma"
+    }
+  ]
+}

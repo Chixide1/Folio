@@ -3,16 +3,15 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {format} from "date-fns";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
+import {BlogPost} from "@/types";
 
-export type BlogRowProps = ComponentPropsWithoutRef<"div"> & {
-  date: string;
-  title: string;
-  description: string;
-  categories: string[];
-}
+export type BlogRowProps = ComponentPropsWithoutRef<"div"> & BlogPost & {
+  slug: string;
+};
 
 export function BlogRow({
   className,
+  slug,
   date,
   title,
   description,
@@ -23,7 +22,7 @@ export function BlogRow({
       <div className="max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
         <BlogDate date={date} />
       </div>
-      <Link href={"#"} className="group flex flex-col text-balance gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
+      <Link href={`/blog/${slug}`} className="group flex flex-col text-balance gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
         <BlogDate date={date} className="md:hidden" />
         <h3 className="text-primary font-medium">{title}</h3>
         <p className="line-clamp-3 leading-6">{description}</p>

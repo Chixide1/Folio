@@ -7,12 +7,17 @@ import {ContentArea} from '@/types'
 
 async function buildSearchIndex() {
   try {
-    // Get all projects
     const projects = getAllContent(ContentArea.PROJECTS)
+    const blogPosts = getAllContent(ContentArea.BLOG)
 
     const projectsIndex = Fuse.createIndex(
       ["title", "tags"],
       projects.map(p => p.frontmatter)
+    )
+
+    const blogIndex = Fuse.createIndex(
+      ["title", "categories"],
+      blogPosts.map(p => p.frontmatter)
     )
 
     // Prepare data to save
@@ -21,11 +26,26 @@ async function buildSearchIndex() {
       projects: projects.map(p => p.frontmatter)
     }
 
-    // Write the index to a file
-    const indexPath = path.join(process.cwd(), "src/lib", 'projects-fuse.json')
-    fs.writeFileSync(indexPath, JSON.stringify(projectSearchData, null, 2))
+    const blogSearchData = {
+      index: blogIndex.toJSON(),
+      posts: blogPosts.map(({frontmatter, slug}) => ({frontmatter, slug}))
+    }
 
-    console.log(`Indexed ${projects.length} projects, Index saved to: ${indexPath}`)
+    // Write the index to a file
+    const baseIndexPath = path.join(process.cwd(), "src/lib")
+    
+    fs.writeFileSync(
+      path.join(baseIndexPath, 'projects-fuse.json'),
+      JSON.stringify(projectSearchData, null, 2)
+    )
+
+    fs.writeFileSync(
+      path.join(baseIndexPath, 'blog-fuse.json'),
+      JSON.stringify(blogSearchData, null, 2)
+    )
+
+    console.log(`Indexed ${projects.length} projects, Index saved to: ${baseIndexPath}`)
+    console.log(`Indexed ${blogPosts.length} posts, Index saved to: ${baseIndexPath}`)
   } catch (error) {
     console.error('Error building search index:', error)
     process.exit(1)

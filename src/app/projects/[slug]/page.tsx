@@ -1,6 +1,6 @@
 ﻿import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getMDXContent, getAllSlugs } from '@/lib/mdx'
-import { ContentArea } from '@/types'
+import { ContentArea, SlugPageParams } from '@/types'
 import Image from 'next/image'
 import { TagGroup } from "@/components/ui/tag";
 import { AppBg } from "@/components/layout/app-bg";
@@ -9,11 +9,7 @@ import { GitHubButton } from "@/components/features/projects/github-button";
 import {Metadata} from "next";
 import {mdxComponents} from "@/components/features/mdx/mdx-components";
 
-type ProjectPageParams = {
-  params: Promise<{ slug: string }>
-}
-
-export default async function ProjectPage({ params }: ProjectPageParams) {
+export default async function ProjectPage({ params }: SlugPageParams) {
   const { slug } = await params
   const { frontmatter, content } = getMDXContent(ContentArea.PROJECTS, slug)
 
@@ -68,7 +64,7 @@ export async function generateStaticParams() {
   return getAllSlugs(ContentArea.PROJECTS).map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: ProjectPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: SlugPageParams): Promise<Metadata> {
   const { slug } = await params
   const { frontmatter } = getMDXContent(ContentArea.PROJECTS, slug)
 

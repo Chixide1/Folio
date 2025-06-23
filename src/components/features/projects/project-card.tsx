@@ -1,10 +1,10 @@
 ﻿import Image from "next/image";
 import {TagGroup} from "@/components/ui/tag";
 import Link from "next/link";
-import {Project} from "@/types";
+import {ProjectPost} from "@/types";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
 
-export function ProjectCard({project}: { project: Project }) {
+export function ProjectCard({project}: { project: ProjectPost }) {
   const ProjectImage = project.live ? Link : 'div';
 
   return (

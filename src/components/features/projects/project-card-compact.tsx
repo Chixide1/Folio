@@ -4,10 +4,10 @@ import {cn} from "@/lib/utils";
 import { LuArrowUpRight } from "react-icons/lu";
 import Link from "next/link";
 import {ComponentPropsWithRef, forwardRef} from "react";
-import {Project} from "@/types";
+import {ProjectPost} from "@/types";
 import {ProjectLink} from "@/components/features/projects/project-link";
 
-export const ProjectCardCompact = forwardRef<HTMLDivElement, Project & ComponentPropsWithRef<"div">>(({
+export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & ComponentPropsWithRef<"div">>(({
   className,
   title,
   imageCaption,

@@ -3057,6 +3057,11 @@ jiti@^2.4.2:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.4.2.tgz#d19b7732ebb6116b06e2038da74a55366faef560"
   integrity sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==
 
+jotai-location@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/jotai-location/-/jotai-location-0.6.1.tgz#6fd6122f4ad8f703bc856db5dcb15a9a5be846ef"
+  integrity sha512-qn7mCLcstuKckwpJwi/eCrxjimQZnN3PBjQQIIJ34UZSj/724tdSkFM8Tzd+fRflqo+ITOcB//CWRugoKTejOQ==
+
 jotai@^2.12.5:
   version "2.12.5"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.12.5.tgz#2decdf41dfcad5e4afc7278da81c45646d4ae8ad"

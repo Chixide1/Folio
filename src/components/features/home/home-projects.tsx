@@ -5,10 +5,10 @@ import {cn} from "@/lib/utils";
 import {ProjectCardCompact} from "@/components/features/projects/project-card-compact";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
-import { Project } from "@/types";
+import { ProjectPost } from "@/types";
 
 type HomeProjectsProps = HTMLProps<HTMLElement> & {
-  projects?: Project[];
+  projects?: ProjectPost[];
 }
 
 export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
