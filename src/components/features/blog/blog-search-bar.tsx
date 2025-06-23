@@ -7,7 +7,7 @@ export function BlogSearchBar() {
   const { query, setQuery } = useSearchQuery();
   
   return (
-    <div className="border-y px-4 mt-10">
+    <div className="border-y px-4 mt-10 border-dashed border-accent-foreground light:border-secondary-foreground">
       <SearchInput
         className="drop-shadow-none max-w-lg backdrop-blur-sm mx-auto"
         inputProps={{

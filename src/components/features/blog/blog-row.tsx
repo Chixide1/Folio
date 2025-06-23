@@ -22,10 +22,10 @@ export function BlogRow({
       <div className="max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
         <BlogDate date={date} />
       </div>
-      <Link href={`/blog/${slug}`} className="group flex flex-col text-balance gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
+      <Link href={`/blog/${slug}`} className="group flex flex-col text-balance max-md:gap-5 gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
         <BlogDate date={date} className="md:hidden" />
         <h3 className="text-primary font-medium">{title}</h3>
-        <p className="line-clamp-3 leading-6">{description}</p>
+        <p className="leading-6">{description}</p>
         <div className="text-sm text-accent inline-flex gap-1 items-center w-fit">
           <span>Read More</span>
           <RiArrowRightDoubleLine

@@ -1,48 +1,50 @@
-﻿import { useEffect, useRef } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+﻿import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import {searchQueryAtom} from "@/lib/atoms";
+import {locationAtom} from "@/lib/atoms";
 
 type UseSearchQueryOptions = {
   debounceMs?: number;
 }
 
 export function useSearchQuery(options: UseSearchQueryOptions = {}) {
-  const { debounceMs = 300 } = options;
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [query, setQuery] = useAtom(searchQueryAtom);
-  const isInitialized = useRef(false);
+  const { debounceMs = 500 } = options;
+  const [location, setLocation] = useAtom(locationAtom);
 
-  // Initialize atom with URL parameter on mount (only once)
+  // Get current query from location
+  const query = location.searchParams?.get('q') || '';
+
+  // Local state for immediate updates
+  const [localQuery, setLocalQuery] = useState(query);
+
+  // Sync local state with URL when URL changes
   useEffect(() => {
-    if (!isInitialized.current) {
-      const urlQuery = searchParams.get('q') || '';
-      setQuery(urlQuery);
-      isInitialized.current = true;
-    }
-  }, [searchParams, setQuery]);
-  
-  // Debounce URL updates
+    setLocalQuery(query);
+  }, [query]);
+
+  // Debounce URL updates when local query changes
   useEffect(() => {
     const timer = setTimeout(() => {
-      const params = new URLSearchParams(searchParams);
+      setLocation((prev) => {
+        const newSearchParams = new URLSearchParams(prev.searchParams);
 
-      if (query.trim()) {
-        params.set('q', query);
-      } else {
-        params.delete('q');
-      }
+        if (localQuery.trim()) {
+          newSearchParams.set('q', localQuery);
+        } else {
+          newSearchParams.delete('q');
+        }
 
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+        return {
+          ...prev,
+          searchParams: newSearchParams,
+        };
+      });
     }, debounceMs);
 
     return () => clearTimeout(timer);
-  }, [query, debounceMs, pathname, router, searchParams]);
+  }, [localQuery, setLocation, debounceMs]);
 
   return {
-    query,
-    setQuery
+    query: localQuery,
+    setQuery: setLocalQuery
   };
 }
