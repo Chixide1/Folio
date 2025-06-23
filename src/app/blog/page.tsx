@@ -1,20 +1,26 @@
 import {SearchInput} from "@/components/shared/search-input";
 import {BlogRow, BlogRowProps} from "@/components/features/blog/blog-row";
 import {BlogBg} from "@/components/ui/blog-bg";
+import {AppBg} from "@/components/layout/app-bg";
 
 export default function BlogsPage() {
   return (
-    <div className="min-h-screen w-full pb-44 overflow-x-hidden border-x mx-auto relative">
+    <AppBg
+      flashlightProps={{
+      staticPosition: {x: "50%", y: "50%"}
+    }}
+      className="min-h-screen w-full pb-44 overflow-x-hidden border-x mx-auto relative"
+    >
       <div className="relative pt-24 pb-14 overflow-hidden">
         <BlogBg className="absolute w-full top-0 -z-10 object-cover opacity-[0.075]" />
-        <h1 className="border-y py-1 px-4 font-medium text-7xl text-center tracking-tighter text-balance text-primary mt-16">
+        <h1 className="border-y py-1 px-4 font-medium text-3xl lg:text-7xl text-center tracking-tighter text-balance text-primary mt-16">
           A journey through my thoughts, one post at a time.
         </h1>
         <div className="border-y px-4 mt-10  ">
           <SearchInput
-            className="drop-shadow-none max-w-sm backdrop-blur-sm mx-auto"
+            className="drop-shadow-none max-w-lg backdrop-blur-sm mx-auto"
             inputProps={{
-              className: "rounded-full my-px h-10",
+              className: " my-px h-10",
               placeholder: "Search Articles"
             }}
           />
@@ -25,7 +31,7 @@ export default function BlogsPage() {
           <BlogRow {...post} key={"BlogRow-" + index} className="last:border-b" />
         ))}
       </section>
-    </div>
+    </AppBg>
   )
 }
 

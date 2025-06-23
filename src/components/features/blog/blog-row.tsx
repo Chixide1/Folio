@@ -20,18 +20,31 @@ export function BlogRow({
 }: BlogRowProps) {
   return (
     <article className={cn("border-dashed border-accent-foreground border-t light:border-secondary-foreground flex gap-x-24 w-full ", className)} {...props}>
-      <div className="p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
-        <span className="font-mono text-gray-500 dark:text-gray-500 font-extralight leading-none">{format(new Date(date), "dd MMMM, yyyy")}</span>
+      <div className="max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
+        <BlogDate date={date} />
       </div>
-      <div className="flex flex-col text-balance gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
+      <Link href={"#"} className="group flex flex-col text-balance gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
+        <BlogDate date={date} className="md:hidden" />
         <h3 className="text-primary font-medium">{title}</h3>
         <p className="line-clamp-3 leading-6">{description}</p>
-        <Link href={"#"} className="group text-sm text-accent inline-flex gap-1 items-center w-fit">
+        <div className="text-sm text-accent inline-flex gap-1 items-center w-fit">
           <span>Read More</span>
           <RiArrowRightDoubleLine
             className="group-hover:translate-x-1 group-hover:text-accent duration-500 transition-all"/>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </article>
+  )
+}
+
+function BlogDate({date, className}: {date: string, className?: string}) {
+  return (
+    <span
+      className={cn(
+        "font-mono text-gray-500 dark:text-gray-500 font-extralight leading-none",
+        className
+      )}>
+      {format(new Date(date), "do MMMM, yyyy")}
+    </span>
   )
 }
