@@ -1,6 +1,5 @@
 ﻿import { useState, useEffect } from 'react';
-import { useAtom } from 'jotai';
-import {locationAtom} from "@/lib/atoms";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type UseSearchQueryOptions = {
   debounceMs?: number;
@@ -8,10 +7,11 @@ type UseSearchQueryOptions = {
 
 export function useSearchQuery(options: UseSearchQueryOptions = {}) {
   const { debounceMs = 500 } = options;
-  const [location, setLocation] = useAtom(locationAtom);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // Get current query from location
-  const query = location.searchParams?.get('q') || '';
+  // Get current query from URL
+  const query = searchParams.get('q') || '';
 
   // Local state for immediate updates
   const [localQuery, setLocalQuery] = useState(query);
@@ -24,24 +24,24 @@ export function useSearchQuery(options: UseSearchQueryOptions = {}) {
   // Debounce URL updates when local query changes
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLocation((prev) => {
-        const newSearchParams = new URLSearchParams(prev.searchParams);
+      const newSearchParams = new URLSearchParams(searchParams);
 
-        if (localQuery.trim()) {
-          newSearchParams.set('q', localQuery);
-        } else {
-          newSearchParams.delete('q');
-        }
+      if (localQuery.trim()) {
+        newSearchParams.set('q', localQuery);
+      } else {
+        newSearchParams.delete('q');
+      }
 
-        return {
-          ...prev,
-          searchParams: newSearchParams,
-        };
-      });
+      // Update URL without triggering navigation
+      const newUrl = newSearchParams.toString()
+        ? `${window.location.pathname}?${newSearchParams.toString()}`
+        : window.location.pathname;
+
+      router.replace(newUrl, { scroll: false });
     }, debounceMs);
 
     return () => clearTimeout(timer);
-  }, [localQuery, setLocation, debounceMs]);
+  }, [localQuery, router, searchParams, debounceMs]);
 
   return {
     query: localQuery,

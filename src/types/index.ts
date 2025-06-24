@@ -32,7 +32,7 @@ export type BlogPost = {
   categories: string[];
 }
 
-export type BlogContent = {
+export type BlogPostWithSlug = {
   frontmatter: BlogPost;
   slug: string;
 }

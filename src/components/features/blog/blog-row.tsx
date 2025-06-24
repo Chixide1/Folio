@@ -4,6 +4,7 @@ import Link from "next/link";
 import {format} from "date-fns";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
 import {BlogPost} from "@/types";
+import {Tag, TagCompact} from "@/components/ui/tag";
 
 export type BlogRowProps = ComponentPropsWithoutRef<"div"> & BlogPost & {
   slug: string;
@@ -12,6 +13,7 @@ export type BlogRowProps = ComponentPropsWithoutRef<"div"> & BlogPost & {
 export function BlogRow({
   className,
   slug,
+  categories,
   date,
   title,
   description,
@@ -19,8 +21,26 @@ export function BlogRow({
 }: BlogRowProps) {
   return (
     <article className={cn("border-dashed border-accent-foreground border-t light:border-secondary-foreground flex gap-x-24 w-full ", className)} {...props}>
-      <div className="max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
+      <div className="flex flex-col max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
         <BlogDate date={date} />
+        <div className="flex flex-wrap gap-1 mt-auto">
+          {categories.map((category, index) => (
+            <Link
+              href={{
+                pathname: "/blog",
+                query: {
+                  q: category
+                }
+              }}
+              className="group"
+              shallow={true}
+              scroll={false}
+              key={"BlogRowTagLink-" + index}
+            >
+              <TagCompact value={category} className="group-hover:text-accent group-hover:border-accent duration-500 transition-all" />
+            </Link>
+          ))}
+        </div>
       </div>
       <Link href={`/blog/${slug}`} className="group flex flex-col text-balance max-md:gap-5 gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
         <BlogDate date={date} className="md:hidden" />

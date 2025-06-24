@@ -13,11 +13,33 @@ export function Tag({className, value}: {className?: string, value: string}) {
   )
 }
 
-export function TagGroup({className, tags, ...props}: ComponentPropsWithoutRef<"div"> & {tags: string[]}) {
+export function TagCompact({className, value}: {className?: string, value: string}) {
+  return (
+    <Badge
+      variant="default"
+      className={cn("px-1.5 py-0.5 text-secondary text-xs rounded-lg", className)}
+    >
+      {value}
+    </Badge>
+  )
+}
+
+type TagGroupProps = ComponentPropsWithoutRef<"div"> & {
+  tags: string[];
+  compact?: boolean;
+}
+
+export function TagGroup({
+  className,
+  tags,
+  compact = false,
+  ...props
+}: TagGroupProps) {
   return (
     <div className={cn("flex flex-wrap gap-2 border-none", className)} {...props}>
       {tags.map((tag, index) => (
-        <Tag value={tag} key={"TagGroup-" + index}/>
+        compact ? <TagCompact value={tag} key={"TagGroup-" + index}/> : 
+          <Tag value={tag} key={"TagGroup-" + index}/>
       ))}
     </div>
   )

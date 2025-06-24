@@ -5,17 +5,15 @@ import { useEffect, useState, useMemo } from "react";
 import { useSearchQuery } from "@/hooks/use-search-query";
 import Fuse from "fuse.js";
 import {GetBlogFuse} from "@/lib/search";
-import {BlogContent} from "@/types";
+import {BlogPostWithSlug} from "@/types";
 
 type BlogListProps = {
-  posts: BlogContent[];
+  posts: BlogPostWithSlug[];
 }
 
 export function BlogList({ posts }: BlogListProps) {
   const { query } = useSearchQuery();
-  const [searchIndex, setSearchIndex] = useState<Fuse<BlogContent> | null>(null);
-  
-  // console.log(query);
+  const [searchIndex, setSearchIndex] = useState<Fuse<BlogPostWithSlug> | null>(null);
   
   useEffect(() => {
     async function loadSearchIndex() {
@@ -34,15 +32,13 @@ export function BlogList({ posts }: BlogListProps) {
   }, [posts, query, searchIndex]);
 
   return (
-    <>
-      {filteredPosts.length === 0 && query && (
-        <div className="text-center py-12 w-full">
-          <p className="text-muted-foreground text-xl">
-            No articles found for &#34;{query}&#34;
-          </p>
-        </div>
-      )}
-
+    filteredPosts.length === 0 && query ? (
+      <div className="text-center py-12 w-full">
+        <p className="text-muted-foreground text-xl">
+          No articles found for &#34;{query}&#34;
+        </p>
+      </div>
+    ) : (
       <section className="">
         {filteredPosts.map((post, index) => (
           <BlogRow
@@ -53,6 +49,6 @@ export function BlogList({ posts }: BlogListProps) {
           />
         ))}
       </section>
-    </>
-  );
+    )
+  )
 }
