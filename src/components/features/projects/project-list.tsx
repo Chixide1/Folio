@@ -25,7 +25,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
   }, [projects]);
   
   const filteredProjects = useMemo(() => {
-    if (!query.trim() || !searchIndex) return projects;
+    if (!query?.trim() || !searchIndex) return projects;
 
     const results = searchIndex.search(query);
     return results.map(result => result.item);
@@ -38,7 +38,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
         inputProps={{
           id: "searchProjects",
           placeholder: "Search Projects",
-          value: query,
+          value: query ?? "",
           onChange: (e) => setQuery(e.target.value)
         }}
       />

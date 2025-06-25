@@ -4,7 +4,7 @@ import Link from "next/link";
 import {format} from "date-fns";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
 import {BlogPost} from "@/types";
-import {Tag, TagCompact} from "@/components/ui/tag";
+import {TagCompact} from "@/components/ui/tag";
 
 export type BlogRowProps = ComponentPropsWithoutRef<"div"> & BlogPost & {
   slug: string;

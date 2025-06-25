@@ -30,7 +30,7 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
         </Link>
         <h1 className="text-5xl font-bold text-primary mb-6">All Projects</h1>
       </StaggeredAnimationGroup>
-      <ProjectsList projects={projects} initialQuery={query} />
+      <ProjectsList projects={projects} />
     </AppBg>
   )
 }

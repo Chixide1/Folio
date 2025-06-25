@@ -24,7 +24,7 @@ export function BlogList({ posts }: BlogListProps) {
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    if (!query.trim() || !searchIndex) return posts;
+    if (!query?.trim() || !searchIndex) return posts;
     
 
     const results = searchIndex.search(query);

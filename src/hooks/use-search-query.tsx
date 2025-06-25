@@ -1,5 +1,5 @@
-﻿import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+﻿import { useState, useEffect, useCallback, useRef } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 type UseSearchQueryOptions = {
   debounceMs?: number;
@@ -8,43 +8,48 @@ type UseSearchQueryOptions = {
 export function useSearchQuery(options: UseSearchQueryOptions = {}) {
   const { debounceMs = 500 } = options;
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const debounceRef = useRef<NodeJS.Timeout>(null);
 
-  // Get current query from URL
-  const query = searchParams.get('q') || '';
-
-  // Local state for immediate updates
-  const [localQuery, setLocalQuery] = useState(query);
-
-  // Sync local state with URL when URL changes
   useEffect(() => {
-    setLocalQuery(query);
-  }, [query]);
+    const urlQuery = searchParams.get('q') || '';
+    setQuery(urlQuery);
+  }, [searchParams]);
 
-  // Debounce URL updates when local query changes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const newSearchParams = new URLSearchParams(searchParams);
+  const setSearchParam = useCallback((value: string) => {
+    // Update local state immediately for responsive UI
+    setQuery(value);
 
-      if (localQuery.trim()) {
-        newSearchParams.set('q', localQuery);
+    // Clear existing timeout
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    // Debounce the URL update
+    debounceRef.current = setTimeout(() => {
+      if (value === '') {
+        router.push(pathname, { scroll: false });
       } else {
-        newSearchParams.delete('q');
+        router.push(`${pathname}?q=${encodeURIComponent(value)}`, {
+          scroll: false
+        });
       }
-
-      // Update URL without triggering navigation
-      const newUrl = newSearchParams.toString()
-        ? `${window.location.pathname}?${newSearchParams.toString()}`
-        : window.location.pathname;
-
-      router.replace(newUrl, { scroll: false });
     }, debounceMs);
+  }, [router, pathname, debounceMs]);
 
-    return () => clearTimeout(timer);
-  }, [localQuery, router, searchParams, debounceMs]);
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, []);
 
   return {
-    query: localQuery,
-    setQuery: setLocalQuery
+    query,
+    setQuery: setSearchParam
   };
 }
