@@ -10,11 +10,12 @@ export default async function BlogPage({params}: SlugPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.BLOG, slug)
 
   return (
-    <div className="max-lg:px-6 mx-auto grid grid-cols-1 lg:grid-cols-[16rem_2.5rem_auto] xl:grid-cols-[22rem_2.5rem_auto] lg:grid-rows-[1fr_auto] w-full">
-      <nav className="col-start-1 row-start-2">
-        <ol className="sticky top-16 h-screen p-4 space-y-2">
+    <div className="overflow-x-clip max-lg:px-6 mx-auto grid grid-cols-1 lg:grid-cols-[16rem_2.5rem_auto] xl:grid-cols-[22rem_2.5rem_auto] lg:grid-rows-[1fr_auto] w-full">
+      <nav className="sticky top-16 h-screen col-start-1 row-start-2 p-4 ml-5">
+        <h2 className="uppercase font-mono mb-2">On this Page</h2>
+        <ol className="">
           {mockHeadings.map((heading, index) => (
-            <li key={index} className="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+            <li key={index} className="py-1 border-l ps-2 text-sm text-secondary w-fit hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
               <a href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`} className="block py-1 px-2">
                 {heading}
               </a>
