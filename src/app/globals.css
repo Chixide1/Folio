@@ -127,7 +127,7 @@
 
 .prose-project {
   @apply prose-base dark:prose-invert prose-headings:font-medium light:prose-strong:text-primary-foreground
-  prose-strong:text-card-foreground prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-img:border
+  prose-strong:text-card-foreground prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-h2:first:mt-0 prose-img:border
   prose-headings:text-primary prose-p:text-foreground prose-a:no-underline prose-a:transition-colors
   prose-a:hover:text-accent prose-a:hover:underline prose-a:duration-500 prose-li:list-[square];
 }
@@ -138,18 +138,11 @@
 }
 
 @utility line-before {
-  @apply relative before:-z-10 before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-border before:-left-[100vw];
+  @apply relative before:-z-10 before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-border before:-left-[100vw];
 }
 
 @utility line-after {
-  @apply after:absolute before:-z-10 after:bottom-0 after:h-px after:bg-border after:w-[200vw] after:-left-[100vw];
-}
-
-@utility sharp-3d {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  transform-style: preserve-3d;
+  @apply after:absolute before:-z-10 after:bottom-0 after:h-px after:bg-gray-950/5 dark:after:bg-border after:w-[200vw] after:-left-[100vw];
 }
 
 .shiki {

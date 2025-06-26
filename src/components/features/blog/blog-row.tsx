@@ -56,7 +56,7 @@ export function BlogRow({
   )
 }
 
-function BlogDate({date, className}: {date: string, className?: string}) {
+export function BlogDate({date, className}: {date: string, className?: string}) {
   return (
     <span
       className={cn(
