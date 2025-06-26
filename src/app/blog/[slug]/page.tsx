@@ -3,7 +3,6 @@ import {ContentArea, SlugPageParams} from "@/types";
 import {Metadata} from "next";
 import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {MDXRemote} from "next-mdx-remote/rsc";
-import {AppBg} from "@/components/layout/app-bg";
 
 export default async function BlogPage({params}: SlugPageParams) {
   const { slug } = await params
