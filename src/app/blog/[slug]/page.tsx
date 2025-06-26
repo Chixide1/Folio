@@ -10,10 +10,9 @@ export default async function BlogPage({params}: SlugPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.BLOG, slug)
 
   return (
-    <div className="overflow-x-hidden">
-      <div className="max-lg:px-6 mx-auto grid grid-cols-1 lg:grid-cols-[16rem_2.5rem_auto] xl:grid-cols-[22rem_2.5rem_auto] lg:grid-rows-[1fr_auto] w-full">
+    <div className="max-lg:px-6 mx-auto grid grid-cols-1 lg:grid-cols-[16rem_2.5rem_auto] xl:grid-cols-[22rem_2.5rem_auto] lg:grid-rows-[1fr_auto] w-full">
       <nav className="col-start-1 row-start-2">
-        <ol className="sticky top-16 h-screen overflow-y-auto p-4 space-y-2">
+        <ol className="sticky top-16 h-screen p-4 space-y-2">
           {mockHeadings.map((heading, index) => (
             <li key={index} className="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
               <a href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`} className="block py-1 px-2">
@@ -27,15 +26,12 @@ export default async function BlogPage({params}: SlugPageParams) {
       <div className="mt-10 col-start-3 row-start-1 border-l light:border-gray-950/5">
         <div className="mt-24 pl-2">
           <BlogDate date={frontmatter.date} className="" />
-          </div>
-    </div>
+        </div>
         <h1 className="line-before font-normal line-after p-2 h-fit inline-block text-5xl tracking-tight text-gray-950 dark:text-gray-200 text-pretty max-w-[25ch]">{frontmatter.title}</h1>
         <div className="h-16" />
       </div>
-      <article className="border-l light:border-gray-950/5 w-full line-before line-after col-start-3 row-start-2 p-2">
-        <div className="overflow-x-hidden prose prose-project">
-          <MDXRemote source={content} components={mdxComponents}/>
-        </div>
+      <article className="border-l light:border-gray-950/5 w-full line-before line-after prose prose-project col-start-3 row-start-2 p-2">
+        <MDXRemote source={content} components={mdxComponents}/>
         <footer className="h-36 line-before" />
       </article>
     </div>
