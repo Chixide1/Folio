@@ -2,6 +2,7 @@
 import path from 'path'
 import matter from 'gray-matter'
 import { ContentArea, ProjectPost, BlogPost } from '@/types'
+import { extractHeadingsFromMarkdown, type Heading } from '@/lib/extract-headings'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -17,6 +18,7 @@ type MDXContentResult<T extends ContentArea> = {
   frontmatter: FrontmatterType<T>
   content: string
   slug: string
+  headings: Heading[]
 }
 
 // Type for the return value of getAllContent
@@ -24,6 +26,7 @@ type AllContentResult<T extends ContentArea> = {
   slug: string
   frontmatter: FrontmatterType<T>
   content: string
+  headings: Heading[]
 }
 
 export function getMDXFiles(area: ContentArea) {
@@ -40,10 +43,14 @@ export function getMDXContent<T extends ContentArea>(
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
+  // Extract headings from markdown content
+  const headings = extractHeadingsFromMarkdown(content)
+
   return {
     frontmatter: data as FrontmatterType<T>,
     content,
-    slug
+    slug,
+    headings
   }
 }
 
@@ -55,11 +62,12 @@ export function getAllSlugs(area: ContentArea) {
 export function getAllContent<T extends ContentArea>(area: T): AllContentResult<T>[] {
   const slugs = getAllSlugs(area)
   return slugs.map(slug => {
-    const { frontmatter, content } = getMDXContent(area, slug)
+    const { frontmatter, content, headings } = getMDXContent(area, slug)
     return {
       slug,
       frontmatter,
-      content
+      content,
+      headings
     }
   }).sort((a, b) => {
     if (a.frontmatter.date && b.frontmatter.date) {
