@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { RiMenu2Fill } from "react-icons/ri";
 import { useObserver } from '@/hooks/use-observer';
 import type { Heading } from '@/lib/extract-headings';
@@ -12,24 +12,27 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ headings }: TableOfContentsProps) {
   const [activeIds, setActiveIds] = useState<string[]>([]);
-  const headingRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const headingElementsRef = useRef<HTMLElement[]>([]);
 
-  // Create refs for all headings
-  const headingRefObjects = headings.map(heading => ({
-    id: heading.id,
-    ref: useRef<HTMLElement>(null)
-  }));
+  // Memoize the refs array to avoid recreating on every render
+  const observerRefs = useMemo(() => {
+    return headings.map(() => ({ current: null as HTMLElement | null }));
+  }, [headings]);
 
-  // Update refs map when component mounts
+  // Update refs with actual DOM elements
   useEffect(() => {
-    headingRefObjects.forEach(({ id, ref }) => {
-      const element = document.getElementById(id);
+    const elements: HTMLElement[] = [];
+
+    headings.forEach((heading, index) => {
+      const element = document.getElementById(heading.id);
       if (element) {
-        ref.current = element;
-        headingRefs.current.set(id, element);
+        elements[index] = element;
+        observerRefs[index].current = element;
       }
     });
-  }, [headingRefObjects, headings]);
+
+    headingElementsRef.current = elements;
+  }, [headings, observerRefs]);
 
   const handleIntersect = useCallback((entries: IntersectionObserverEntry[]) => {
     const visibleHeadings = entries
@@ -41,15 +44,15 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
 
     if (visibleHeadings.length > 0) {
       const headingIds = visibleHeadings.map(
-        headings => headings.target.id
-      )
+        entry => entry.target.id
+      );
       setActiveIds(headingIds);
     }
   }, []);
 
   // Use the observer hook
   useObserver({
-    refs: headingRefObjects.map(({ ref }) => ref),
+    refs: observerRefs,
     onIntersect: handleIntersect,
     options: {
       rootMargin: '-80px 0px -80% 0px', // Trigger when heading is near top
