@@ -15,7 +15,7 @@ export default async function BlogPage({params}: SlugPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.BLOG, slug)
 
   return (
-    <div className="overflow-x-clip max-lg:px-6 mx-auto max-lg:flex max-lg:flex-col grid lg:grid-cols-[minmax(12rem,16rem)_2.5rem_auto] xl:grid-cols-[22rem_2.5rem_auto] grid-rows-[1fr_auto] w-full">
+    <div className="overflow-x-clip max-lg:px-6 mx-auto max-lg:flex max-lg:flex-col grid lg:grid-cols-[minmax(12rem,16rem)_2.5rem_auto] xl:grid-cols-[17rem_2.5rem_auto] 2xl:grid-cols-[22rem_2.5rem_auto] grid-rows-[1fr_auto] w-full">
       <aside className="col-start-1 row-start-2 max-lg:hidden dark:text-gray-400">
         <BlogAuthor />
         <nav className="sticky top-16 h-screen border-t p-4 pl-5">
