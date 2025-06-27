@@ -4,13 +4,14 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { RiMenu2Fill } from "react-icons/ri";
 import { useObserver } from '@/hooks/use-observer';
 import type { Heading } from '@/lib/extract-headings';
+import Link from "next/link";
 
 interface TableOfContentsProps {
   headings: Heading[];
 }
 
 export function TableOfContents({ headings }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeIds, setActiveIds] = useState<string[]>([]);
   const headingRefs = useRef<Map<string, HTMLElement>>(new Map());
 
   // Create refs for all headings
@@ -39,9 +40,10 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
       });
 
     if (visibleHeadings.length > 0) {
-      // Set the topmost visible heading as active
-      const topHeading = visibleHeadings[0];
-      setActiveId(topHeading.target.id);
+      const headingIds = visibleHeadings.map(
+        headings => headings.target.id
+      )
+      setActiveIds(headingIds);
     }
   }, []);
 
@@ -55,45 +57,35 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
     }
   });
 
-  const handleClick = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   if (headings.length === 0) {
     return null;
   }
 
   return (
-    <nav className="sticky top-16 h-screen border-t p-4 pl-5">
-      <div className="flex items-center gap-2 mb-2 dark:text-gray-400">
+    <nav className="sticky top-14 h-screen border-t p-4 pt-8 pl-5">
+      <div className="flex text-sm items-center gap-2 mb-2">
         <RiMenu2Fill />
         <h2 className="uppercase font-mono">On this Page</h2>
       </div>
-      <ol className="text-xs">
+      <ol className="text-xs border-l max-h-[calc(100vh-14rem)] overflow-y-auto pb-2 scrollbar-none hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {headings.map((heading) => (
           <li
             key={heading.id}
             className={`border-l ps-2 w-fit transition-colors ${
-              activeId === heading.id
+              activeIds.find(id => id === heading.id)
                 ? 'border-l-gray-900 dark:border-l-gray-100 text-gray-900 dark:text-gray-100 font-medium'
-                : 'dark:text-foreground/80 text-secondary border-l-transparent hover:text-gray-900 dark:hover:text-gray-100'
+                : 'dark:text-foreground/75 text-secondary border-l-transparent hover:text-gray-900 dark:hover:text-gray-100'
             }`}
             style={{
-              paddingLeft: `${(heading.level - 1) * 0.75 + 0.5}rem`
+              paddingLeft: `${(heading.level - 1) * 0.5}rem`
             }}
           >
-            <button
-              onClick={() => handleClick(heading.id)}
-              className="block py-1.5 px-2 text-left w-full hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded transition-colors"
+            <Link
+              href={`#${heading.id}`}
+              className="inline-block py-1.5 px-2 text-left rounded transition-colors w-fit"
             >
               {heading.text}
-            </button>
+            </Link>
           </li>
         ))}
       </ol>
