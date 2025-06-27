@@ -14,14 +14,8 @@ export default async function ProjectPage({ params }: SlugPageParams) {
   const { frontmatter, content } = getMDXContent(ContentArea.PROJECTS, slug)
 
   return (
-    <AppBg
-      flashlightProps={{
-        lightOpacity: 0.1,
-        lightSize: 700,
-        isStatic: true,
-        staticPosition: {x: "50%", y: "50%"}
-      }}
-      className="py-24 w-full max-lg:px-6 max-w-2xl mx-auto space-y-4"
+    <div
+      className="py-24 w-full max-lg:px-6 max-w-3xl mx-auto space-y-4"
     >
 
       <div className="flex mb-2 gap-x-4 max-sm:flex-col">
@@ -53,10 +47,10 @@ export default async function ProjectPage({ params }: SlugPageParams) {
         </figcaption>
       </figure>
 
-      <article className="w-full prose prose-project">
+      <article className="w-full prose prose-content mx-auto">
         <MDXRemote source={content} components={mdxComponents}/>
       </article>
-    </AppBg>
+    </div>
   )
 }
 

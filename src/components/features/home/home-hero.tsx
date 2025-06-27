@@ -93,7 +93,7 @@ function HomeHeroSocials({ className, style }: { className?: string; style?: Rea
           href={item.href}
           key={"HomeHeroSocials-" + index}
           className={cn(
-            "hover:text-accent text-primary-foreground dark:hover:text-primary dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
+            "hover:text-primary text-black/50 dark:text-foreground duration-500 transition-all hover:-translate-y-1.5",
           )}
           target="_blank"
         >

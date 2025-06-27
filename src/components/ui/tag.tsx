@@ -27,19 +27,21 @@ export function TagCompact({className, value}: {className?: string, value: strin
 type TagGroupProps = ComponentPropsWithoutRef<"div"> & {
   tags: string[];
   compact?: boolean;
+  tagClassName?: string;
 }
 
 export function TagGroup({
   className,
   tags,
+  tagClassName,
   compact = false,
   ...props
 }: TagGroupProps) {
   return (
     <div className={cn("flex flex-wrap gap-2 border-none", className)} {...props}>
       {tags.map((tag, index) => (
-        compact ? <TagCompact value={tag} key={"TagGroup-" + index}/> : 
-          <Tag value={tag} key={"TagGroup-" + index}/>
+        compact ? <TagCompact value={tag} key={"TagGroup-" + index} className={cn(tagClassName)}/> : 
+          <Tag value={tag} key={"TagGroup-" + index} className={cn(tagClassName)}/>
       ))}
     </div>
   )
