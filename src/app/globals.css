@@ -129,7 +129,7 @@
   @apply prose-base dark:prose-invert prose-gray prose-headings:font-medium light:prose-strong:text-primary-foreground
   prose-strong:text-card-foreground prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-h2:first:mt-0
   prose-img:border prose-a:no-underline prose-a:transition-colors prose-a:hover:text-accent prose-a:hover:underline
-  prose-a:duration-500 prose-li:list-[square];
+  prose-a:duration-500 prose-li:list-[square] prose-headings:scroll-m-28;
 }
 
 @utility text-vertical {

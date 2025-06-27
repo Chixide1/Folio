@@ -4,10 +4,10 @@ import {AppBg} from "@/components/layout/app-bg";
 import { getAllContent } from "@/lib/mdx";
 import { ContentArea } from "@/types";
 
-export default function Home() {
+export default async function Home() {
   
-  const projects = getAllContent(ContentArea.PROJECTS)
-    .map(({frontmatter}) => frontmatter);
+  const projects = await getAllContent(ContentArea.PROJECTS)
+    .then(content => content.map(({frontmatter}) => frontmatter))
 
   return (
       <AppBg className="px-6 lg:flex lg:gap-8 max-w-7xl">

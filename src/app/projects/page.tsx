@@ -6,15 +6,11 @@ import Link from "next/link";
 import {FaArrowLeft} from "react-icons/fa";
 import {StaggeredAnimationGroup} from "@/components/ui/staggered-animation-group";
 
-type ProjectsPageProps = {
-  searchParams: Promise<{ q?: string }>
-}
-
-export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
-  const projects = getAllContent(ContentArea.PROJECTS)
-    .map(({frontmatter}) => frontmatter);
-
-  const query = (await searchParams).q || '';
+export default async function ProjectsPage() {
+  const projects = await getAllContent(ContentArea.PROJECTS)
+    .then(content => {
+      return content.map(({frontmatter}) => frontmatter)
+    })
 
   return (
     <AppBg

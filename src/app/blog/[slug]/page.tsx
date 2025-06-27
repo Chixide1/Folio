@@ -11,7 +11,7 @@ import { rehypeAddHeadingIds } from "@/lib/rehype-add-heading-ids";
 
 export default async function BlogPage({params}: SlugPageParams) {
   const { slug } = await params
-  const { frontmatter, content, headings } = getMDXContent(ContentArea.BLOG, slug)
+  const { frontmatter, content, headings } = await getMDXContent(ContentArea.BLOG, slug)
 
   return (
     <div className="overflow-x-clip max-lg:px-6 mx-auto max-lg:flex max-lg:flex-col grid lg:grid-cols-[minmax(12rem,16rem)_2.5rem_auto] xl:grid-cols-[17rem_2.5rem_auto] 2xl:grid-cols-[22rem_2.5rem_auto] grid-rows-[1fr_auto] w-full">
@@ -51,12 +51,13 @@ export default async function BlogPage({params}: SlugPageParams) {
 }
 
 export async function generateStaticParams() {
-  return getAllSlugs(ContentArea.BLOG).map((slug) => ({ slug }))
+  const slugs = await getAllSlugs(ContentArea.BLOG)
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: SlugPageParams): Promise<Metadata> {
   const { slug } = await params
-  const { frontmatter } = getMDXContent(ContentArea.BLOG, slug)
+  const { frontmatter } = await getMDXContent(ContentArea.BLOG, slug)
 
   return {
     title: frontmatter.title,

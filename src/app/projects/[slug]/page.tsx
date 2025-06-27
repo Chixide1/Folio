@@ -3,7 +3,6 @@ import { getMDXContent, getAllSlugs } from '@/lib/mdx'
 import { ContentArea, SlugPageParams } from '@/types'
 import Image from 'next/image'
 import { TagGroup } from "@/components/ui/tag";
-import { AppBg } from "@/components/layout/app-bg";
 import { LiveButton } from "@/components/features/projects/live-button";
 import { GitHubButton } from "@/components/features/projects/github-button";
 import {Metadata} from "next";
@@ -11,7 +10,7 @@ import {mdxComponents} from "@/components/features/mdx/mdx-components";
 
 export default async function ProjectPage({ params }: SlugPageParams) {
   const { slug } = await params
-  const { frontmatter, content } = getMDXContent(ContentArea.PROJECTS, slug)
+  const { frontmatter, content } = await getMDXContent(ContentArea.PROJECTS, slug)
 
   return (
     <div
@@ -55,12 +54,13 @@ export default async function ProjectPage({ params }: SlugPageParams) {
 }
 
 export async function generateStaticParams() {
-  return getAllSlugs(ContentArea.PROJECTS).map((slug) => ({ slug }))
+  const slugs = await getAllSlugs(ContentArea.PROJECTS)
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: SlugPageParams): Promise<Metadata> {
   const { slug } = await params
-  const { frontmatter } = getMDXContent(ContentArea.PROJECTS, slug)
+  const { frontmatter } = await getMDXContent(ContentArea.PROJECTS, slug)
 
   return {
     title: frontmatter.title,
