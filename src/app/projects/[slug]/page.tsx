@@ -16,7 +16,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
   const { headings, frontmatter, content } = await getMDXContent(ContentArea.PROJECTS, slug)
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <FlashlightBgEffect
         className="light:hidden"
         isStatic={true}
