@@ -3,7 +3,7 @@
 export default function Loading() {
   return (
     <div className="flex justify-center items-center h-screen">
-      <Spinner />
+      <Spinner className="size-10"  />
     </div>
   )
 }

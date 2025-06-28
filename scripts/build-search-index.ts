@@ -7,8 +7,8 @@ import {ContentArea} from '@/types'
 
 async function buildSearchIndex() {
   try {
-    const projects = getAllContent(ContentArea.PROJECTS)
-    const blogPosts = getAllContent(ContentArea.BLOG)
+    const projects = await getAllContent(ContentArea.PROJECTS)
+    const blogPosts = await getAllContent(ContentArea.BLOG)
 
     const projectsIndex = Fuse.createIndex(
       ["title", "tags"],
