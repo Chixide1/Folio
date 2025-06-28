@@ -36,6 +36,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       <SearchInput
         className="mb-14 w-full"
         inputProps={{
+          className: "dark:bg-slate-600/30",
           id: "searchProjects",
           placeholder: "Search Projects",
           value: query ?? "",

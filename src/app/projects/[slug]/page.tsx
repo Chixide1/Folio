@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: SlugPageParams): Promise<Meta
   const { frontmatter } = await getMDXContent(ContentArea.PROJECTS, slug)
 
   return {
-    title: frontmatter.title,
+    title: "Projects - " + frontmatter.title,
     description: frontmatter.description,
     openGraph: {
       images: [frontmatter.image],
