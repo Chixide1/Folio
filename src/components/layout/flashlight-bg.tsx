@@ -12,6 +12,7 @@ export type FlashlightBgEffectProps = ComponentPropsWithoutRef<"div"> & {
   staticPosition?: Point;
   lightOpacity?: Property.Opacity;
   lightSize?: number;
+  isAbsolute?: boolean;
 }
 
 export function FlashlightBgEffect({
@@ -20,6 +21,7 @@ export function FlashlightBgEffect({
   lightOpacity = 0.15,
   lightSize = 600,
   staticPosition = { x: "20%", y: "20%"},
+  isAbsolute = false,
   ...props
 }: FlashlightBgEffectProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -39,6 +41,7 @@ export function FlashlightBgEffect({
       className={cn(
         "fixed inset-0 pointer-events-none z-10 transition-transform duration-1000 ease-out mb-0",
         isExpanded ? "scale-100" : "scale-0",
+        isAbsolute && "absolute",
         className
       )}
       style={{

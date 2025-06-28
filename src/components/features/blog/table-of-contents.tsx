@@ -1,16 +1,17 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import {useEffect, useRef, useState, useCallback, useMemo, ComponentPropsWithoutRef} from 'react';
 import { RiMenu2Fill } from "react-icons/ri";
 import { useObserver } from '@/hooks/use-observer';
 import type { Heading } from '@/lib/extract-headings';
 import Link from "next/link";
+import {cn} from "@/lib/utils";
 
-interface TableOfContentsProps {
+type TableOfContentsProps = ComponentPropsWithoutRef<"nav"> & {
   headings: Heading[];
 }
 
-export function TableOfContents({ headings }: TableOfContentsProps) {
+export function TableOfContents({ headings, className, ...props }: TableOfContentsProps) {
   const [activeIds, setActiveIds] = useState<string[]>([]);
   const headingElementsRef = useRef<HTMLElement[]>([]);
 
@@ -65,12 +66,12 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="sticky top-14 h-screen border-t p-4 pt-8 pl-5">
-      <div className="flex text-sm items-center gap-2 mb-2">
+    <nav className={cn("sticky top-14 h-screen p-4 pl-5", className)} {...props}>
+      <div className="flex text-sm max-lg:text-lg items-center gap-2 mb-2">
         <RiMenu2Fill />
         <h2 className="uppercase font-mono">On this Page</h2>
       </div>
-      <ol className="text-xs border-l max-h-[calc(100vh-14rem)] overflow-y-auto pb-2 scrollbar-none hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <ol className="text-xs max-lg:text-base border-l max-lg:max-h-60 max-h-[calc(100vh-14rem)] overflow-y-auto pb-2 scrollbar-none pr-4 scrollbar-gutter-stable hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {headings.map((heading) => (
           <li
             key={heading.id}

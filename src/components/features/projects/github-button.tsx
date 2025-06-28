@@ -10,7 +10,7 @@ type GitHubButtonProps = {
 export function GitHubButton({ href, className }: GitHubButtonProps) {
   return (
     <Button asChild variant="outline" size="sm" className={className}>
-      <Link href={href} className="group inline-flex gap-x-1.5" target="_blank" rel="noreferrer">
+      <Link href={href} className="bg-card group inline-flex gap-x-1.5" target="_blank" rel="noreferrer">
         <span className="font-light">Source</span>
         <FiGithub
           strokeWidth={1.5}

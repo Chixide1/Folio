@@ -10,7 +10,7 @@ interface LiveButtonProps {
 export function LiveButton({ href, className }: LiveButtonProps) {
   return (
     <Button asChild variant="outline" size="sm" className={className}>
-      <Link href={href} className="font-light group gap-x-0.5" target="_blank" rel="noreferrer">
+      <Link href={href} className="bg-card font-light group gap-x-0.5" target="_blank" rel="noreferrer">
         <span className="font-light">Live</span>
         <LuArrowUpRight
           strokeWidth={1.5}
