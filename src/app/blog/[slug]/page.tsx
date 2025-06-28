@@ -6,7 +6,7 @@ import {MDXRemote} from "next-mdx-remote/rsc";
 import { BlogDate } from "@/components/features/blog/blog-row";
 import {TagGroup} from "@/components/ui/tag";
 import {BlogAuthor} from "@/components/features/blog/blog-author";
-import { TableOfContents } from "@/components/features/blog/table-of-contents";
+import { TableOfContents } from "@/components/shared/table-of-contents";
 import { rehypeAddHeadingIds } from "@/lib/rehype-add-heading-ids";
 
 export default async function BlogPage({params}: SlugPageParams) {

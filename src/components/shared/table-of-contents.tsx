@@ -71,7 +71,7 @@ export function TableOfContents({ headings, className, ...props }: TableOfConten
         <RiMenu2Fill />
         <h2 className="uppercase font-mono">On this Page</h2>
       </div>
-      <ol className="text-xs max-lg:text-base border-l max-lg:max-h-60 max-h-[calc(100vh-14rem)] overflow-y-auto pb-2 scrollbar-none pr-4 scrollbar-gutter-stable hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <ol className="text-xs max-lg:text-base border-l max-lg:max-h-60 max-h-[calc(100vh-14rem)] overflow-y-auto pb-2 scrollbar-none scrollbar-gutter-stable hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {headings.map((heading) => (
           <li
             key={heading.id}

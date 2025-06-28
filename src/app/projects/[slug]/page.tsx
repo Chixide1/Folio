@@ -8,7 +8,7 @@ import { GitHubButton } from "@/components/features/projects/github-button";
 import {Metadata} from "next";
 import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
-import {TableOfContents} from "@/components/features/blog/table-of-contents";
+import {TableOfContents} from "@/components/shared/table-of-contents";
 import {rehypeAddHeadingIds} from "@/lib/rehype-add-heading-ids";
 
 export default async function ProjectPage({ params }: SlugPageParams) {
@@ -24,7 +24,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
         staticPosition={{x: "21%", y: "3%"}}
       />
       <article
-        className="py-24 w-full max-lg:px-6 max-lg:max-w-3xl mx-auto space-y-4 relative"
+        className="py-24 w-full max-lg:px-6 max-lg:max-w-3xl max-w-7xl mx-auto space-y-4 relative"
       >
         <header className="flex justify-between items-center max-lg:flex-col sm:px-8 gap-x-10 mx-auto mb-6 lg:mb-20">
           <div className="flex flex-col gap-y-4 max-sm:flex-col lg:w-1/2 mb-6 lg:max-w-md">
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
         </header>
 
         <div className="flex max-lg:flex-col sm:p-8 lg:gap-6">
-          <TableOfContents headings={headings} className="top-20 max-lg:mb-16 max-h-[calc(100vh-5rem)] max-lg:static border-2 rounded-md h-fit" />
+          <TableOfContents headings={headings} className="lg:w-[22%] top-20 2xl:top-32 max-lg:mb-16 max-h-[calc(100vh-5rem)] max-lg:static border-2 rounded-md h-fit" />
           <div className="w-full prose prose-content mx-auto">
             <MDXRemote
               source={content}
