@@ -10,7 +10,6 @@ import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
 import {TableOfContents} from "@/components/shared/table-of-contents";
 import {rehypeAddHeadingIds} from "@/lib/rehype-add-heading-ids";
-import {GradientBgEffect} from "@/components/layout/gradient-bg";
 
 export default async function ProjectPage({ params }: SlugPageParams) {
   const { slug } = await params

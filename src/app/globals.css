@@ -146,7 +146,7 @@
 }
 
 @utility scrollbar-gutter-stable {
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
 }
 
 .shiki {
@@ -154,4 +154,6 @@
   margin-bottom: 0;
   border-radius: inherit;
   color: unset;
+  
+  @apply scrollbar-thin scrollbar-thumb-gray-500 dark:scrollbar-thumb-gray-400 scrollbar-track-[#24292e];
 }
