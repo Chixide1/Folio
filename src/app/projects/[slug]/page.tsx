@@ -10,6 +10,7 @@ import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
 import {TableOfContents} from "@/components/shared/table-of-contents";
 import {rehypeAddHeadingIds} from "@/lib/rehype-add-heading-ids";
+import {GradientBgEffect} from "@/components/layout/gradient-bg";
 
 export default async function ProjectPage({ params }: SlugPageParams) {
   const { slug } = await params
@@ -27,7 +28,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
         className="py-24 w-full max-lg:px-6 max-lg:max-w-3xl max-w-7xl mx-auto space-y-4 relative"
       >
         <header className="flex justify-between items-center max-lg:flex-col sm:px-8 gap-x-10 mx-auto mb-6 lg:mb-20">
-          <div className="flex flex-col gap-y-4 max-sm:flex-col lg:w-1/2 mb-6 lg:max-w-md">
+          <div className="flex flex-col gap-y-4 max-sm:flex-col lg:w-1/2 mb-6 lg:max-w-md relative">
             <div className="flex lg:flex-col gap-4 max-lg:items-center flex-wrap">
               <h1 className="inline-block font-semibold text-4xl xl:text-5xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
                 {frontmatter.title}

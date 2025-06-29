@@ -3,8 +3,16 @@
 import React, {ComponentPropsWithoutRef, useEffect, useState} from "react";
 import {cn} from "@/lib/utils";
 
-export function GradientBgEffect({className, ...props}: ComponentPropsWithoutRef<"div">){
-  const [isExpanded, setIsExpanded] = useState(false)
+type GradientBgEffectProps = ComponentPropsWithoutRef<"div"> & {
+  noAnimation?: boolean;
+}
+
+export function GradientBgEffect({
+  className,
+  noAnimation = false,
+  ...props
+}: GradientBgEffectProps){
+  const [isExpanded, setIsExpanded] = useState(noAnimation)
 
   useEffect(() => {
     const timer = setTimeout(() => {

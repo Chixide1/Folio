@@ -8,13 +8,20 @@ import {TagGroup} from "@/components/ui/tag";
 import {BlogAuthor} from "@/components/features/blog/blog-author";
 import { TableOfContents } from "@/components/shared/table-of-contents";
 import { rehypeAddHeadingIds } from "@/lib/rehype-add-heading-ids";
+import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
 
 export default async function BlogPage({params}: SlugPageParams) {
   const { slug } = await params
   const { frontmatter, content, headings } = await getMDXContent(ContentArea.BLOG, slug)
 
   return (
-    <div className="min-h-screen overflow-x-clip max-lg:px-6 mx-auto max-lg:flex max-lg:flex-col grid lg:grid-cols-[minmax(12rem,16rem)_2.5rem_auto] xl:grid-cols-[17rem_2.5rem_auto] 2xl:grid-cols-[22rem_2.5rem_auto] grid-rows-[1fr_auto] w-full">
+    <div className="min-h-screen overflow-x-clip max-lg:px-6 mx-auto max-lg:flex max-lg:flex-col grid lg:grid-cols-[minmax(12rem,16rem)_2.5rem_auto] xl:grid-cols-[17rem_2.5rem_auto] 2xl:grid-cols-[22rem_2.5rem_auto] grid-rows-[1fr_auto] w-full relative">
+      <FlashlightBgEffect
+        className="light:hidden"
+        isStatic={true}
+        isAbsolute={true}
+        staticPosition={{x: "21%", y: "3%"}}
+      />
       <aside className="col-start-1 row-start-2 max-lg:hidden dark:text-gray-400">
         <BlogAuthor />
         <TableOfContents headings={headings} className="border-t pt-8" />
