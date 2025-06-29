@@ -1,6 +1,6 @@
 ﻿"use client"
 
-import {forwardRef, HTMLProps, useRef, useState, useEffect} from "react";
+import {forwardRef, HTMLProps, useRef, useState} from "react";
 import {cn} from "@/lib/utils";
 import {ProjectCardCompact} from "@/components/features/projects/project-card-compact";
 import {useObserver} from "@/hooks/use-observer";

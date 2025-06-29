@@ -10,12 +10,11 @@ import {ProjectLink} from "@/components/features/projects/project-link";
 export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & ComponentPropsWithRef<"div">>(({
   className,
   title,
-  imageCaption,
   description,
   image,
   tags,
   github,
-  projectLink,
+  projectPage,
   live,
   ...props
 }, ref) => {
@@ -35,7 +34,7 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & Compo
         <div className="col-span-2">
           <Image
             src={image}
-            alt={imageCaption ?? title}
+            alt={title}
             width={1200}
             height={1200}
             className="w-full max-sm:mb-4 h-auto object-cover rounded border"
@@ -57,7 +56,7 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & Compo
       {/* Second row - Links and Tags */}
       <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
         <ProjectLink name={"Github"} href={github} className=""/>
-        {projectLink && <ProjectLink name={"Project Details"} href={projectLink} target="_self"/>}
+        {projectPage && <ProjectLink name={"Project Details"} href={`/projects/${title.toLowerCase()}`} target="_self"/>}
       </div>
 
       <div className="row-start-2 col-span-full sm:col-span-4">

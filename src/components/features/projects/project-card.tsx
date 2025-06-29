@@ -17,7 +17,7 @@ export function ProjectCard({project}: { project: ProjectPost }) {
       >
         <Image
           src={project.image}
-          alt={project.imageCaption ?? project.title}
+          alt={project.title}
           width={2526}
           height={1728}
           quality={100}
@@ -26,13 +26,13 @@ export function ProjectCard({project}: { project: ProjectPost }) {
       </ProjectImage>
       <Link
         className="group backdrop-blur-sm hover:border-accent max-lg:rounded-b-md bg-white/90 dark:bg-card p-4 lg:rounded-r-3xl w-full border transform-gpu shadow-black/20 lg:shadow-md transition-all hover:shadow-2xl duration-500 lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:rotate-x-2 lg:hover:-rotate-y-1 will-change-transform backface-hidden"
-        href={project.projectLink ?? project.github ?? "/"} target={project.projectLink ? "_self": "_blank"}
+        href={project.projectPage ? `/projects/${project.title.toLowerCase()}` : project.github ?? "/"} target={project.projectPage ? "_self": "_blank"}
       >
         <div className="flex gap-1 items-center mb-2">
           <h2 className="text-primary font-medium text-xl">
             {project.title}
           </h2>
-          {project.projectLink && (
+          {project.projectPage && (
             <RiArrowRightDoubleLine
               className="group-hover:translate-x-1 group-hover:text-accent duration-500 transition-all"/>
           )}

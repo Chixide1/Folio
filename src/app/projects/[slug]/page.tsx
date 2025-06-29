@@ -1,5 +1,5 @@
 ﻿import { MDXRemote } from 'next-mdx-remote/rsc'
-import { getMDXContent, getAllSlugs } from '@/lib/mdx'
+import {getMDXContent, getAllSlugs, getAllContent} from '@/lib/mdx'
 import { ContentArea, SlugPageParams } from '@/types'
 import Image from 'next/image'
 import { TagGroup } from "@/components/ui/tag";
@@ -10,6 +10,7 @@ import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
 import {TableOfContents} from "@/components/shared/table-of-contents";
 import {rehypeAddHeadingIds} from "@/lib/rehype-add-heading-ids";
+import {getBaseUrl} from "@/lib/utils";
 
 export default async function ProjectPage({ params }: SlugPageParams) {
   const { slug } = await params
@@ -48,7 +49,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
           <figure className="lg:w-1/2 w-full h-auto relative lg:max-w-xl">
             <Image
               src={frontmatter.image}
-              alt={frontmatter.imageCaption ?? frontmatter.title}
+              alt={frontmatter.title}
               width={0}
               height={0}
               sizes="(max-width: 768px) 100vw, 75vw"
@@ -78,21 +79,46 @@ export default async function ProjectPage({ params }: SlugPageParams) {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllSlugs(ContentArea.PROJECTS)
-  return slugs.map((slug) => ({ slug }))
+  const slugs = await getAllContent(ContentArea.PROJECTS)
+  return slugs.filter(proj => proj.frontmatter.projectPage)
+    .map(proj => ({ slug: proj.slug }))
 }
 
 export async function generateMetadata({ params }: SlugPageParams): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = await params;
   const { frontmatter } = await getMDXContent(ContentArea.PROJECTS, slug)
-
+  const baseUrl = await getBaseUrl();
+  const pageUrl = `${baseUrl}/projects/${slug}`;
+  
   return {
-    title: "Projects - " + frontmatter.title,
+    metadataBase: new URL(baseUrl),
+    title: `Projects - ${frontmatter.title}`,
     description: frontmatter.description,
+    keywords: frontmatter.tags,
+    alternates: {
+      canonical: pageUrl,
+    },
     openGraph: {
-      images: [frontmatter.image],
+      title: `Projects - ${frontmatter.title}`,
+      description: frontmatter.description,
+      url: pageUrl, 
+      type: 'article',
+      images: [
+        {
+          url: `${baseUrl}/${frontmatter.image}`,
+          width: 1200,
+          height: 630,
+          alt: `Image for project: ${frontmatter.title}`,
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Projects - ${frontmatter.title}`,
+      description: frontmatter.description,
+      images: [`${baseUrl}/${frontmatter.image}`],
     }
-  }
+  };
 }
 
 export const dynamicParams = false

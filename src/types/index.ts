@@ -15,19 +15,19 @@ export type Point = {
 
 export type ProjectPost = {
   title: string;
-  imageCaption?: string;
   description: string;
   date: string;
   image: string;
   github?: string;
   live?: string;
-  projectLink?: string;
+  projectPage?: boolean;
   tags: string[];
 }
 
 export type BlogPost = {
   date: string;
   title: string;
+  image: string;
   description: string;
   categories: string[];
 }

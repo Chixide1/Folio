@@ -9,6 +9,7 @@ import {BlogAuthor} from "@/components/features/blog/blog-author";
 import { TableOfContents } from "@/components/shared/table-of-contents";
 import { rehypeAddHeadingIds } from "@/lib/rehype-add-heading-ids";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
+import {getBaseUrl} from "@/lib/utils";
 
 export default async function BlogPage({params}: SlugPageParams) {
   const { slug } = await params
@@ -65,10 +66,37 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: SlugPageParams): Promise<Metadata> {
   const { slug } = await params
   const { frontmatter } = await getMDXContent(ContentArea.BLOG, slug)
+  const baseUrl = await getBaseUrl();
+  const pageUrl = `${baseUrl}/${slug}`;
 
   return {
+    metadataBase: new URL(baseUrl),
     title: frontmatter.title,
     description: frontmatter.description,
+    keywords: frontmatter.categories,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      url: pageUrl,
+      type: 'article', // Or 'website' if not an article
+      images: [
+        {
+          url: `${baseUrl}/${frontmatter.image}`,
+          width: 1200,
+          height: 630,
+          alt: frontmatter.title,
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: [`${baseUrl}/${frontmatter.image}`],
+    },
   }
 }
 
