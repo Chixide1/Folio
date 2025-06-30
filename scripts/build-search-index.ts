@@ -23,7 +23,7 @@ async function buildSearchIndex() {
     // Prepare data to save
     const projectSearchData = {
       index: projectsIndex.toJSON(),
-      projects: projects.map(p => p.frontmatter)
+      projects: projects.map(({frontmatter, slug}) => ({frontmatter, slug}))
     }
 
     const blogSearchData = {

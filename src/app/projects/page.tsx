@@ -4,14 +4,12 @@ import {ProjectsList} from "@/components/features/projects/project-list";
 import {AppBg} from "@/components/layout/app-bg";
 import Link from "next/link";
 import {FaArrowLeft} from "react-icons/fa";
-import {StaggeredAnimationGroup} from "@/components/ui/staggered-animation-group";
-import {BlogBg} from "@/components/ui/blog-bg";
 import {ProjectsBg} from "@/components/ui/projects-bg";
 
 export default async function ProjectsPage() {
   const projects = await getAllContent(ContentArea.PROJECTS)
     .then(content => {
-      return content.map(({frontmatter}) => frontmatter)
+      return content.map(({frontmatter, slug}) => ({frontmatter, slug}))
     })
 
   return (

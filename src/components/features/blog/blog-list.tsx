@@ -5,15 +5,15 @@ import { useEffect, useState, useMemo } from "react";
 import { useSearchQuery } from "@/hooks/use-search-query";
 import Fuse from "fuse.js";
 import {GetBlogFuse} from "@/lib/search";
-import {BlogPostWithSlug} from "@/types";
+import {BlogMdx} from "@/types";
 
 type BlogListProps = {
-  posts: BlogPostWithSlug[];
+  posts: BlogMdx[];
 }
 
 export function BlogList({ posts }: BlogListProps) {
   const { query } = useSearchQuery();
-  const [searchIndex, setSearchIndex] = useState<Fuse<BlogPostWithSlug> | null>(null);
+  const [searchIndex, setSearchIndex] = useState<Fuse<BlogMdx> | null>(null);
   
   useEffect(() => {
     async function loadSearchIndex() {

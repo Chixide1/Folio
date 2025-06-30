@@ -4,16 +4,16 @@ import { SearchInput } from "@/components/shared/search-input";
 import { ProjectCard } from "@/components/features/projects/project-card";
 import { useEffect, useState, useMemo } from "react";
 import Fuse from "fuse.js";
-import { ProjectPost } from "@/types";
+import { ProjectPost, ProjectMdx } from "@/types";
 import { GetProjectsFuse } from "@/lib/search";
 import { useSearchQuery } from "@/hooks/use-search-query";
 
 type ProjectsListProps = {
-  projects: ProjectPost[];
+  projects: ProjectMdx[];
 }
 
 export function ProjectsList({ projects }: ProjectsListProps) {
-  const [searchIndex, setSearchIndex] = useState<Fuse<ProjectPost> | null>(null);
+  const [searchIndex, setSearchIndex] = useState<Fuse<ProjectMdx> | null>(null);
   const { query, setQuery } = useSearchQuery();
   
   useEffect(() => {

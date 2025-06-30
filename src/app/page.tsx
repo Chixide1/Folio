@@ -7,7 +7,7 @@ import { ContentArea } from "@/types";
 export default async function Home() {
   
   const projects = await getAllContent(ContentArea.PROJECTS)
-    .then(content => content.map(({frontmatter}) => frontmatter))
+    .then(content => content.map(({frontmatter, slug}) => ({frontmatter, slug})));
 
   return (
       <AppBg className="px-6 lg:flex lg:gap-8 max-w-7xl">

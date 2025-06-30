@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import projectsFuse from '@/lib/projects-fuse.json';
 import blogFuse from '@/lib/blog-fuse.json';
-import {BlogPostWithSlug, BlogPost, ProjectPost} from "@/types";
+import {BlogMdx, BlogPost, ProjectPost, ProjectMdx} from "@/types";
 
 export function GetProjectsFuse(){
     const index = Fuse.parseIndex(projectsFuse.index as never);
@@ -12,7 +12,7 @@ export function GetProjectsFuse(){
         threshold: 0.4,
     }, index);
     
-    return fuse as Fuse<ProjectPost>;
+    return fuse as Fuse<ProjectMdx>;
 }
 
 export function GetBlogFuse(){
@@ -24,5 +24,5 @@ export function GetBlogFuse(){
         threshold: 0.4,
     }, index);
 
-    return fuse as Fuse<BlogPostWithSlug>;
+    return fuse as Fuse<BlogMdx>;
 }

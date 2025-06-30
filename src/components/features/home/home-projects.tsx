@@ -5,10 +5,10 @@ import {cn} from "@/lib/utils";
 import {ProjectCardCompact} from "@/components/features/projects/project-card-compact";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
-import { ProjectPost } from "@/types";
+import { ProjectMdx} from "@/types";
 
 type HomeProjectsProps = HTMLProps<HTMLElement> & {
-  projects?: ProjectPost[];
+  projects?: ProjectMdx[];
 }
 
 export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
@@ -28,7 +28,7 @@ export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
           if (entry.isIntersecting) {
             const projectIndex = projectRefs.current.indexOf(entry.target as HTMLDivElement);
             if (projectIndex !== -1 && projects[projectIndex]) {
-              setVisibleProjects(prev => new Set([...prev, projects[projectIndex].title]));
+              setVisibleProjects(prev => new Set([...prev, projects[projectIndex].frontmatter.title]));
             }
           }
         });
@@ -43,13 +43,13 @@ export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
       <section className={cn("flex flex-col gap-12", className)} ref={ref} {...props}>
         {projects.map((project, index) => (
           <div
-            key={"HomeProjects-" + project.title}
+            key={"HomeProjects-" + project.frontmatter.title}
             ref={(el) => {
               projectRefs.current[index] = el;
             }}
             className={cn(
               "transform transition-all duration-700 ease-out",
-              visibleProjects.has(project.title)
+              visibleProjects.has(project.frontmatter.title)
                 ? "translate-y-0 opacity-100"
                 : "translate-y-8 opacity-0"
             )}
@@ -58,12 +58,13 @@ export const HomeProjects = forwardRef<HTMLElement, HomeProjectsProps>(
             }}
           >
             <ProjectCardCompact
-              {...project}
-              onMouseEnter={() => setHoveredProject(project.title)}
+              {...project.frontmatter}
+              slug={project.slug}
+              onMouseEnter={() => setHoveredProject(project.frontmatter.title)}
               onMouseLeave={() => setHoveredProject(null)}
               className={cn(
                 "transition-opacity duration-300",
-                hoveredProject && hoveredProject !== project.title ? "sm:opacity-50" : "opacity-100"
+                hoveredProject && hoveredProject !== project.frontmatter.title ? "sm:opacity-50" : "opacity-100"
               )}
             />
           </div>

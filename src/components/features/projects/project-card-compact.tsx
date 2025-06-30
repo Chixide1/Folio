@@ -4,13 +4,14 @@ import {cn} from "@/lib/utils";
 import { LuArrowUpRight } from "react-icons/lu";
 import Link from "next/link";
 import {ComponentPropsWithRef, forwardRef} from "react";
-import {ProjectPost} from "@/types";
+import {ProjectPostWithSlug} from "@/types";
 import {ProjectLink} from "@/components/features/projects/project-link";
 
-export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & ComponentPropsWithRef<"div">>(({
+export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPostWithSlug & ComponentPropsWithRef<"div">>(({
   className,
   title,
   description,
+  slug,
   image,
   tags,
   github,
@@ -54,9 +55,9 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPost & Compo
       </Link>
 
       {/* Second row - Links and Tags */}
-      <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col pt-2">
+      <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col items-center justify-center">
         <ProjectLink name={"Github"} href={github} className=""/>
-        {projectPage && <ProjectLink name={"Project Details"} href={`/projects/${title.toLowerCase()}`} target="_self"/>}
+        {projectPage && <ProjectLink name={"Project Details"} href={`/projects/${slug}`} target="_self"/>}
       </div>
 
       <div className="row-start-2 col-span-full sm:col-span-4">

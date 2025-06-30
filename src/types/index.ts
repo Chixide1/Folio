@@ -24,6 +24,15 @@ export type ProjectPost = {
   tags: string[];
 }
 
+export type ProjectPostWithSlug = ProjectPost & {
+  slug: string;
+}
+
+export type ProjectMdx = {
+  frontmatter: ProjectPost;
+  slug: string;
+}
+
 export type BlogPost = {
   date: string;
   title: string;
@@ -32,7 +41,11 @@ export type BlogPost = {
   categories: string[];
 }
 
-export type BlogPostWithSlug = {
+export type BlogPostWithSlug = BlogPost & {
+  slug: string;
+}
+
+export type BlogMdx = {
   frontmatter: BlogPost;
   slug: string;
 }
