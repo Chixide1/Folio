@@ -33,7 +33,7 @@ export default async function BlogPage({params}: SlugPageParams) {
           <BlogDate date={frontmatter.date} className="dark:text-gray-400" />
         </div>
         <div className="line-after lg:pb-4 max-lg:w-full">
-          <h1 className="line-before font-normal py-2 px-6 max-md:px-2 h-fit max-lg:w-full inline-block text-4xl lg:text-6xl tracking-tight text-gray-950 dark:text-gray-200 lg:text-pretty lg:max-w-[25ch]">{frontmatter.title}</h1>
+          <h1 className="line-before font-normal py-2 px-6 max-md:px-2 h-fit max-lg:w-full inline-block text-4xl lg:text-5xl tracking-tight text-gray-950 dark:text-gray-200 lg:text-pretty lg:max-w-[25ch]">{frontmatter.title}</h1>
           <TagGroup compact tags={frontmatter.categories} className="max-md:ml-2 ml-6" tagClassName="dark:text-gray-400 text-gray-500" />
           <div className="line-before mt-4 h-6 lg:hidden" />
           <div className="lg:hidden line-before">

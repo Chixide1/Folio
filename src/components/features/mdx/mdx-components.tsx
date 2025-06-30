@@ -3,6 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import { CodeBlock } from '@/components/features/mdx/codeblock';
 import { BundledLanguage, bundledLanguages } from "shiki";
 import {cn} from "@/lib/utils";
+import Image from "next/image";
 
 export const mdxComponents: MDXComponents = {
   pre: ({ children }) => {
@@ -18,6 +19,7 @@ export const mdxComponents: MDXComponents = {
       </CodeBlock>
     );
   },
+  Image
 };
 
 function isBundledLanguage(text: string) {

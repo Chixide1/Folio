@@ -67,11 +67,11 @@ export function TableOfContents({ headings, className, ...props }: TableOfConten
 
   return (
     <nav className={cn("sticky top-14 h-screen p-4 pl-5 mb-10", className)} {...props}>
-      <div className="flex text-sm max-lg:text-lg items-center gap-2 mb-2">
+      <div className="flex text-sm items-center gap-2 mb-2">
         <RiMenu2Fill />
         <h2 className="uppercase font-mono">On this Page</h2>
       </div>
-      <ol className="text-xs max-lg:text-base border-l max-lg:max-h-60 max-h-[calc(100vh-14rem)] overflow-y-auto scrollbar-none scrollbar-gutter-stable hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <ol className="text-xs max-lg:text-sm border-l max-lg:max-h-60 max-h-[calc(100vh-14rem)] overflow-y-auto scrollbar-none scrollbar-gutter-stable hover:scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {headings.map((heading) => (
           <li
             key={heading.id}

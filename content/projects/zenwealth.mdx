@@ -17,84 +17,60 @@ tags:
 ---
 
 ## The Problem
-Many people struggle to understand where their money goes each month. Existing finance apps are either too basic or overly complex, and manually tracking expenses across multiple accounts is time-consuming and error-prone. I wanted to create a solution that automatically aggregates financial data and provides actionable insights without overwhelming the user.
+Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an excel sheet where they manually export the transaction from their bank then import it into the excel sheet. This can be time-consuming and error-prone, due to this, a lot of people don't regularly review their financial health.
+
+I wanted to create a solution that automatically aggregates financial data and all it requires the user to do is to connect the banks account that they want to track. I also wanted the interface to be intuitive and visually appealing, making it easy for users to understand their financial health at a glance.
+
+<figure className="mb-0">
+  <Image
+    src="/projects/zenwealth/excel.png"
+    alt="ZenWealth Cover Image"
+    className="rounded-lg shadow-lg w-full h-auto"
+    title="ZenWealth Cover Image"
+    loading="lazy"
+    width={1200}
+    height={630}
+  />
+  <figcaption className="text-center text-sm text-secondary mt-2">A standard Excel Budget Template</figcaption>
+</figure>
 
 ## My Solution
-ZenWealth connects to users' bank accounts via Plaid's secure API, automatically categorizes transactions, and provides intelligent budgeting tools with visual spending analytics. The platform gives users a complete financial overview while maintaining bank-level security.
+ZenWealth is a personal finance application that connects to users' bank accounts via the Plaid API, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a secure, user-friendly interface for monitoring financial health without the hassle of manual data entry.
 
-### Key Features I Built
-- **Automated Transaction Tracking**: Real-time sync with multiple bank accounts, credit cards, and savings accounts
-- **Smart Budgeting System**: Category-based budgets with progress tracking and overspending alerts
-- **Financial Analytics**: Visual insights into spending patterns, income vs. expenses, and net worth calculations
-- **Secure Bank Integration**: Plaid API integration for safe, read-only access to financial data
-- **Responsive Dashboard**: Clean, intuitive interface that works across all devices
+## Plaid
+In order to be able to connect to the user's bank account, I used Plaid, a financial services company that provides a secure way to access users' bank accounts. Plaid allows developers to connect with users' bank accounts and retrieve transaction data without storing sensitive credentials using OAuth.
 
-## Screenshots
+OAuth allows you as a developer to specify what areas of the user's bank account you want to access to such as transaction history, account balances, and account details. This way, users can securely connect their bank accounts to ZenWealth without without storing their bank credentials in the app.
 
-### Dashboard Overview
-![Dashboard](/projects/zenwealth/Dashboard.png "Main dashboard showing financial overview")
-The dashboard provides an at-a-glance view of financial health, including total balance, monthly expenses, and savings progress.
-
-### Budget Management
-![Budgets](/projects/zenwealth/Budgets.png "Budget creation and tracking interface")
-Users can create category-based budgets with visual progress indicators and spending alerts.
-
-### Transaction Analysis
-![Analytics](/projects/zenwealth/Analytics.png "Spending analytics and trends")
-Detailed analytics help users understand spending patterns and make informed financial decisions.
-
-## Technical Implementation
-
-### Architecture Decisions
-- **Backend**: ASP.NET Core for robust API development and business logic
-- **Frontend**: React with TypeScript for type-safe, maintainable UI code
-- **Database**: SQL Server for reliable financial data storage
-- **Styling**: Tailwind CSS with Shadcn components for consistent, modern design
-
-### Key Challenges Solved
-
-**Secure Financial Data Handling**
-Implemented Plaid's secure API integration to safely access bank data without storing sensitive credentials. All financial data is encrypted and follows banking security standards.
-
-**Real-time Data Synchronization**
-Built webhook handlers to automatically update transactions and account balances when changes occur at the bank level, ensuring users always see current information.
-
-**Intelligent Transaction Categorization**
-Developed logic to automatically categorize transactions using merchant data and user patterns, reducing manual input while maintaining accuracy.
-
-**Performance Optimization**
-Implemented efficient data querying and caching strategies to handle large transaction datasets without impacting user experience.
-
-## What I Learned
-
-This project deepened my understanding of:
-- **Financial API Integration**: Working with banking APIs and handling sensitive financial data securely
-- **Full-Stack Development**: Coordinating complex data flows between frontend, backend, and external services
-- **User Experience Design**: Creating intuitive interfaces for complex financial data
-- **Security Best Practices**: Implementing proper authentication, encryption, and data protection measures
-
-## Technology Stack
-
-**Backend**
-- C# / ASP.NET Core
-- Entity Framework Core
-- Plaid API (Going.Plaid)
-- Azure Communication Services
-
-**Frontend**
-- TypeScript / React
-- Tailwind CSS / Shadcn UI
-- Chart.js for data visualization
-
-**Infrastructure**
-- SQL Server / PostgreSQL
-- RESTful API design
-- Webhook integration
-
-## Future Enhancements
-
-- Investment portfolio tracking
-- Goal-based savings features  
-- Mobile app development
-- AI-powered financial recommendations
-- Bill reminder notifications
+<div className="w-full">
+  <figure className="flex justify-center gap-2 mb-0 flex-wrap">
+    <Image
+      src="/projects/zenwealth/plaid-link.png"
+      alt="Plaid Link Interface"
+      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
+      title="Plaid Link Interface for connecting bank accounts"
+      loading="lazy"
+      width={360}
+      height={608}
+    />
+    <Image
+      src="/projects/zenwealth/link-accounts.png"
+      alt="Plaid Link Interface"
+      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
+      title="Plaid Link Interface for connecting bank accounts"
+      loading="lazy"
+      width={360}
+      height={608}
+    />
+    <Image
+      src="/projects/zenwealth/link-login.png"
+      alt="Plaid Link Interface"
+      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
+      title="Plaid Link Interface for connecting bank accounts"
+      loading="lazy"
+      width={360}
+      height={608}
+    />
+  </figure>
+  <figcaption className="text-center text-sm text-secondary mt-2">Plaid Link Interface for connecting bank accounts</figcaption>
+</div>

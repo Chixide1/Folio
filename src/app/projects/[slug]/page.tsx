@@ -30,7 +30,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
         <header className="flex justify-between items-center max-lg:flex-col sm:px-8 gap-x-10 mx-auto mb-6 lg:mb-20">
           <div className="flex flex-col gap-y-4 max-sm:flex-col lg:w-1/2 mb-6 lg:max-w-md relative">
             <div className="flex lg:flex-col gap-4 max-lg:items-center flex-wrap">
-              <h1 className="inline-block font-semibold text-4xl xl:text-5xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
+              <h1 className="inline-block font-normal text-4xl xl:text-5xl tracking-tight text-pretty text-gray-950 dark:text-gray-200">
                 {frontmatter.title}
               </h1>
               <div className="flex gap-x-2">
@@ -50,6 +50,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
             <Image
               src={frontmatter.image}
               alt={frontmatter.title}
+              loading='eager'
               width={0}
               height={0}
               sizes="(max-width: 768px) 100vw, 75vw"
