@@ -3,6 +3,7 @@ import {TagGroup} from "@/components/ui/tag";
 import Link from "next/link";
 import {ProjectMdx} from "@/types";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
+import { cn } from "@/lib/utils";
 
 export function ProjectCard({project}: { project: ProjectMdx }) {
   const ProjectImage = project.frontmatter.live ? Link : 'div';
@@ -12,7 +13,10 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
       className="max-lg:border max-lg:rounded-md flex lg:gap-2 max-lg:flex-col transform-3d perspective-normal"
     >
       <ProjectImage
-        className="max-lg:bg-card max-lg:rounded-t-md lg:rounded-l-3xl border hover:border-accent flex lg:w-5/12 shadow-black/40 lg:shadow-md transform-gpu transition-all hover:shadow-2xl duration-500 lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2 will-change-transform backface-hidden"
+        className={cn(
+          "max-lg:bg-card max-lg:rounded-t-md lg:rounded-l-3xl border flex lg:w-5/12 shadow-black/40 lg:shadow-md duration-500",
+          project.frontmatter.live && "hover:border-accent transform-gpu transition-all hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2 will-change-transform backface-hidden"
+        )}
         href={project.frontmatter.live ?? "/"} target="_blank"
       >
         <Image
