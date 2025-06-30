@@ -38,7 +38,7 @@ I wanted to create a solution that automatically aggregates financial data and a
 ZenWealth is a personal finance application that connects to users' bank accounts via the Plaid API, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a secure, user-friendly interface for monitoring financial health without the hassle of manual data entry.
 
 ## Plaid
-In order to be able to connect to the user's bank account, I used Plaid, a financial services company that provides a secure way to access users' bank accounts. Plaid allows developers to connect with users' bank accounts and retrieve transaction data without storing sensitive credentials using OAuth.
+To be able to connect to the user's bank account, I used Plaid, a financial services company that provides a secure way to access users' bank accounts. Plaid allows developers to connect with users' bank accounts and retrieve transaction data without storing sensitive credentials using OAuth.
 
 OAuth allows you as a developer to specify what areas of the user's bank account you want to access to such as transaction history, account balances, and account details. This way, users can securely connect their bank accounts to ZenWealth without without storing their bank credentials in the app.
 
@@ -74,3 +74,8 @@ OAuth allows you as a developer to specify what areas of the user's bank account
   </figure>
   <figcaption className="text-center text-sm text-secondary mt-2">Plaid Link Interface for connecting bank accounts</figcaption>
 </div>
+
+## Backend
+I developed the backend of this website using ASP.NET Core, leveraging my prior experience with the framework. Initially, I structured the architecture into traditional Presentation, Services, and Data layers. However, to ensure greater maintainability, testability, and scalability, I transitioned to a hexagonal architecture.
+
+To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
