@@ -4,9 +4,11 @@ import Link from "next/link";
 import {ProjectMdx} from "@/types";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
 import { cn } from "@/lib/utils";
+import { useMemo } from "react";
 
 export function ProjectCard({project}: { project: ProjectMdx }) {
-  const ProjectImage = project.frontmatter.live ? Link : 'div';
+  const ProjectImage = useMemo(() => project.frontmatter.live ? Link : 'div', [project.frontmatter.live]);
+  const ProjectInfo = useMemo(() => project.frontmatter.github ? Link : 'div', [project.frontmatter.github]);
 
   return (
     <div
@@ -14,8 +16,8 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
     >
       <ProjectImage
         className={cn(
-          "max-lg:bg-card max-lg:rounded-t-md lg:rounded-l-3xl border flex lg:w-5/12 shadow-black/40 lg:shadow-md duration-500",
-          project.frontmatter.live && "hover:border-accent transform-gpu transition-all hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2 will-change-transform backface-hidden"
+          "max-lg:bg-card max-lg:rounded-t-md hover:border-accent lg:rounded-l-3xl border flex lg:w-5/12 shadow-black/40 lg:shadow-md duration-500",
+          project.frontmatter.live && "transform-gpu transition-all hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2 will-change-transform backface-hidden"
         )}
         href={project.frontmatter.live ?? "/"} target="_blank"
       >
@@ -28,8 +30,11 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
           className="w-full h-auto border-inherit rounded-[inherit] object-cover object-left will-change-transform backface-hidden"
         />
       </ProjectImage>
-      <Link
-        className="group backdrop-blur-sm hover:border-accent max-lg:rounded-b-md bg-white/90 dark:bg-card p-4 lg:rounded-r-3xl w-full border transform-gpu shadow-black/20 lg:shadow-md transition-all hover:shadow-2xl duration-500 lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:rotate-x-2 lg:hover:-rotate-y-1 will-change-transform backface-hidden"
+      <ProjectInfo
+        className={cn(
+          "group backdrop-blur-sm hover:border-accent  max-lg:rounded-b-md bg-white/90 dark:bg-card p-4 lg:rounded-r-3xl w-full border transform-gpu shadow-black/20 lg:shadow-md transition-all duration-500 will-change-transform backface-hidden",
+          project.frontmatter.github && "hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:rotate-x-2 lg:hover:-rotate-y-1"
+        )}
         href={project.frontmatter.projectPage ? `/projects/${project.slug}` : project.frontmatter.github ?? "/"} target={project.frontmatter.projectPage ? "_self": "_blank"}
       >
         <div className="flex gap-1 items-center mb-2">
@@ -43,7 +48,7 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
         </div>
         <TagGroup tags={project.frontmatter.tags} className="text-xs mb-4" />
         <p className="text-[0.9rem]">{project.frontmatter.description}</p>
-      </Link>
+      </ProjectInfo>
     </div>
   )
 }

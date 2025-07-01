@@ -77,5 +77,43 @@ OAuth allows you as a developer to specify what areas of the user's bank account
 
 ## Backend
 I developed the backend of this website using ASP.NET Core, leveraging my prior experience with the framework. Initially, I structured the architecture into traditional Presentation, Services, and Data layers. However, to ensure greater maintainability, testability, and scalability, I transitioned to a hexagonal architecture.
+![Hexagonal architecture](/projects/zenwealth/hexagonal-arch.svg "Hexagonal Architecture")
 
 To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
+
+### Database
+Initially I used SQL Server for the database, but later migrated to PostgreSQL as using it was more convenient for the hosting provider I chose. I tried using Azure at first as the hosting provider for the database as they had a free tier, but then upon testing the app, the database queries would timeout as the free tier automatically turns off the database server if usage hasn't been detected for a period of time which was not ideal for a production app. I then switched to PostgreSQL hosted on my Hetzner VPS which allowed me to always keep the database server running.
+
+For the Database Schema I used 5 different tables:
+- **Users**: Stores user information and authentication details.
+- **Accounts**: Contains information about the bank accounts linked to the user.
+- **Transactions**: Records individual transactions associated with each account.
+- **Budgets**: Manages user-defined budgets for different categories.
+- **Items**: Represents the institutions (banks) linked to the user's accounts.
+
+In order to ensure scalability I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation. This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as the dataset grows.
+
+I used Entity Framework Core to interact with the database and write the SQL queries. This allows me to swap out the database provider without having to rewrite the queries, which is especially useful for adhering to the hexagonal architecture principles as it would be eaier to create a new adapter for a different database provider.
+
+### Email Notifications
+To keep users informed about their financial activities, I implemented an email notification system using Azure. This system sends notifications and verification emails to users, enhancing the overall user experience and security of the application.
+
+## Frontend
+The frontend of ZenWealth is built using React, Typescript, and Tailwind CSS. I chose to use Tailwind CSS as it allows for rapid development of responsive and visually appealing user interfaces. Shadcn UI components were used as they are very easy to customise and are already built with Tailwind CSS, allowing to focus more on the functionality rather than the styling.
+![ShadCn Components](/projects/zenwealth/shadcn.png "Shadcn Components")
+
+The frontend communicates with the backend via a REST API, as Plaid advises using a seperate backend & frontend so that certains actions, like the Link flow that authorises the user's bank account, can be securely handled by the backend without exposing sensitive information to the frontend.
+
+### Dashboard
+
+### Accounts
+
+### Transactions
+
+### Budgets
+
+### Analytics
+
+## Security & Privacy
+
+## Lessons learnt while bulding the project 

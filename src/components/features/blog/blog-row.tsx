@@ -42,7 +42,7 @@ export function BlogRow({
           ))}
         </div>
       </div>
-      <Link href={`/blog/${slug}`} className="group flex flex-col text-balance max-md:gap-5 gap-3 p-3 border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
+      <Link href={`/blog/${slug}`} className="group flex flex-col text-balance max-md:gap-5 gap-3 p-3 md:border-l border-accent-foreground light:border-secondary-foreground border-dashed w-full">
         <BlogDate date={date} className="md:hidden" />
         <h3 className="text-primary font-medium">{title}</h3>
         <p className="leading-6">{description}</p>
