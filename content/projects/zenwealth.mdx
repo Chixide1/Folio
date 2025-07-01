@@ -16,23 +16,14 @@ tags:
   - "Shadcn"
 ---
 
+import {FigImage} from "../../src/components/features/mdx/FigImage";
+
 ## The Problem
-Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an excel sheet where they manually export the transaction from their bank then import it into the excel sheet. This can be time-consuming and error-prone, due to this, a lot of people don't regularly review their financial health.
+Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transaction from their bank then import it into the excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
 
-I wanted to create a solution that automatically aggregates financial data and all it requires the user to do is to connect the banks account that they want to track. I also wanted the interface to be intuitive and visually appealing, making it easy for users to understand their financial health at a glance.
+I wanted to create a solution that automatically aggregates financial data, and all it requires the user to do is to connect the bank account that they want to track. I also wanted the interface to be intuitive and visually appealing, making it easy for users to understand their financial health at a glance.
 
-<figure className="mb-0">
-  <Image
-    src="/projects/zenwealth/excel.png"
-    alt="ZenWealth Cover Image"
-    className="rounded-lg shadow-lg w-full h-auto"
-    title="ZenWealth Cover Image"
-    loading="lazy"
-    width={1200}
-    height={630}
-  />
-  <figcaption className="text-center text-sm text-secondary mt-2">A standard Excel Budget Template</figcaption>
-</figure>
+<FigImage src="/projects/zenwealth/excel.png" alt="A Standard Excel Budget Template" />
 
 ## My Solution
 ZenWealth is a personal finance application that connects to users' bank accounts via the Plaid API, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a secure, user-friendly interface for monitoring financial health without the hassle of manual data entry.
@@ -77,32 +68,36 @@ OAuth allows you as a developer to specify what areas of the user's bank account
 
 ## Backend
 I developed the backend of this website using ASP.NET Core, leveraging my prior experience with the framework. Initially, I structured the architecture into traditional Presentation, Services, and Data layers. However, to ensure greater maintainability, testability, and scalability, I transitioned to a hexagonal architecture.
-![Hexagonal architecture](/projects/zenwealth/hexagonal-arch.svg "Hexagonal Architecture")
+
+<FigImage src="/projects/zenwealth/hexagonal-arch.svg" alt="Hexagonal Architecture" />
 
 To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
 
 ### Database
-Initially I used SQL Server for the database, but later migrated to PostgreSQL as using it was more convenient for the hosting provider I chose. I tried using Azure at first as the hosting provider for the database as they had a free tier, but then upon testing the app, the database queries would timeout as the free tier automatically turns off the database server if usage hasn't been detected for a period of time which was not ideal for a production app. I then switched to PostgreSQL hosted on my Hetzner VPS which allowed me to always keep the database server running.
+Initially I used SQL Server for the database, but later migrated to Postgresql as using it was more convenient for the hosting provider I chose. I tried using Azure at first as the hosting provider for the database as they had a free tier. However, upon testing the app, the database queries would time out as the free tier automatically turns off the database server if usage hasn't been detected for a period of time, which was not ideal for a production app. I then switched to a Postgresql database hosted on my Hetzner VPS which allowed me to always keep the database server running.
 
-For the Database Schema I used 5 different tables:
+For the Database Schema I used five different tables:
 - **Users**: Stores user information and authentication details.
 - **Accounts**: Contains information about the bank accounts linked to the user.
 - **Transactions**: Records individual transactions associated with each account.
 - **Budgets**: Manages user-defined budgets for different categories.
 - **Items**: Represents the institutions (banks) linked to the user's accounts.
 
-In order to ensure scalability I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation. This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as the dataset grows.
+<FigImage src="/projects/zenwealth/db-tables.png" alt="Database Schema" />
 
-I used Entity Framework Core to interact with the database and write the SQL queries. This allows me to swap out the database provider without having to rewrite the queries, which is especially useful for adhering to the hexagonal architecture principles as it would be eaier to create a new adapter for a different database provider.
+To ensure scalability, I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation. This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as the dataset grows.
+
+I used Entity Framework Core to interact with the database and write the SQL queries. This allows me to swap out the database provider without having to rewrite the queries. This is especially useful for adhering to the hexagonal architecture principles as it would be easier to create a new adapter for a different database provider.
 
 ### Email Notifications
 To keep users informed about their financial activities, I implemented an email notification system using Azure. This system sends notifications and verification emails to users, enhancing the overall user experience and security of the application.
 
 ## Frontend
-The frontend of ZenWealth is built using React, Typescript, and Tailwind CSS. I chose to use Tailwind CSS as it allows for rapid development of responsive and visually appealing user interfaces. Shadcn UI components were used as they are very easy to customise and are already built with Tailwind CSS, allowing to focus more on the functionality rather than the styling.
-![ShadCn Components](/projects/zenwealth/shadcn.png "Shadcn Components")
+The frontend of ZenWealth is built using React, TypeScript, and Tailwind CSS. I chose to use Tailwind CSS as it allows for rapid development of responsive and visually appealing user interfaces. Shadcn UI components were used as they are easily customizable and are already built with Tailwind CSS, allowing me to focus more on the functionality rather than the styling.
 
-The frontend communicates with the backend via a REST API, as Plaid advises using a seperate backend & frontend so that certains actions, like the Link flow that authorises the user's bank account, can be securely handled by the backend without exposing sensitive information to the frontend.
+<FigImage src="/projects/zenwealth/shadcn.png" alt="Shadcn Components" />
+
+The frontend communicates with the backend via a REST API, as Plaid advises using a separate backend and frontend so that the backend can securely handle certain actions. For Example, the Link flow that authorizes the user's bank account needs to retrieve a token from the backend, swap it once the user completes their bank authorization, then send it back to the server.
 
 ### Dashboard
 
@@ -116,4 +111,4 @@ The frontend communicates with the backend via a REST API, as Plaid advises usin
 
 ## Security & Privacy
 
-## Lessons learnt while bulding the project 
+## Lessons learnt while building the project 
