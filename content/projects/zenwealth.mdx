@@ -1,7 +1,7 @@
 ---
 title: "Zenwealth"
 date: "2025-06-11"
-description: "ZenWealth is a personal finance app built with ASP.NET Core and React. It connects to banks via Plaid to track expenses, manage budgets, and analyze spending. The linked app uses test data, viewable by adding an account with any username and password."
+description: "ZenWealth is a personal finance app built with ASP.NET Core and React. It connects to banks via Plaid to track expenses, manage budgets and analyze spending. The linked app uses test data, viewable by adding an account with any username and password."
 image: "/projects/zenwealth/cover.png"
 github: "https://github.com/Chixide1/ZenWealth"
 live: "https://zenwealth.ckdoestech.com/"
@@ -19,19 +19,19 @@ tags:
 import {FigImage} from "../../src/components/features/mdx/fig-image";
 
 ## The Problem
-Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transactions from their bank then import it into the excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
+Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transactions from their bank then import it into the Excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
 
 I wanted to create a solution that automatically aggregates financial data, and all it requires the user to do is to connect the bank account that they want to track. I also wanted the interface to be intuitive and visually appealing, making it easy for users to understand their financial health at a glance.
 
 <FigImage src="/projects/zenwealth/excel.png" alt="A Standard Excel Budget Template" />
 
 ## My Solution
-ZenWealth is a personal finance application that connects to users' bank accounts via Plaid, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a clean, user-friendly interface for monitoring financial health without the hassle of manual data entry.
+ZenWealth is a personal finance application that connects to users' bank accounts via Plaid, allowing them to track expenses, manage budgets and analyze spending patterns. The app provides a clean, user-friendly interface for monitoring financial health without the hassle of manual data entry.
 
 ## Plaid
 To securely connect to users' bank accounts, I integrated [Plaid](https://plaid.com/docs/api/), a solution that simplifies access to banking data. With Plaid, developers can retrieve information like transaction history and account balances without ever handling or storing sensitive credentials.
 
-Plaid uses [OAuth](https://auth0.com/), an industry-standard protocol that ensures users stay in control of their data. As a developer, I can request only the specific permissions needed - for example, access to transaction history, account balances, or basic account details. This means users can confidently link their bank accounts to ZenWealth without worrying about exposing their login information.
+Plaid uses [OAuth](https://auth0.com/), an industry-standard protocol that ensures users stay in control of their data. As a developer, I can request only the specific permissions needed — for example, access to transaction history, account balances or basic account details. This means users can confidently link their bank accounts to ZenWealth without worrying about exposing their login information.
 
 Because authentication happens directly through the user's bank, credentials remain private. ZenWealth never sees or stores them. Instead, Plaid securely provides access tokens that let the app do its job while keeping user data safe and protected.
 
@@ -70,22 +70,22 @@ Because authentication happens directly through the user's bank, credentials rem
 </div>
 
 ## Backend Architecture
-I built the backend of this website using [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet), drawing on my previous experience with the framework. At first, I followed a conventional layered architecture by dividing the project into Presentation, Service, and Data layers.
+I built the backend of this website using [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet), drawing on my previous experience with the framework. At first, I followed a conventional layered architecture by dividing the project into Presentation, Service and Data layers.
 
-Upon exploring software design patterns I came across the principles of [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture), also known as Ports and Adapters. The benefits such as greater testability and improved scalability were compelling.
+Upon exploring software design patterns, I came across the principles of [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture), also known as Ports and Adapters. The benefits such as greater testability and improved scalability were compelling.
 
-I decided to refactor the backend accordingly, to align more with hexagonal principles. This also allowed me to create basic unit & integration tests for the application.
+I decided to refactor the backend accordingly to align more with hexagonal principles. This also allowed me to create basic unit and integration tests for the application.
 
 <FigImage src="/projects/zenwealth/hexagonal-arch.svg" alt="Hexagonal Architecture" />
 
 To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
 
 ### Database Design
-I started with [SQL Server](https://www.microsoft.com/en-gb/sql-server) for my database, but the need for more convenient hosting led me to PostgreSQL.
+I started with [SQL Server](https://www.microsoft.com/en-gb/sql-server) for my database, but the need for more convenient hosting led me to Postgresql.
 
 My initial hosting attempt with Azure's free tier proved problematic. Database queries frequently timed out because the free tier automatically powered down the server during periods of inactivity, which was a big issue for end users.
 
-To resolve this, I switched to a [PostgreSQL](https://www.postgresql.org/) database hosted on my Hetzner VPS. This allowed me to maintain a continuously running database server without constant idlying.
+To resolve this, I switched to a [Postgresql](https://www.postgresql.org/) database hosted on my Hetzner VPS. This allowed me to maintain a continuously running database server without constant idling.
 
 For the Database Schema I used five different tables:
 - **Users** - Stores user information and authentication details.
@@ -96,7 +96,7 @@ For the Database Schema I used five different tables:
 
 <FigImage src="/projects/zenwealth/db-tables.png" alt="Database Schema" />
 
-To support scalability, I implemented keyset pagination when querying transactions. Unlike traditional offset-based pagination, which becomes increasingly inefficient as the dataset grows, keyset pagination enables efficient retrieval of large volumes of data without performance degradation. This approach is especially valuable when working with long and ever-growing transaction histories.
+To support scalability, I implemented keyset pagination when querying transactions. Unlike traditional offset-based pagination, which becomes increasingly inefficient as the dataset grows, keyset pagination enables efficient retrieval of large amounts of data without performance degradation. This approach is especially valuable when working with long and ever-growing transaction histories.
 
 For data access, I used [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) to write and manage SQL queries. One of the key advantages of EF Core is its provider-agnostic design, which allows the underlying database to be swapped out without rewriting query logic.
 
@@ -106,7 +106,7 @@ This flexibility aligns well with hexagonal architecture principles, making it e
 To keep users informed about their financial activities, I implemented an email notification system using Azure. This system sends notifications and verification emails to users, enhancing the overall user experience and security of the application.
 
 ## Frontend Architecture
-The frontend of ZenWealth is built using React, TypeScript, and Tailwind CSS. I chose to use [Tailwind CSS](https://tailwindcss.com/) as it allows for rapid development of responsive and visually appealing user interfaces. [Shadcn UI](https://ui.shadcn.com/) components were used as they are easily customizable and are already built with Tailwind CSS, allowing me to focus more on the functionality rather than the styling.
+The frontend of ZenWealth is built using React, TypeScript and Tailwind CSS. I chose to use [Tailwind CSS](https://tailwindcss.com/) as it allows for rapid development of responsive and visually appealing user interfaces. [Shadcn UI](https://ui.shadcn.com/) components were used as they are easily customizable and are already built with Tailwind CSS, allowing me to focus more on the functionality rather than the styling.
 
 For the charts I used [Recharts](https://recharts.org/en-US/) which is a composable charting library built on React components. It provides a simple and flexible way to create charts and graphs, making it easy to visualize financial data.
 
@@ -116,23 +116,23 @@ The frontend communicates with the backend via a JSON API, as Plaid advises usin
 
 A good example of this is the Link flow that authorizes the user's bank account. The process is as follows:
 
-- A Link token is retrieved from the backend, and supplied to the Plaid Link component in the frontend.
+- A Link token is retrieved from the backend and supplied to the Plaid Link component in the frontend.
 - Once the user completes their bank authorization, they are supplied with a public token which needs to be returned to the backend and expires after a short period of time.
-- Once the backend has the public token, its swapped for an access token which expires after a longer period of time, and is used to make requests to the users' bank.
+- Once the backend has the public token, it's swapped for an access token which expires after a longer period of time and is used to make requests to the users' bank.
 
 ### Dashboard
 
-The dashboard page is the first thing that the user sees when they login, so I decided to make it give the user an overview of their financial health. It shows the user's various monthly metrics at a glance like the balance, expenditure, savings & income in the first section.
+The dashboard page is the first thing that the user sees when they log in, so I decided to make it give the user an overview of their financial health. It shows the user's various monthly metrics at a glance like the balance, expenditure, savings and income in the first section.
 
 ![ZenWealth Dashboard](/projects/zenwealth/dashboard.png)
 
-In the following section, the user can see their recent transactions, and they get the option of viewing both income and expenses together or separately. They also get a line grapgh of how their income compares to their expenses over the past year.
+In the following section, the user can see their recent transactions, and they get the option of viewing both income and expenses together or separately. They also get a line graph of how their income compares to their expenses over the past year.
 
-Finally, you a bunch of other cards that display things like the budget status, liabilities and top expense categories.
+Finally, it displays a bunch of other cards that display things like the budget status, liabilities and top expense categories.
 
 ### Accounts
 
-The accounts page is all about the connected bank accounts, so I made sure to highlight the user's current networth as as the first thing they see when on the page. Afterwards, they can view two pie charts which contain their assets and liabilities.
+The accounts page is all about the connected bank accounts, so I made sure to highlight the user's current Net worth as the first thing they see when on the page. Afterward, they can view two pie charts which contain their assets and liabilities.
 
 ![ZenWealth Accounts](/projects/zenwealth/accounts.png)
 
@@ -140,19 +140,19 @@ Throughout the page they get different ways to view the accounts either through 
 
 ### Transactions
 
-Arguably the part I spent the most time on, the transactions page is where users can view all their transactions in a table. They can filter the transactions by date, account, and category. They can also search for specific transactions by name and sort by either the date or amount.
+Arguably the part I spent the most time on, the transactions page is where users can view all their transactions in a table. They can filter the transactions by date, account and category. They can also search for specific transactions by name and sort by either the date or amount.
 
 ![ZenWealth Transactions](/projects/zenwealth/transactions.png)
 
-The UI of the table was created using Tanstack table which makes it easy to create a responsive and interactive table. It also allows for features like sorting, filtering, pagination & column visibility.
+The UI of the table was created using Tanstack table, which makes it easy to create a responsive and interactive table. It also allows for features like sorting, filtering, pagination and column visibility.
 
 ### Budgets
 
-In the budgets page, users can create and manage their budgets. They can set a budget for a specific category and track their progress towards that budget. The page also shows the user's total budget and how much they have spent so far.
+On the budgets page, users can create and manage their budgets. They can set a budget for a specific category and track their progress towards that budget. The page also shows the user's total budget and how much they have spent so far.
 
 ![ZenWealth Budgets](/projects/zenwealth/budgets.png)
 
-I also give the user the option to set a different start date for their budget, so that they can align it with their pay cycle. This is especially useful for users who get paid bi-weekly or on a different day than end / beginning of the month. They can also change the view to a table view which shows the data in a deifferent format.
+I also give the user the option to set a different start date for their budget so that they can align it with their pay cycle. This is especially useful for users who get paid bi-weekly or on a different day than the end / beginning of the month. They can also change the view to a table view which shows the data in a different format.
 
 ### Analytics
 
@@ -169,5 +169,7 @@ The second chart is a rose chart that highlights the top six expense categories 
 Each segment displays both the percentage and the total amount spent in that category, giving users an at-a-glance understanding of where their money is going.
 
 ## Security & Privacy
+
+
 
 ## Lessons learnt while building the project 

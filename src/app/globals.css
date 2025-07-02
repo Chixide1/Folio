@@ -58,7 +58,7 @@
   --secondary-foreground: var(--color-gray-300);
   --muted: var(--color-gray-200);
   --muted-foreground: var(--color-gray-600);
-  --accent: var(--color-violet-700);
+  --accent: var(--color-indigo-700);
   --accent-foreground: var(--color-gray-700);
   --destructive: oklch(0.577 0.245 27.325);
   --border: --alpha(var(--color-gray-300) / 50%);
@@ -127,9 +127,9 @@
 
 @utility prose-content {
   @apply prose-base dark:prose-invert prose-slate light:prose-strong:text-primary-foreground prose-headings:font-medium
-  prose-strong:text-card-foreground prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-h2:first:mt-0
-  prose-img:border prose-a:transition-colors prose-a:hover:!text-accent prose-a:no-underline dark:prose-a:text-slate-300
-  prose-a:duration-500 prose-a:border-b prose-a:border-accent prose-li:list-[square] prose-headings:scroll-m-28 dark:text-slate-300/75 text-foreground;
+  prose-strong:dark:text-slate-200 prose-img:rounded-lg prose-h2:mb-[0.3em] prose-h2:mt-[1.5em] prose-h2:first:mt-0 prose-headings:dark:text-slate-200
+  prose-img:border prose-a:transition-colors prose-a:hover:!text-accent prose-a:no-underline dark:prose-a:text-slate-200
+  prose-a:duration-500 prose-a:border-b prose-a:border-accent prose-li:list-[square] prose-headings:scroll-m-28 text-foreground;
 }
 
 @utility text-vertical {
