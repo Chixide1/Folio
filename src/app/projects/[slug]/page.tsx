@@ -60,7 +60,7 @@ export default async function ProjectPage({ params }: SlugPageParams) {
           </figure>
         </header>
 
-        <div className="flex max-lg:flex-col sm:p-8 lg:gap-6">
+        <div className="flex max-lg:flex-col sm:p-8 lg:gap-6 lg:mr-8">
           <TableOfContents headings={headings} className="lg:w-[22%] top-20 2xl:top-32 max-lg:mb-16 max-h-[calc(100vh-5rem)] max-lg:static border-2 rounded-md h-fit" />
           <div className="w-full prose prose-content mx-auto">
             <MDXRemote
