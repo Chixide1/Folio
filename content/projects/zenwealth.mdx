@@ -152,7 +152,7 @@ On the budgets page, users can create and manage their budgets. They can set a b
 
 ![ZenWealth Budgets](/projects/zenwealth/budgets.png)
 
-I also give the user the option to set a different start date for their budget so that they can align it with their pay cycle. This is especially useful for users who get paid bi-weekly or on a different day than the end / beginning of the month. They can also change the view to a table view which shows the data in a different format.
+I also give the user the option to set a different start date for their budget so that they can align it with their pay cycle. This is especially useful for users who get paid bi-weekly or on a different day than the end/beginning of the month. They can also change the view to a table view which shows the data in a different format.
 
 ### Analytics
 
@@ -170,6 +170,26 @@ Each segment displays both the percentage and the total amount spent in that cat
 
 ## Security & Privacy
 
+For authentication and authorization in the application, I integrated [ASP.NET Core Identity](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-9.0&tabs=visual-studio). I opted for cookie-based authentication over JWTs, as I found it more straightforward to implement and better suited to my understanding at the time.
 
+![ZenWealth Account Settings](/projects/zenwealth/settings-account.png)
 
-## Lessons learnt while building the project 
+To ensure user privacy, all sensitive data queries are scoped to the currently authenticated user, effectively preventing any possibility of accessing another user's financial information.
+
+To enhance account security, I added multifactor authentication (MFA). This helps mitigate the risk of unauthorized access due to compromised passwords—especially those exposed in data breaches.
+
+![ZenWealth Security Settings](/projects/zenwealth/settings-security.png)
+
+Finally, the application gives users full control over their data. At any time, they can delete their account or remove a connected bank account, along with all related transactions.
+
+## Lessons learnt while building the project
+
+- **Authentication & Authorization with ASP.NET Core Identity** - Gained hands-on experience integrating ASP.NET Core Identity into a web application. Explored both cookie-based and JWT-based authentication methods, understanding their differences and use cases.
+
+- **Advanced Table Components with TanStack Table in React** - Built dynamic, reusable table components using the TanStack Table API. Implemented features such as sorting, filtering, column visibility toggles and pagination to improve data interaction in the UI.
+
+- **Database Indexing and Query Optimization** - Learned about clustered vs. non-clustered indexes, and the difference between index seeks and index scans. Applied this knowledge to optimize SQL queries for performance.
+
+- **Software Architecture Patterns** - Studied and compared patterns like Clean Architecture, Hexagonal Architecture and N-Tier Architecture, evaluating their benefits, trade-offs and suitability for different types of applications.
+
+- **Working with Third-Party APIs** - Practiced consuming external APIs and transforming the returned data into frontend-friendly formats, ensuring smooth integration between backend services and the React UI.
