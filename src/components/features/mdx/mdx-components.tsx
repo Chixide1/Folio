@@ -4,7 +4,7 @@ import { CodeBlock } from '@/components/features/mdx/codeblock';
 import { BundledLanguage, bundledLanguages } from "shiki";
 import {cn} from "@/lib/utils";
 import Image from "next/image";
-import {FigImage} from "@/components/features/mdx/FigImage";
+import {FigImage} from "@/components/features/mdx/fig-image";
 
 export const mdxComponents: MDXComponents = {
   pre: ({ children }) => {

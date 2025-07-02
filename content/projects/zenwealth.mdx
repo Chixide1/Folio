@@ -16,7 +16,7 @@ tags:
   - "Shadcn"
 ---
 
-import {FigImage} from "../../src/components/features/mdx/FigImage";
+import {FigImage} from "../../src/components/features/mdx/fig-image";
 
 ## The Problem
 Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transactions from their bank then import it into the excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
@@ -26,83 +26,97 @@ I wanted to create a solution that automatically aggregates financial data, and 
 <FigImage src="/projects/zenwealth/excel.png" alt="A Standard Excel Budget Template" />
 
 ## My Solution
-ZenWealth is a personal finance application that connects to users' bank accounts via the Plaid API, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a secure, user-friendly interface for monitoring financial health without the hassle of manual data entry.
+ZenWealth is a personal finance application that connects to users' bank accounts via Plaid, allowing them to track expenses, manage budgets, and analyze spending patterns. The app provides a clean, user-friendly interface for monitoring financial health without the hassle of manual data entry.
 
 ## Plaid
-To be able to connect to the user's bank account, I used Plaid, a financial services company that provides a secure way to access users' bank accounts. Plaid allows developers to connect with users' bank accounts and retrieve transaction data without storing sensitive credentials using OAuth.
+To securely connect to users' bank accounts, I integrated [Plaid](https://plaid.com/docs/api/), a solution that simplifies access to banking data. With Plaid, developers can retrieve information like transaction history and account balances without ever handling or storing sensitive credentials.
 
-OAuth allows you as a developer to specify what areas of the user's bank account you want to access to such as transaction history, account balances, and account details. This way, users can securely connect their bank accounts to ZenWealth without without storing their bank credentials in the app.
+Plaid uses [OAuth](https://auth0.com/), an industry-standard protocol that ensures users stay in control of their data. As a developer, I can request only the specific permissions needed - for example, access to transaction history, account balances, or basic account details. This means users can confidently link their bank accounts to ZenWealth without worrying about exposing their login information.
+
+Because authentication happens directly through the user's bank, credentials remain private. ZenWealth never sees or stores them. Instead, Plaid securely provides access tokens that let the app do its job while keeping user data safe and protected.
 
 <div className="w-full">
   <figure className="flex justify-center gap-2 mb-0 flex-wrap">
-    <Image
-      src="/projects/zenwealth/plaid-link.png"
-      alt="Plaid Link Interface"
-      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
-      title="Plaid Link Interface for connecting bank accounts"
-      loading="lazy"
-      width={360}
-      height={608}
-    />
-    <Image
-      src="/projects/zenwealth/link-accounts.png"
-      alt="Plaid Link Interface"
-      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
-      title="Plaid Link Interface for connecting bank accounts"
-      loading="lazy"
-      width={360}
-      height={608}
-    />
-    <Image
-      src="/projects/zenwealth/link-login.png"
-      alt="Plaid Link Interface"
-      className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
-      title="Plaid Link Interface for connecting bank accounts"
-      loading="lazy"
-      width={360}
-      height={608}
-    />
+    {[
+      {
+        src: "/projects/zenwealth/plaid-link.png",
+        alt: "Plaid Link Interface",
+        title: "Plaid Link Interface for connecting bank accounts",
+      },
+      {
+        src: "/projects/zenwealth/link-accounts.png",
+        alt: "Plaid Link Interface",
+        title: "Plaid Link Interface for connecting bank accounts",
+      },
+      {
+        src: "/projects/zenwealth/link-login.png",
+        alt: "Plaid Link Interface",
+        title: "Plaid Link Interface for connecting bank accounts",
+      },
+    ].map((image, index) => (
+      <Image
+        key={index} // Use a unique key for each image
+        src={image.src}
+        alt={image.alt}
+        className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
+        title={image.title}
+        loading="lazy"
+        width={360}
+        height={608}
+      />
+    ))}
   </figure>
   <figcaption className="text-center text-sm text-secondary mt-2">Plaid Link Interface for connecting bank accounts</figcaption>
 </div>
 
-## Backend
-I developed the backend of this website using ASP.NET Core, leveraging my prior experience with the framework. Initially, I structured the architecture into traditional Presentation, Services, and Data layers. However, to ensure greater maintainability, testability, and scalability, I transitioned to a hexagonal architecture.
+## Backend Architecture
+I built the backend of this website using [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet), drawing on my previous experience with the framework. At first, I followed a conventional layered architecture by dividing the project into Presentation, Service, and Data layers.
+
+Upon exploring software design patterns I came across the principles of [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture), also known as Ports and Adapters. The benefits such as greater testability and improved scalability were compelling.
+
+I decided to refactor the backend accordingly, to align more with hexagonal principles. This also allowed me to create basic unit & integration tests for the application.
 
 <FigImage src="/projects/zenwealth/hexagonal-arch.svg" alt="Hexagonal Architecture" />
 
 To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
 
-### Database
-I started with SQL Server for my database, but the need for more convenient hosting led me to PostgreSQL.
+### Database Design
+I started with [SQL Server](https://www.microsoft.com/en-gb/sql-server) for my database, but the need for more convenient hosting led me to PostgreSQL.
 
 My initial hosting attempt with Azure's free tier proved problematic. Database queries frequently timed out because the free tier automatically powered down the server during periods of inactivity, which was a big issue for end users.
 
-To resolve this, I switched to a PostgreSQL database hosted on my Hetzner VPS. This allowed me to maintain a continuously running database server without constant idlying.
+To resolve this, I switched to a [PostgreSQL](https://www.postgresql.org/) database hosted on my Hetzner VPS. This allowed me to maintain a continuously running database server without constant idlying.
 
 For the Database Schema I used five different tables:
-- **Users**: Stores user information and authentication details.
-- **Accounts**: Contains information about the bank accounts linked to the user.
-- **Transactions**: Records individual transactions associated with each account.
-- **Budgets**: Manages user-defined budgets for different categories.
-- **Items**: Represents the institutions (banks) linked to the user's accounts.
+- **Users** - Stores user information and authentication details.
+- **Accounts** - Contains information about the bank accounts linked to the user.
+- **Transactions** - Records individual transactions associated with each account.
+- **Budgets** - Manages user-defined budgets for different categories.
+- **Items** - Represents the institutions (banks) linked to the user's accounts.
 
 <FigImage src="/projects/zenwealth/db-tables.png" alt="Database Schema" />
 
-To ensure scalability, I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation.
-This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as more and more transaction data is stored.
+To support scalability, I implemented keyset pagination when querying transactions. Unlike traditional offset-based pagination, which becomes increasingly inefficient as the dataset grows, keyset pagination enables efficient retrieval of large volumes of data without performance degradation. This approach is especially valuable when working with long and ever-growing transaction histories.
 
-I used Entity Framework Core to interact with the database and write the SQL queries. This allows me to swap out the database provider without having to rewrite the queries. This is especially useful for adhering to the hexagonal architecture principles as it would be easier to create a new adapter for a different database provider.
+For data access, I used [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) to write and manage SQL queries. One of the key advantages of EF Core is its provider-agnostic design, which allows the underlying database to be swapped out without rewriting query logic.
+
+This flexibility aligns well with hexagonal architecture principles, making it easier to introduce a new adapter for a different database provider if needed, without affecting the core business logic or other parts of the application.
 
 ### Email Notifications
 To keep users informed about their financial activities, I implemented an email notification system using Azure. This system sends notifications and verification emails to users, enhancing the overall user experience and security of the application.
 
-## Frontend
-The frontend of ZenWealth is built using React, TypeScript, and Tailwind CSS. I chose to use Tailwind CSS as it allows for rapid development of responsive and visually appealing user interfaces. Shadcn UI components were used as they are easily customizable and are already built with Tailwind CSS, allowing me to focus more on the functionality rather than the styling.
+## Frontend Architecture
+The frontend of ZenWealth is built using React, TypeScript, and Tailwind CSS. I chose to use [Tailwind CSS](https://tailwindcss.com/) as it allows for rapid development of responsive and visually appealing user interfaces. [Shadcn UI](https://ui.shadcn.com/) components were used as they are easily customizable and are already built with Tailwind CSS, allowing me to focus more on the functionality rather than the styling.
 
 <FigImage src="/projects/zenwealth/shadcn.png" alt="Shadcn Components" />
 
-The frontend communicates with the backend via a JSON API, as Plaid advises using a separate backend and frontend so that the backend can securely handle certain actions. For Example, the Link flow that authorizes the user's bank account needs to retrieve a token from the backend, swap it once the user completes their bank authorization, then send it back to the server.
+The frontend communicates with the backend via a JSON API, as Plaid advises using a separate backend and frontend so that the backend can securely handle certain actions.
+
+A good example of this is the Link flow that authorizes the user's bank account. The process is as follows:
+
+- A Link token is retrieved from the backend, and supplied to the Plaid Link component in the frontend.
+- Once the user completes their bank authorization, they are supplied with a public token which needs to be returned to the backend and expires after a short period of time.
+- Once the backend has the public token, its swapped for an access token which expires after a longer period of time, and is used to make requests to the users' bank.
 
 ### Dashboard
 
