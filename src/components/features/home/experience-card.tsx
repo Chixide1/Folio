@@ -50,7 +50,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
         {/* Company logo as timeline dot */}
         <div className={cn(
           "w-10 h-10 rounded flex items-center justify-center flex-shrink-0 transition-all duration-500 ease-out delay-300 relative z-10",
-          "max-sm:w-full max-sm:h-full max-w-32 max-sm:mr-auto max-sm:ml-8 max-sm:mb-4 max-sm:rounded-xl",
+          "max-sm:w-full max-sm:h-full max-w-32 max-sm:mr-auto max-sm:mb-4 max-sm:rounded-xl",
           isVisible
             ? "scale-100 opacity-100"
             : "scale-75 opacity-0"

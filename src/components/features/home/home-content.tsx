@@ -38,7 +38,7 @@ export function HomeContent({ className, projects }: HomeContentProps) {
       }
     },
     options: {
-      threshold: [0.5],
+      threshold: [0.25, 0.5, 0.75],
       rootMargin: "0% 0% 30% 0%"
     }
   });

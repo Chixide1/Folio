@@ -19,7 +19,7 @@ tags:
 import {FigImage} from "../../src/components/features/mdx/FigImage";
 
 ## The Problem
-Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transaction from their bank then import it into the excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
+Many people struggle to understand where their money goes each month. The standard way a lot of people track their expenses is through an Excel sheet where they manually export the transactions from their bank then import it into the excel sheet. This can be time-consuming and error-prone. Due to this, a lot of people don't regularly review their financial health.
 
 I wanted to create a solution that automatically aggregates financial data, and all it requires the user to do is to connect the bank account that they want to track. I also wanted the interface to be intuitive and visually appealing, making it easy for users to understand their financial health at a glance.
 
@@ -74,7 +74,11 @@ I developed the backend of this website using ASP.NET Core, leveraging my prior 
 To optimize performance and reduce reliance on external APIs, transaction data from the Plaid API is stored in a database. This data is efficiently updated via Plaid webhooks whenever new information becomes available, preventing the overhead of redundant API requests.
 
 ### Database
-Initially I used SQL Server for the database, but later migrated to Postgresql as using it was more convenient for the hosting provider I chose. I tried using Azure at first as the hosting provider for the database as they had a free tier. However, upon testing the app, the database queries would time out as the free tier automatically turns off the database server if usage hasn't been detected for a period of time, which was not ideal for a production app. I then switched to a Postgresql database hosted on my Hetzner VPS which allowed me to always keep the database server running.
+I started with SQL Server for my database, but the need for more convenient hosting led me to PostgreSQL.
+
+My initial hosting attempt with Azure's free tier proved problematic. Database queries frequently timed out because the free tier automatically powered down the server during periods of inactivity, which was a big issue for end users.
+
+To resolve this, I switched to a PostgreSQL database hosted on my Hetzner VPS. This allowed me to maintain a continuously running database server without constant idlying.
 
 For the Database Schema I used five different tables:
 - **Users**: Stores user information and authentication details.
@@ -85,7 +89,8 @@ For the Database Schema I used five different tables:
 
 <FigImage src="/projects/zenwealth/db-tables.png" alt="Database Schema" />
 
-To ensure scalability, I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation. This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as the dataset grows.
+To ensure scalability, I chose to use keyset pagination for the transactions, which allows for efficient retrieval of large datasets without performance degradation.
+This approach is particularly useful when dealing with extensive transaction histories vs traditional offset-based pagination, which can become inefficient as more and more transaction data is stored.
 
 I used Entity Framework Core to interact with the database and write the SQL queries. This allows me to swap out the database provider without having to rewrite the queries. This is especially useful for adhering to the hexagonal architecture principles as it would be easier to create a new adapter for a different database provider.
 
@@ -97,9 +102,17 @@ The frontend of ZenWealth is built using React, TypeScript, and Tailwind CSS. I 
 
 <FigImage src="/projects/zenwealth/shadcn.png" alt="Shadcn Components" />
 
-The frontend communicates with the backend via a REST API, as Plaid advises using a separate backend and frontend so that the backend can securely handle certain actions. For Example, the Link flow that authorizes the user's bank account needs to retrieve a token from the backend, swap it once the user completes their bank authorization, then send it back to the server.
+The frontend communicates with the backend via a JSON API, as Plaid advises using a separate backend and frontend so that the backend can securely handle certain actions. For Example, the Link flow that authorizes the user's bank account needs to retrieve a token from the backend, swap it once the user completes their bank authorization, then send it back to the server.
 
 ### Dashboard
+
+The dashboard page is the first thing that the user sees when they login, so I decided to make it give the user an overview of their financial health. It shows the user's various monthly metrics at a glance like the balance, expenditure, savings & income in the first section.
+
+![ZenWealth Dashboard](/projects/zenwealth/Dashboard.png)
+
+In the following section, the user can see their recent transactions, and they get the option of viewing both income and expenses together or separately. They also get a line grapgh of how their income compares to their expenses over the past year.
+
+Finally, you a bunch of other cards that display things like the budget status, liabilities and top expense categories.
 
 ### Accounts
 

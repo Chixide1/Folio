@@ -90,7 +90,7 @@ const exps: Experience[] = [
     location: "London Victoria, UK"
   },
   {
-    title: "Internship",
+    title: "Internship - Cybersecurity",
     company: "Black Valley",
     companyLogo: "/bv.png", //
     startDate: new Date(2021, 4), // May 2021
