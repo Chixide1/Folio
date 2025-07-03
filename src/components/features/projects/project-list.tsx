@@ -4,9 +4,10 @@ import { SearchInput } from "@/components/shared/search-input";
 import { ProjectCard } from "@/components/features/projects/project-card";
 import { useEffect, useState, useMemo } from "react";
 import Fuse from "fuse.js";
-import { ProjectPost, ProjectMdx } from "@/types";
+import { ProjectMdx } from "@/types";
 import { GetProjectsFuse } from "@/lib/search";
 import { useSearchQuery } from "@/hooks/use-search-query";
+import {MdSearchOff} from "react-icons/md";
 
 type ProjectsListProps = {
   projects: ProjectMdx[];
@@ -45,11 +46,7 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       />
 
       {filteredProjects.length === 0 && query && (
-        <div className="text-center py-12 w-full">
-          <p className="text-muted-foreground text-xl">
-            No projects found for &#34;{query}&#34;
-          </p>
-        </div>
+        <ProjectsNotFound />
       )}
 
       <ol className="space-y-14">
@@ -61,4 +58,13 @@ export function ProjectsList({ projects }: ProjectsListProps) {
       </ol>
     </>
   );
+}
+
+function ProjectsNotFound(){
+  return (
+    <div className="ring-1 ring-accent/20 mx-auto dark:bg-card bg-white backdrop-blur-sm flex items-center flex-col justify-center rounded-md p-6 border shadow-md">
+      <MdSearchOff className="h-8 w-8 text-accent mb-3" />
+      <p className="font-semibold mb-2 text-lg">No Projects Found</p>
+    </div>
+  )
 }

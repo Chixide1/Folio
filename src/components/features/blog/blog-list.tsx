@@ -6,6 +6,7 @@ import { useSearchQuery } from "@/hooks/use-search-query";
 import Fuse from "fuse.js";
 import {GetBlogFuse} from "@/lib/search";
 import {BlogMdx} from "@/types";
+import {NoArticlesSection, SearchResultsEmptySection} from "@/components/features/blog/no-articles-section";
 
 type BlogListProps = {
   posts: BlogMdx[];
@@ -31,13 +32,13 @@ export function BlogList({ posts }: BlogListProps) {
     return results.map(result => result.item);
   }, [posts, query, searchIndex]);
 
+  if (filteredPosts.length === 0 && query) return (
+    <SearchResultsEmptySection searchQuery={query} />
+  )
+  
   return (
-    filteredPosts.length === 0 && query ? (
-      <div className="text-center py-12 w-full">
-        <p className="text-muted-foreground text-xl">
-          No articles found for &#34;{query}&#34;
-        </p>
-      </div>
+    filteredPosts.length === 0 ? (
+      <NoArticlesSection />
     ) : (
       <section className="">
         {filteredPosts.map((post, index) => (
@@ -45,7 +46,7 @@ export function BlogList({ posts }: BlogListProps) {
             slug={post.slug}
             {...post.frontmatter}
             key={"BlogRow-" + index}
-            className="last:border-b"
+            className="first:border-t-0"
           />
         ))}
       </section>

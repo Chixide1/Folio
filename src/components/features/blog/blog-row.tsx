@@ -20,7 +20,7 @@ export function BlogRow({
   ...props
 }: BlogRowProps) {
   return (
-    <article className={cn("border-dashed border-accent-foreground border-t light:border-secondary-foreground flex gap-x-24 w-full ", className)} {...props}>
+    <article className={cn("border-dashed border-accent-foreground first:border-t border-b light:border-secondary-foreground flex gap-x-24 w-full ", className)} {...props}>
       <div className="flex flex-col max-md:hidden p-3 border-r border-dashed border-accent-foreground light:border-secondary-foreground w-5/12">
         <BlogDate date={date} />
         <div className="flex flex-wrap gap-1 mt-auto">

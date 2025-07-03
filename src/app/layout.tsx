@@ -5,7 +5,7 @@ import {AppNavbar} from "@/components/layout/app-navbar";
 import {Providers} from "@/providers";
 import {ReactNode} from "react";
 import {AppFooter} from "@/components/layout/app-footer";
-import { Stripes } from "@/components/ui/stripes";
+import { StripesCol } from "@/components/ui/stripes";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -28,9 +28,9 @@ export default function RootLayout({
         <Providers>
           <AppNavbar />
           <main className="flex min-h-screen mx-auto justify-between">
-            <Stripes/>
+            <StripesCol/>
             {children}
-            <Stripes/>
+            <StripesCol/>
           </main>
           <AppFooter />
         </Providers>

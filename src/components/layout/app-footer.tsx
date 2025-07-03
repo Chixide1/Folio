@@ -1,6 +1,6 @@
 ﻿import React, {HTMLProps} from "react";
 import {cn} from "@/lib/utils";
-import {Stripes} from "@/components/ui/stripes";
+import {StripesCol} from "@/components/ui/stripes";
 import {navItems} from "@/components/shared/nav-items";
 import Link from "next/link";
 import {Logo} from "@/components/shared/logo";
@@ -32,7 +32,7 @@ export function AppFooter({className, ...props}: HTMLProps<HTMLDivElement>){
           </FooterColumn>
         </div>
       </div>
-      <Stripes className="min-h-8 h-8 w-full border max-lg:block" />
+      <StripesCol className="min-h-8 h-8 w-full border max-lg:block" />
     </footer>
   )
 }
