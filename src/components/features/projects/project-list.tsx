@@ -1,12 +1,12 @@
 ﻿'use client'
 
-import { SearchInput } from "@/components/shared/search-input";
-import { ProjectCard } from "@/components/features/projects/project-card";
-import { useEffect, useState, useMemo } from "react";
+import {SearchInput} from "@/components/shared/search-input";
+import {ProjectCard} from "@/components/features/projects/project-card";
+import {useEffect, useMemo, useState} from "react";
 import Fuse from "fuse.js";
-import { ProjectMdx } from "@/types";
-import { GetProjectsFuse } from "@/lib/search";
-import { useSearchQuery } from "@/hooks/use-search-query";
+import {ProjectMdx} from "@/types";
+import {GetProjectsFuse} from "@/lib/search";
+import {useSearchQuery} from "@/hooks/use-search-query";
 import {MdSearchOff} from "react-icons/md";
 
 type ProjectsListProps = {

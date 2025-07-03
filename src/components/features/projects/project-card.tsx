@@ -3,8 +3,8 @@ import {TagGroup} from "@/components/ui/tag";
 import Link from "next/link";
 import {ProjectMdx} from "@/types";
 import {RiArrowRightDoubleLine} from "react-icons/ri";
-import { cn } from "@/lib/utils";
-import { useMemo } from "react";
+import {cn} from "@/lib/utils";
+import {useMemo} from "react";
 
 export function ProjectCard({project}: { project: ProjectMdx }) {
   const ProjectImage = useMemo(() => project.frontmatter.live ? Link : 'div', [project.frontmatter.live]);

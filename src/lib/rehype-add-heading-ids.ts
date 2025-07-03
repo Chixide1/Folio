@@ -1,7 +1,7 @@
 ﻿// lib/rehype-add-heading-ids.ts
-import { visit } from 'unist-util-visit'
-import { toString } from 'mdast-util-to-string'
-import type { Root, Element } from 'hast'
+import {visit} from 'unist-util-visit'
+import {toString} from 'mdast-util-to-string'
+import type {Element, Root} from 'hast'
 
 export function rehypeAddHeadingIds() {
   return (tree: Root) => {

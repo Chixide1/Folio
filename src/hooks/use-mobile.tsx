@@ -15,7 +15,7 @@ export function useIsMobile({maxWidth}: {maxWidth?: number} = {}) {
     mql.addEventListener("change", onChange, { passive: true });
     setIsMobile(window.innerWidth < breakpoint);
     return () => mql.removeEventListener("change", onChange);
-  }, []);
+  }, [breakpoint]);
 
   return !!isMobile;
 }

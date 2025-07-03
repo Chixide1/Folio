@@ -3,10 +3,9 @@
 /**
  * Optimized custom hook for observing the vertical scroll direction
  * @param threshold - Minimum scroll distance to register direction change (default: 10)
- * @param throttleMs - Throttle delay in milliseconds (default: 16ms ≈ 60fps)
  * @returns boolean set to true when scrolling down, false when scrolling up or at top
  */
-export function useScrolldownWatcher(threshold: number = 10, throttleMs: number = 16) {
+export function useScrolldownWatcher(threshold: number = 10) {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);

@@ -3,9 +3,7 @@
 import {FlashlightBgEffect, FlashlightBgEffectProps} from "@/components/layout/flashlight-bg";
 import {GradientBgEffect} from "@/components/layout/gradient-bg";
 import {cn} from "@/lib/utils";
-import {ComponentPropsWithoutRef, useEffect, useState} from "react";
-import {useCursorTracker} from "@/hooks/use-cursor-tracker";
-import {useIsMobile} from "@/hooks/use-mobile";
+import {ComponentPropsWithoutRef} from "react";
 
 type AppBgProps = ComponentPropsWithoutRef<"div"> & {
   flashlightProps?: FlashlightBgEffectProps;

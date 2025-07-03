@@ -1,9 +1,9 @@
 ﻿"use client";
 
-import {useEffect, useRef, useState, useCallback, useMemo, ComponentPropsWithoutRef} from 'react';
-import { RiMenu2Fill } from "react-icons/ri";
-import { useObserver } from '@/hooks/use-observer';
-import type { Heading } from '@/lib/extract-headings';
+import {ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {RiMenu2Fill} from "react-icons/ri";
+import {useObserver} from '@/hooks/use-observer';
+import type {Heading} from '@/lib/extract-headings';
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 

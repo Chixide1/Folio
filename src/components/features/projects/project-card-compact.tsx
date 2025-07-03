@@ -1,7 +1,7 @@
 ﻿import Image from "next/image";
 import {TagGroup} from "@/components/ui/tag";
 import {cn} from "@/lib/utils";
-import { LuArrowUpRight } from "react-icons/lu";
+import {LuArrowUpRight} from "react-icons/lu";
 import Link from "next/link";
 import {ComponentPropsWithRef, forwardRef} from "react";
 import {ProjectPostWithSlug} from "@/types";

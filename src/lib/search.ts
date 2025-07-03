@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import projectsFuse from '@/lib/projects-fuse.json';
 import blogFuse from '@/lib/blog-fuse.json';
-import {BlogMdx, BlogPost, ProjectPost, ProjectMdx} from "@/types";
+import {BlogMdx, ProjectMdx} from "@/types";
 
 export function GetProjectsFuse(){
     const index = Fuse.parseIndex(projectsFuse.index as never);

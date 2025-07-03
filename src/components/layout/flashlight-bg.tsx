@@ -4,7 +4,7 @@ import {ComponentPropsWithoutRef, useEffect, useState} from "react";
 import {cn} from "@/lib/utils";
 import {useCursorTracker} from "@/hooks/use-cursor-tracker";
 import {useIsMobile} from "@/hooks/use-mobile";
-import { Point } from "@/types";
+import {Point} from "@/types";
 import {Property} from "csstype";
 
 export type FlashlightBgEffectProps = ComponentPropsWithoutRef<"div"> & {

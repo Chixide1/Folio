@@ -1,7 +1,7 @@
 ﻿import {ComponentPropsWithoutRef} from "react";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
-import { RiArrowRightDoubleLine } from "react-icons/ri";
+import {RiArrowRightDoubleLine} from "react-icons/ri";
 
 export function ProjectLink({className, target, ...props}: ComponentPropsWithoutRef<"a"> & { name: string }) {
   return (

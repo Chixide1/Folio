@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
-import { LuArrowUpRight } from "react-icons/lu";
-import { Button } from "@/components/ui/button";
+import {LuArrowUpRight} from "react-icons/lu";
+import {Button} from "@/components/ui/button";
 
 interface LiveButtonProps {
   href: string;

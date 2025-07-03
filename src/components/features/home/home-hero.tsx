@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {socialLinks} from "@/components/shared/social-links";
 import {cn} from "@/lib/utils";
-import { StaggeredAnimationGroup } from "@/components/ui/staggered-animation-group";
+import {StaggeredAnimationGroup} from "@/components/ui/staggered-animation-group";
 import {useAtom} from "jotai";
 import {homeActiveIdAtom} from "@/lib/atoms"; // Adjust import
 

@@ -1,8 +1,8 @@
 import {HomeHero} from "@/components/features/home/home-hero";
 import {HomeContent} from "@/components/features/home/home-content";
 import {AppBg} from "@/components/layout/app-bg";
-import { getAllContent } from "@/lib/mdx";
-import { ContentArea } from "@/types";
+import {getAllContent} from "@/lib/mdx";
+import {ContentArea} from "@/types";
 
 export default async function Home() {
   

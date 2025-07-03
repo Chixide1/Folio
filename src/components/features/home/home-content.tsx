@@ -6,7 +6,7 @@ import {HomeAbout} from "@/components/features/home/home-about";
 import {HomeExperience} from "./home-experience";
 import {HomeProjects} from "@/components/features/home/home-projects";
 import {cn} from "@/lib/utils";
-import { ProjectMdx} from "@/types";
+import {ProjectMdx} from "@/types";
 import {useAtom} from "jotai";
 import {homeActiveIdAtom} from "@/lib/atoms";
 

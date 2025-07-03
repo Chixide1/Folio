@@ -1,8 +1,8 @@
 ﻿import fs from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
-import { ContentArea, ProjectPost, BlogPost } from '@/types'
-import { extractHeadingsFromMarkdown, type Heading } from '@/lib/extract-headings'
+import {BlogPost, ContentArea, ProjectPost} from '@/types'
+import {extractHeadingsFromMarkdown, type Heading} from '@/lib/extract-headings'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 

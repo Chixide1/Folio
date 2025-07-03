@@ -1,5 +1,5 @@
-import type { BundledLanguage } from 'shiki'
-import { codeToHtml } from 'shiki'
+import type {BundledLanguage} from 'shiki'
+import {codeToHtml} from 'shiki'
 
 type Props = {
   children: string;

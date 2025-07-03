@@ -2,7 +2,7 @@
 import {cn} from "@/lib/utils";
 import {ComponentPropsWithoutRef} from "react";
 import {StripesBg} from "@/components/ui/stripes";
-import { MdSearchOff } from "react-icons/md";
+import {MdSearchOff} from "react-icons/md";
 
 export function NoArticlesSection({className, ...props}: ComponentPropsWithoutRef<"div">) {
   return (
@@ -21,7 +21,7 @@ export function SearchResultsEmptySection({
   message = "No Posts Found",
   ...props
 }: ComponentPropsWithoutRef<"div"> & {
-  message: string;  
+  message?: string;  
 }) {
   return (
     <StripesBg className={cn("p-8 border-b", className)} {...props}>

@@ -5,7 +5,7 @@ import {cn} from "@/lib/utils";
 import {ProjectCardCompact} from "@/components/features/projects/project-card-compact";
 import {useObserver} from "@/hooks/use-observer";
 import {useIsMobile} from "@/hooks/use-mobile";
-import { ProjectMdx} from "@/types";
+import {ProjectMdx} from "@/types";
 
 type HomeProjectsProps = HTMLProps<HTMLElement> & {
   projects?: ProjectMdx[];

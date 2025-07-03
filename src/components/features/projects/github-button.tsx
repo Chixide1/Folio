@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
-import { FiGithub } from "react-icons/fi";
-import { Button } from "@/components/ui/button";
+import {FiGithub} from "react-icons/fi";
+import {Button} from "@/components/ui/button";
 
 type GitHubButtonProps = {
   href: string;

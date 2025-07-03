@@ -1,7 +1,7 @@
 ﻿'use client'
 
-import { SearchInput } from "@/components/shared/search-input";
-import { useSearchQuery } from "@/hooks/use-search-query";
+import {SearchInput} from "@/components/shared/search-input";
+import {useSearchQuery} from "@/hooks/use-search-query";
 
 export function BlogSearchBar() {
   const { query, setQuery } = useSearchQuery();

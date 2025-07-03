@@ -1,8 +1,8 @@
 ﻿'use client'
 
-import { BlogRow } from "@/components/features/blog/blog-row";
-import { useEffect, useState, useMemo } from "react";
-import { useSearchQuery } from "@/hooks/use-search-query";
+import {BlogRow} from "@/components/features/blog/blog-row";
+import {useEffect, useMemo, useState} from "react";
+import {useSearchQuery} from "@/hooks/use-search-query";
 import Fuse from "fuse.js";
 import {GetBlogFuse} from "@/lib/search";
 import {BlogMdx} from "@/types";
@@ -33,7 +33,7 @@ export function BlogList({ posts }: BlogListProps) {
   }, [posts, query, searchIndex]);
 
   if (filteredPosts.length === 0 && query) return (
-    <SearchResultsEmptySection searchQuery={query} />
+    <SearchResultsEmptySection />
   )
   
   return (

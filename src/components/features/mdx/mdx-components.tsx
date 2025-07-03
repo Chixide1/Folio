@@ -1,7 +1,7 @@
 ﻿// mdx-components.tsx - Simplified MDX Components
-import type { MDXComponents } from 'mdx/types';
-import { CodeBlock } from '@/components/features/mdx/codeblock';
-import { BundledLanguage, bundledLanguages } from "shiki";
+import type {MDXComponents} from 'mdx/types';
+import {CodeBlock} from '@/components/features/mdx/codeblock';
+import {BundledLanguage, bundledLanguages} from "shiki";
 import {cn} from "@/lib/utils";
 import Image from "next/image";
 import {FigImage} from "@/components/features/mdx/fig-image";

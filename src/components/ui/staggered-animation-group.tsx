@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, HTMLProps } from "react";
-import { cn } from "@/lib/utils";
+import React, {HTMLProps, useEffect, useState} from "react";
+import {cn} from "@/lib/utils";
 
 /**
  * Props for the StaggeredAnimationGroup component.

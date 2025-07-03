@@ -3,11 +3,11 @@ import {ContentArea, SlugPageParams} from "@/types";
 import {Metadata} from "next";
 import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {MDXRemote} from "next-mdx-remote/rsc";
-import { BlogDate } from "@/components/features/blog/blog-row";
+import {BlogDate} from "@/components/features/blog/blog-row";
 import {TagGroup} from "@/components/ui/tag";
 import {BlogAuthor} from "@/components/features/blog/blog-author";
-import { TableOfContents } from "@/components/shared/table-of-contents";
-import { rehypeAddHeadingIds } from "@/lib/rehype-add-heading-ids";
+import {TableOfContents} from "@/components/shared/table-of-contents";
+import {rehypeAddHeadingIds} from "@/lib/rehype-add-heading-ids";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";
 import {getBaseUrl} from "@/lib/utils";
 

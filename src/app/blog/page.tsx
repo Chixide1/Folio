@@ -1,8 +1,8 @@
-import { BlogList } from "@/components/features/blog/blog-list";
-import { BlogBg } from "@/components/ui/blog-bg";
-import { AppBg } from "@/components/layout/app-bg";
-import { ContentArea } from "@/types";
-import { getAllContent } from "@/lib/mdx";
+import {BlogList} from "@/components/features/blog/blog-list";
+import {BlogBg} from "@/components/ui/blog-bg";
+import {AppBg} from "@/components/layout/app-bg";
+import {ContentArea} from "@/types";
+import {getAllContent} from "@/lib/mdx";
 import {BlogSearchBar} from "@/components/features/blog/blog-search-bar";
 
 export default async function BlogsPage() {

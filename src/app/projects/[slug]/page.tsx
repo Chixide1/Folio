@@ -1,10 +1,10 @@
-﻿import { MDXRemote } from 'next-mdx-remote/rsc'
-import {getMDXContent, getAllSlugs, getAllContent} from '@/lib/mdx'
-import { ContentArea, SlugPageParams } from '@/types'
+﻿import {MDXRemote} from 'next-mdx-remote/rsc'
+import {getAllContent, getMDXContent} from '@/lib/mdx'
+import {ContentArea, SlugPageParams} from '@/types'
 import Image from 'next/image'
-import { TagGroup } from "@/components/ui/tag";
-import { LiveButton } from "@/components/features/projects/live-button";
-import { GitHubButton } from "@/components/features/projects/github-button";
+import {TagGroup} from "@/components/ui/tag";
+import {LiveButton} from "@/components/features/projects/live-button";
+import {GitHubButton} from "@/components/features/projects/github-button";
 import {Metadata} from "next";
 import {mdxComponents} from "@/components/features/mdx/mdx-components";
 import {FlashlightBgEffect} from "@/components/layout/flashlight-bg";

@@ -5,7 +5,7 @@ import {AppNavbar} from "@/components/layout/app-navbar";
 import {Providers} from "@/providers";
 import {ReactNode} from "react";
 import {AppFooter} from "@/components/layout/app-footer";
-import { StripesCol } from "@/components/ui/stripes";
+import {StripesCol} from "@/components/ui/stripes";
 
 const geist = Geist({
   variable: "--font-geist",

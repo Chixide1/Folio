@@ -1,5 +1,6 @@
 ﻿import * as React from "react"
-import {ComponentPropsWithoutRef} from "react";
+import {ComponentPropsWithoutRef} from "react"
+
 const TrianglesBg = (props: ComponentPropsWithoutRef<"svg">) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

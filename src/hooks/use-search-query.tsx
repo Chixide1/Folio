@@ -1,5 +1,5 @@
-﻿import { useState, useEffect, useCallback, useRef } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+﻿import {useCallback, useEffect, useRef, useState} from 'react';
+import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 
 type UseSearchQueryOptions = {
   debounceMs?: number;
