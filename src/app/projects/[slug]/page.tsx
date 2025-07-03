@@ -123,3 +123,4 @@ export async function generateMetadata({ params }: SlugPageParams): Promise<Meta
 }
 
 export const dynamicParams = false
+export const revalidate = 86400; // 24 hours
