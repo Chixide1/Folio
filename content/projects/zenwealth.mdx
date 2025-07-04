@@ -56,10 +56,10 @@ Because authentication happens directly through the user's bank, credentials rem
       },
     ].map((image, index) => (
       <Image
-        key={index} // Use a unique key for each image
+        key={"zenwealth-project-mdx-" + index} // Use a unique key for each image
         src={image.src}
         alt={image.alt}
-        className="rounded-lg shadow-lg w-[180px] sm:flex-1 sm:max-w-[360px] h-auto"
+        className="rounded-lg shadow-lg w-[48%] sm:flex-1 sm:max-w-[360px] h-auto"
         title={image.title}
         loading="lazy"
         width={360}
