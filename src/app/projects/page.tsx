@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
       }}
       className="relative w-full"
     >
-      <div className="absolute w-full top-0 -z-10 h-screen overflow-hidden border-b border-dashed">
+      <div className="absolute w-full top-0 -z-10 lg:h-screen overflow-hidden border-b border-dashed">
         <ProjectsBg className="object-cover opacity-[0.075]" />
       </div>
       <div className="py-24 max-w-5xl 2xl:max-w-7xl px-6 w-full mx-auto">

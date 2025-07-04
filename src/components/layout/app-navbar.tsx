@@ -60,8 +60,10 @@ function DesktopMenu({className}: {className?: string}) {
           <NavigationMenuLink
             asChild
             data-active={('/' + pathname.split('/')[1] || '') === item.href ? "true" : "false"}
-            className={cn("text-xs font-semibold uppercase tracking-wide !bg-inherit hover:text-accent duration-500 transition-colors",
-              className, "data-[active=true]:text-accent")}
+            className={cn(
+              "text-xs font-semibold uppercase tracking-wide !bg-inherit hover:text-accent duration-500 transition-colors",
+              className, "data-[active=true]:text-accent"
+            )}
           >
             <Link href={item.href} target={item.target}>{item.title}</Link>
           </NavigationMenuLink>
@@ -109,16 +111,11 @@ function MobileMenu({className}: {className?: string}) {
             <Link
               href={item.href}
               target={item.target}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2 !text-lg font-medium transition-colors duration-500 hover:text-accent",
-                pathname === item.href && "text-accent"
-              )}
+              data-active={('/' + pathname.split('/')[1] || '') === item.href ? "true" : "false"}
+              className="group flex items-center gap-3 px-3 py-2 !text-lg font-medium data-[active=true]:text-accent transition-colors duration-500 hover:text-accent"
             >
-              <item.Icon
-                className={cn("text-primary size-5 duration-500 transition-colors hover:text-accent",
-                  (pathname === item.href && "text-accent"))}
-              />
-              {item.title}
+              <item.Icon className="text-primary size-5 group-data-[active=true]:text-accent duration-500 transition-colors hover:text-accent"/>
+              <span>{item.title}</span>
             </Link>
           </DropdownMenuItem>
         ))}

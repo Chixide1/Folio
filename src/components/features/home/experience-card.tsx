@@ -61,7 +61,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
               alt={`${company} logo`}
               width={1000}
               height={1000}
-              className="w-auto h-auto rounded-[inherit] object-contain border"
+              className="w-auto h-auto rounded-[inherit] object-contain border shadow-md"
             />
           ) : (
             <div className="w-8 h-8 rounded flex items-center justify-center">

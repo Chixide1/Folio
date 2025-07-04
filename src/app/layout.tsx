@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
 
   // Additional metadata
-  metadataBase: new URL("https://ckdoestech.com"), // Replace with your actual domain
+  metadataBase: new URL("https://ckdoestech.com"),
   alternates: {
     canonical: "/",
   },

@@ -12,12 +12,12 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
 
   return (
     <div
-      className="max-lg:border max-lg:rounded-md flex lg:gap-2 max-lg:flex-col transform-3d perspective-normal"
+      className="max-md:border max-md:rounded-md flex md:gap-2 max-md:flex-col transform-3d perspective-normal"
     >
       <ProjectImage
         className={cn(
-          "max-lg:bg-card max-lg:rounded-t-md hover:border-accent lg:rounded-l-3xl border flex lg:w-5/12 shadow-black/40 lg:shadow-md duration-500",
-          project.frontmatter.live && "transform-gpu transition-all hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:-rotate-x-3 lg:hover:rotate-y-2 will-change-transform backface-hidden"
+          "max-md:bg-card max-md:rounded-t-md hover:border-accent md:rounded-l-3xl border flex md:w-5/12 shadow-black/40 md:shadow-md duration-500",
+          project.frontmatter.live && "transform-gpu transition-all hover:shadow-2xl md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:-rotate-x-3 md:hover:rotate-y-2 will-change-transform backface-hidden"
         )}
         href={project.frontmatter.live ?? "/"} target="_blank"
       >
@@ -32,8 +32,8 @@ export function ProjectCard({project}: { project: ProjectMdx }) {
       </ProjectImage>
       <ProjectInfo
         className={cn(
-          "group backdrop-blur-sm hover:border-accent  max-lg:rounded-b-md bg-white/90 dark:bg-card p-4 lg:rounded-r-3xl w-full border transform-gpu shadow-black/20 lg:shadow-md transition-all duration-500 will-change-transform backface-hidden",
-          project.frontmatter.github && "hover:shadow-2xl lg:hover:-translate-y-4 lg:hover:translate-z-6 lg:hover:rotate-x-2 lg:hover:-rotate-y-1"
+          "group backdrop-blur-sm hover:border-accent  max-md:rounded-b-md bg-white/90 dark:bg-card p-4 md:rounded-r-3xl w-full border transform-gpu shadow-black/20 md:shadow-md transition-all duration-500 will-change-transform backface-hidden",
+          project.frontmatter.github && "hover:shadow-2xl md:hover:-translate-y-4 md:hover:translate-z-6 md:hover:rotate-x-2 md:hover:-rotate-y-1"
         )}
         href={project.frontmatter.projectPage ? `/projects/${project.slug}` : project.frontmatter.github ?? "/"} target={project.frontmatter.projectPage ? "_self": "_blank"}
       >

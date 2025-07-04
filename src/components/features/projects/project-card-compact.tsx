@@ -38,12 +38,12 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPostWithSlug
             alt={title}
             width={1200}
             height={1200}
-            className="w-full max-sm:mb-4 h-auto object-cover rounded border"
+            className="w-full max-sm:mb-4 h-auto object-cover sm:rounded border rounded-t-lg"
           />
         </div>
 
-        {/* Content */}
-        <div className="mb-3 col-span-4">
+        {/* Title & Description */}
+        <div className="mb-3 col-span-4 light:max-sm:px-4">
           <div className="mb-2 font-semibold text-primary flex gap-1">
             <h3 className="group-hover:text-accent duration-500 transition-colors">{title}</h3>
             <LuArrowUpRight
@@ -54,13 +54,14 @@ export const ProjectCardCompact = forwardRef<HTMLDivElement, ProjectPostWithSlug
         </div>
       </Link>
 
-      {/* Second row - Links and Tags */}
-      <div className="max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col items-center justify-center">
+      {/* Links */}
+      <div className="light:max-sm:px-4 light:max-sm:pb-4 max-sm:mt-3 sm:row-start-2 col-span-full sm:col-span-2 max-sm:gap-x-6 text-sm flex sm:flex-col items-center sm:justify-center">
         <ProjectLink name={"Github"} href={github} className=""/>
         {projectPage && <ProjectLink name={"Project Details"} href={`/projects/${slug}`} target="_self"/>}
       </div>
 
-      <div className="row-start-2 col-span-full sm:col-span-4">
+      {/* Tags */}
+      <div className="light:max-sm:px-4 row-start-2 col-span-full sm:col-span-4">
         <TagGroup tags={tags} className="gap-1.5" />
       </div>
     </div>
